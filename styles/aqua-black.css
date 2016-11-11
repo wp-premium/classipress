@@ -1,0 +1,17 @@
+@import 'aqua.css';
+
+.header_top {
+	background: #1a1a1a url("../images/topheader_bg.gif") repeat-x top;
+	border-bottom: 2px solid #323232;
+}
+
+.header_main {
+	background: #313131 url("../images/header_allbg.gif") repeat-x top;
+}
+
+.header_main_bg {
+	background: url("../images/header_bg.jpg") no-repeat top center;
+	clear: both;
+	padding: 25px 0;
+	position: relative;
+}

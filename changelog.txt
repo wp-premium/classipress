@@ -1,0 +1,1382 @@
+3.5.7 - 2016-07-05
+fixes:
+	- Removed duplicate esc_url() filter on Google Maps url
+	- Blog Post wrong breadcrumbs
+
+
+3.5.6 - 2016-06-30
+changes:
+	- Added Google Maps API key option to ClassiPress > Settings > General > Google Maps settings section.
+
+
+3.5.5 - 2016-05-31
+fixes:
+	- Search issue with ampersand. Now search request by phrases with '&' will return correct result. correct
+	- Strip shortcodes in description field on front-end forms and user role lower than Editor.
+	- Add image in edited ad not working. Next time when user decide to edit his ad images will saved correctly.
+	- force_ssl_login() is deprecated
+
+changes:
+	- Bypass 'select gateway' step when only 1 gateway enabled
+	- Add Google reCaptcha in contact lister form
+	- Dynamically change order of tabs and even add new ones using new filter 'cp_ads_listing_tabs'
+	- Differentiating between wordpress categories and classipress categories. General taxonomy name is 'Ad Categories', but admin menu item is still 'Categories'
+	- Update Google CDN version of jQuery
+
+
+3.5.4 - 2016-03-09
+fixes:
+	- Featured slider formatting on load
+	- Minor Google Map API error
+	- Fixed "Go >>" button when used "back" button in Firefox
+	- Mobile menu text half hidden
+	- Don't display "Join Now" widget if registration is not allowed
+changes:
+	- Add new post type and taxonomy labels
+
+3.5.3 - 2016-02-01
+fixes:
+	- Images being displayed in reverse order on single ad page
+	- Form layout looks out of line on tablets and mobiles, especially in landscape mode
+	- Fatal error when using Browser Uploader to upload attachments
+	- Bank tranfser instructions don't show on single order page outside checkout process
+	- Relisting ads error notice
+	- When an ad is relisted, the admin receives the email with duplicated links to the ad
+	- Membership Expiry date extends each time a new ad is posted
+	- Ad image in admin shows last image instead on first
+	- Image order reversed on Single Ad page
+	- Recaptcha json error on some servers
+	- Detach old attachments even when there are no new ones
+	- Missed icons on the dashboard
+changes:
+	- Allow to use escaped comma (\,) in custom fields / field values
+	- Added filter 'appthemes_recaptcha_url_args' to recaptcha args
+	- Changed http to https for social links
+
+3.5.2 - 12/10/2015
+fixes:
+	- Price misalignment with logged out users
+	- Ad description TinyMCE text area width
+	- Attachments sorting
+	- Missing "Your ad has been approved" email notification
+	- Ad and membership packs not being ordered correctly
+	- PHP Warning in customizer on PHP 5.3 or older: "PHP warning: Invalid argument supplied for "foreach() in .../customizer.php" on line 548"
+	- Missing Bank Transfer instructions during checkout
+	- Featured slider not scrolling automatically
+	- Header background color not working in customizer
+	- Missing HTML formatting in Ad content
+	- Hide comments bubble on posts with the 'Allow Comments' option unchecked
+	- Categories dropdown in site header misaligned and shorter then search field
+	- Lost user password after edit profile
+changes:
+	- Added support for Google reCaptcha v.2.0
+	- Categories and sub-categories selection is restored on checkout when user navigates to the first step
+	- Added lightbox to single post image thumbnail
+	- Stopped registering deprecated db tables (fixes missing table issues when doing database repairs)
+	- Deleted legacy file 'custom-sample.css'
+
+3.5.1 - 09/01/2015
+fixes:
+	- Double password fields showing on registration page/reset password/edit profile pages (after WP 4.3 update)
+	- Missing minus/plus images in users dashboard (only used on small screens)
+	- Minor CSS issues
+changes:
+	- There's now only one password field in registration, profile and reset password pages (WP 4.3 or later)
+
+3.5 - 8/13/2015
+fixes:
+	- Content advertising not showing on search results and category/taxonomy pages
+	- Some transient notices not being deleted from the DB
+	- Fatal error updating comments on the backend
+	- Expired ads showing on 'Popular Ads Today' and 'Popular Ads Overall' widgets
+	- Listings thumbnails extra padding making descriptions collapse
+	- Registration link visible in the top navigation menu even when registration was disabled
+	- Delete all Ads related meta and attachments when Ad is deleted or expires
+	- Empty price on 'Membership Packs' price modifier column
+	- General responsive related issues
+	- CSS stylings for AppThemes payment gateways
+	- Fatal error when saving comments on the backend
+
+changes:
+	- Replaced link for choosing categories with a dropdown on 'Post Ad' form (reverted to v.3.3 behavior)
+	- Added the category to single posts breadcrumb
+	- Updated Facebook widget to latest version
+	- Front page 'Most Popular' and 'Random' Ads are now loaded on demand (better performance on front page)
+	- Moved appearance related settings to the WordPress customizer page
+	- Removed obsolete 'Table Width' option previously located under ClassiPress > Settings > (tab) Advanced
+	- Moved 'Custom Urls' option previously located under 'ClassiPress > Settings > (tab) Advanced' to the permalinks section
+	- Moved 'Importer' sub-menu item from ClassiPress menu to 'Ads' menu
+	- Moved 'Forms' and 'Custom Fields' sub-menu items from ClassiPress menu to 'Ads' menu
+	- Replaced all image icons with font icons (better performance overall)
+	- Removed shadows and borders for a more modern flatter look
+	- Sub-category list is no longer "fixed" to sidebar and it's now a widget (provides option to display sub-categories using a dropdown)
+	- Updated calendar CSS styling used in Ads meta boxes (also replaced calendar image based icon with WordPress dashicon)
+	- Replaced backend images with WordPress dashicons where used
+	- All backend pages are now fully responsive
+	- Replaced backend attachments metabox with WordPress builtin media browser (attachments meta box is now responsive)
+	- Replaced the ads excerpt breakpoint '...' with a '[..]' link, that links to the ad page
+	- Ad excerpts now default to '25' words limit instead of previous '160' characters limit
+	- Replaced forms step images with vectors
+	- New Orders will now display more detailed descriptions
+	- Use minified versions of main CSS and Javascript files when available
+	- Use the minified version of the 'easing' Javascript library
+	- Deprecated 'black' versions of color schemes (use the new background color options on WP Customizer for the same effect)
+	- Deleted obsolete images from images folder
+	- Removed legacy css from stylesheets
+	- Replaced old placeholder images with new version
+	- Increased container page width from 940px to 960px
+	- Performance enhancements, clean up, and responsive added to the featured images slider
+	- Memberships whose Orders are deleted from the database are now automatically canceled (not recommended)
+	- Deprecated Cufón fonts option
+	- Deleting an ad will now delete all related meta and attachments
+	- Better checkout experience with checkout steps visible on every step of the ad posting process
+
+new:
+	- Added options to change footer and columns width in WP Customizer
+	- Added options to change site header and background color in WP Customizer
+	- Added new 'Orders' page to the user dashboard (displays all the orders for the dashboard user and these can be filtered by status)
+	- Added CSS stylings for 'Critic' plugin (https://marketplace.appthemes.com/plugins/critic/)
+	- Added 'https' support for Google 're-Recaptcha'
+	- Added support for the '<!--more-->' link in blog posts ( displays 'Continue Reading...' )
+	- Added 'Add-ons' sub-menu (browse our marketplace add-ons directly from the backend)
+	- Added support for retina/hdpi images where applicable
+
+
+3.4.1 - 4/24/2015
+fixes:
+	-lost category dropdown on the listing first step
+	-potential XSS add_query_arg() vulnerability
+
+changes:
+	-added 'cp_order_checkout_step_register_to' filter hook
+	-responsive admin settings layout (except custom form and field pages)
+	-updated screenshot.png to new look
+
+
+3.4 - 28/11/2014
+fixes:
+	-fixed issue with submitting form on chrome and safari
+	-fixed issues with html ad editor
+	-fixed displaying line breaks in ad review step
+	-fixed issue with Featured Ad option being removed by AdBlock browser extension
+	-fixed issue with damaging listings view in wp-admin by AdBlock browser extension
+	-fixed issue with sending out emails when in the 'From' field a Yahoo or AOL email address is used
+	-fixed issue with overriding font styles in wp-admin by ClassiPress stylesheet
+	-fixed issue with not displaying errors in user edit profile page
+	-fixed issue with suggesting to user a blank value for Display Name field in user edit profile page
+	-fixed issue with missing images in listing submission form when click the 'back' button to correct listing details
+	-fixed issue where user with 'subscriber' role was able to create listings
+	-fixed issue with ads/posts tabs on author page when using pagination
+	-fixed issue with 'go back' button in listing submission form
+	-fixed issue where user was able to choose non-existent category
+
+changes:
+	-rewritten 'create listing', 'edit listing', 'renew listing', and 'purchase membership' forms
+	-rewritten admin listing metaboxes to use APP_Post_Attachments_Metabox and APP_Meta_Box classes
+	-rewritten all widgets to use the APP_Widget class
+	-rewritten listing & membership packages
+	-rewritten user dashboard template
+	-reorganized functions in files
+	-added report post feature
+	-added 'search index' to improve performance of search queries
+	-added more server side validation to listings & membership forms
+	-added compatibility with Contact Form 7 plugin
+	-added option to categories widget to turn off count
+	-added 'continue' buttons to order summary page
+	-added ability to relist 'live-expired' listings, the expired listings that remain on site when the 'Prune ads' option is disabled
+	-changed admin logo options to 'custom-header' theme support
+	-changed all emails to html and use appthemes_send_email()
+	-changed taxonomy columns to be generated by WP on admin edit.php page
+	-changed the First & Last Name fields in edit profile page to not be required
+	-changed user displayed name on site to Display Name instead of login
+	-changed the way of adding default text info search forms, used placeholder attribute instead of JS
+	-changed the way of storing membership purchase information
+	-chenged the cp_breadcrumb() function to use framework breadcrumb_trail()
+	-changed and renamed the moderation option
+	-updated Timepicker js library to 1.5.0
+	-updated jCarousel Lite js library to 1.9.2
+	-removed code with querying listings from 'archive-ad_listing.php' template, queries setup handled by CP_Ads_Archive class
+	-removed migration script from CP version 3.0.4 and earlier
+	-deprecated 'includes/forms/step-functions.php' file
+	-deprecated functions: get_pack_benefit(), get_pack(), get_pack_id(), cp_ad_packs(), cp_custom_images_meta_box(), cp_edit_ad_images(),
+	cp_custom_fields_meta_box(), cp_edit_ad_fields(), cp_save_meta_box(), appthemes_process_membership_order(), get_order_id(), get_order_userid(),
+	get_user_orders(), cp_add_new_listing(), cp_action_add_new_listing(), cp_update_listing(), cp_action_update_listing(), cp_renew_ad_listing(),
+	auth_redirect_login(), appthemes_exclude_search_types(), cp_check_expire_date(), cp_related_posts(), cp_resize_youtube(), cp_is_type_page(),
+	cp_get_image(), cp_get_image_url_raw(), cp_get_image_url_feat(), cp_get_image_url_old(), cp_set_ad_thumbnail(), cp_delete_ad_thumbnail(), app_report_post()
+	-documented functions and classes
+
+
+3.3.3 - 3/10/2014
+fixes:
+	-fixed/changed html editor to make it compatible with upcoming WordPress 3.9
+	-fixed strict standards errors
+	-fixed issue where user was able to use html tags in image captions
+	-fixed invalid field label IDs for password fields on edit profile page
+	-fixed not hiding plupload error messages
+	-fixed 'go' button in ad submission form which haven't worked after click on browser 'back' button
+	-fixed issue where special chars was escaped in email 'from name'
+	-fixed wrapping current item in breadcrumb
+	-fixed displaying current date in membership pack expiration date on edit user profile page when the date is not set
+	-fixed issue with showing new line tags in 'price modifier' option name for membership packs
+	-fixed possible issue with displaying blog content
+	-fixed issue with duplicate ad creation when button in ad submission form was pressed more than once
+	-fixed jQuery Validate error focusing for selectbox fields
+
+changes:
+	-localization of jQuery Validate has been moved to theme .POT file, and related admin option removed
+	-added open graph meta tags
+	-added automatically pruning daily stats table from records older than 30 days
+	-added duplicate ad check into importer
+	-ad count in sub categories widget works synchronous with the categories page, use same option
+	-removed the "From URL" tab in backend media uploader for ads
+	-added filter into cp_get_featured_slider_ads() that returns ads for featured slider
+
+
+3.3.2 - 12/25/2013
+fixes:
+	-fixed not showing empty categories in list of forms
+	-fixed post thumbnails to be available to all post types
+	-fixed defining field lenght parameter
+	-fixed excluding posts and pages from search
+	-fixed 'no found results' display in sidebar map
+	-fixed not properly closed html tags
+	-fixed hardcoded form fields IDs
+	-fixed misaligned blog post image
+	-fixed deprecated function calls from Framework component
+	-fixed Force SSL Login
+	-fixed hiding content preview for password protected posts
+	-fixed search for empty search term
+	-fixed issue with geocoding when previous coordinates wasn't removed if new location couldn't be located
+	-fixed not translatable error messages from images uploader
+	-fixed alignment on single ad page on iPad portrait view
+	-fixed display of admin menu icons on WP 3.8
+	-fixed possible XSS insertion in add/edit ad forms
+	-fixed possible issue with password recovery url in email message
+	-fixed issue with 'add image' button that freeze after removing other image
+	-fixed displaying prices in category dropdown on submit ad page
+
+changes:
+	-reorganized structure of included files
+	-changed schema of geocoding DB table
+	-added compatibility with OneAll Social Login plugin
+	-added custom favicon option
+	-added .jpeg file extension to allowed file types
+	-added colorbox to blog post images
+	-added option to moderate edited ads
+	-added option to require from users to upload at least one image
+	-added option to choose between price slider and input fields in refine search widget
+	-added reset payment gateway option to user dashboard
+	-added ability to preview pending and expired ads by owner from user dashboard
+	-utilized 'no_found_rows' arg to limit number of DB queries
+	-introduced functions to obtain class instances
+	-moved refine results widget to the top of page on mobile devices
+	-changed refine slider functionality from 'show thousands' to 'precise price'
+	-removed 'add new order' page from wp-admin
+	-updated javascript libraries (validate, colorbox, footable), libraries moved to Framework
+	-updated jquery version from google cdn
+
+
+3.3.1 - 8/21/2013
+fixes:
+	-fixed wpdb::escape deprecated notice on WP 3.6
+	-fixed php strict standards errors
+	-fixed sql errors when mysql in strict mode
+	-fixed searching pages
+	-fixed display problems with sub-categories in dropdown
+	-fixed colorbox title on single ad page
+	-fixed contact form anti-spam validation
+	-fixed applying categories dropdown menu to wrong items
+	-fixed issue with jQuery Validation languages codes
+	-fixed overlaying search suggest by slider
+	-fixed adding slashes on settings page
+	-fixed issue with dropdown menus and language packs
+	-fixed conflict with categories widget when placed in footer sidebar
+	-fixed membership requirement by category
+	-fixed responsive view for recaptcha, coupon code field and bank transfer information
+	-fixed error placement for dropdown menus in Chrome when SelectBox enabled
+	-fixed timezone issues with registration and orders date
+	-fixed issue with Coupons plugin when discount exceed total amount to pay
+	-fixed issue where id of menu was generated dynamically
+	-corrected some translatable strings
+	-fixed breaking all words on mobile devices
+	-corrected tooltip information for 'Available Categories' field in form layout
+	-fixed responsivness of images with caption
+	-fixed containers on the Add New and Membership pages
+	-fixed text alignment on iPad
+	-fixed category selection on Add New page which could not work on some servers
+	-fixed issue where users could post duplicate ads by using browser back button
+	-fixed issue where 'Auto Draft' link was added to receipe emails
+	-fixed issue with featured ads when WPML plugin was used
+
+changes:
+	-added pre-installing widgets in sidebars on theme installation
+	-added new System Info page with option to download reports
+	-added 'ad reference id' into searchable fields
+	-added membership pack expired information to user sidebar
+	-changed dropdown list indentation on mobile devices
+	-added refine search for text fields
+	-added styles for Twitter Widget Pro plugin
+	-added filter hook 'cp_get_content_preview' on content preview
+	-added filter hooks to emails
+	-changed transition time for control tabs, will switch faster
+	-changed loading mobile libraries regardless of device
+	-removed twitter widget due to changes on twitter side, as replacement use Twitter Widget Pro plugin
+	-removed integration with User Photo plugin, as replacement use WP User Avatar plugin
+	-added custom icon for ads in wp-admin
+	-added styles for calendar widget
+	-updated SelectBox JS library
+	-changed displaying 'login disabled' warning, displaying only on settings page now
+	-improved displaying the 'price per category' and 'membership by category' options, have hierarchy tree now
+	-changed tooltips in admin to work on click
+	-added 'check all' button to category checklist
+	-renamed 'New Ad Status' option to 'Moderate Ads'
+	-renamed admin css file
+	-enabled TinyNav for devices with screen size up to 800px
+	-added touch events to jQuery UI on mobile devices
+	-added characters limit in the price field, default is 15
+	-added 'tests' library for unit testing
+	-hided blog posts tab on author page when author have no posts
+	-moved welcome widget to the top of home page on mobile devices
+	-improved compatibility with WPML plugin, please update also WPML Bridge plugin
+
+
+3.3 - 4/18/2013
+fixes:
+	-fixed incompatibility with WP Reading settings
+	-fixed error in cp_breadcrumb() when theme used with Wisija plugin
+	-fixed notices in blog post widget
+	-corrected misleading information under 'Allow ad relisting' option
+	-fixed search issue when WP is installed in its own directory
+	-fixed pre-pending values with a slash in 'Edit ad' form
+	-fixed modifying widget queries while searching site
+	-fixed 'Approved ad' notification was sent for blog posts
+	-fixed min/max price in refine results widget, was including prices of not published ads
+	-fixed ajax calls when FORCE_SSL_ADMIN is set
+	-fixed issue where user had possibility to exceed images limit
+	-fixed missing styles for current menu item
+	-fixed issue where browser didn't display last position if back button clicked
+	-fixed issue with conditional tags in footer section
+	-added additional server side validation for contact form
+	-fixed price display for child categories when 'allow parent category posting' option was set to 'no'
+	-fixed issue with border under long categories names in directory style
+	-fixed issue with text alignment and long categories names in dropdown menu
+	-fixed 'allow html' option which was not disabling auto-embeds on WordPress 3.5
+	-fixed many issues with timezones
+	-fixed display date format in many places
+	-fixed issue where disabling password on registration page was disabling it on edit profile page
+	-fixed issue where ad categories widget could be used just once
+	-fixed issue where creating custom fields and forms with non-latin names could cause generating invalid internal names
+
+changes:
+	-implemented new Payments module, payment gateways from Marketplace are now compatible
+	-removed 'Coupons module', use AppThemes Coupons plugin instead
+	-coupons from old module are converted to AppThemes Coupons plugin format while updating theme
+	-transactions from old module are converted to new format while updating theme
+	-implemented new settings pages, settings are converted to new format while updating theme
+	-changed template files names for home page (to tpl-ads-home.php) and blog page (to index.php)
+	-renamed template file name loop-featured.php to loop-popular.php
+	-added 'Sold ads' widget
+	-added 'Featured ads' widget
+	-added responsive styling to front end pages
+	-navigation menu becomes native select menu at smaller screen sizes (responsive)
+	-switch to browser uploader works now without reloading page
+	-removed 'Save Changes' button from the top of settings page
+	-changed Turkish currency code from 'YTL' to 'TRY'
+	-removed changing to pretty permalinks on theme installation
+	-improved validation of 'dashboard' and 'edit ad' pages
+	-details of purchase with coupon is now available on Orders page
+	-moved many inline javascripts to theme-scripts.js file
+	-updated external jquery, colorbox, and validation js libraries
+	-removed 'paypal email' field from profile page
+	-added links to sample csv files on importer page
+	-added items number control to top ads, categories, and tags widgets
+	-removed inline sexybookmarks/shareaholic code from theme, plugin has an option to choose place
+	-updated google maps api library url
+	-ad price formatting is handled now by new payments module
+	-removed classipress-no-admin.pot translation file
+	-selectbox js library is now optional
+	-changed expire date format to 'Y-m-d H:i:s'
+	-cron emails changed to html format
+	-sidebar container is now floated to the right side
+	-added disabling 'submit' button if uploading images is still in progress
+	-removed superfish js library
+	-including many template files with get_template_part(), possibility to override by child theme
+	-located many template images, possibility to override by child theme
+	-added reset statistics link on single ad page and admin option to reset all statistics
+	-added action and filter hooks into cp_get_ad_details() function
+	-added feature to display current website time in footer section
+	-added facebook page icon option in the top bar
+	-added compatibility with WPML plugin, need to install free AppThemes WPML Bridge plugin
+	-added feature to ping 'update services' while publish ad listing
+
+
+3.2.1 - 12/10/2012
+fixes:
+	-fixed submit button styles on admin settings pages, occur on WordPress 3.5
+	-fixed missing argument warnings for $wpdb->prepare(), occur on WordPress 3.5
+	-fixed Twitter feed widget on theme dashboard page
+	-fixed typo in "Membership Details" string
+	-fixed unselecting country within refine search
+	-fixed forum feed widget on theme dashboard
+	-fixed display issue of datepicker in backend add/edit ad form
+	-fixed display issue of featured ad price in add new form
+	-fixed possible issue with translated post statuses in user dashboard
+	-fixed issues with cron settings which could affect in some cases
+
+changes:
+	-changed all localization tags from 'appthemes' to APP_TD which reference to 'classipress' now
+	-general.js file and the "Enable general.js" option has been removed from theme, general.js file will be automatically enqueued from root directory of child theme if available
+	-removed creating blogroll link to appthemes.com on theme installation
+	-removed unused jQuery libraries
+	-updated jQuery UI styles
+	-enabled SelectBox JS library in add new form
+	-added tooltips to action icons in user dashboard
+	-added option to disable redirect from wp-login.php, can be used for compatibility with maintenance plugins
+	-added 2 advertise action hooks 'appthemes_advertise_content()' and 'appthemes_advertise_header()', by default have assigned ClassiPress standard advertise features
+	-removed usage of cp_edit_ad_formbuilder() - cp_formbuilder() used instead
+	-added filter hooks into cp_formbuilder() function, apply on field args, name of filters 'cp_formbuilder_FIELD_NAME'
+	-added filter hook into cp_formbuilder() function, allow to modify or disable certain field, apply on form field object, name of filter 'cp_formbuilder_field'
+	-added filter hooks into 'add new' and 'update ad' process for additional validation, apply on errors, name of filter 'cp_listing_validate_fields'
+	-added action hook 'cp_action_formbuilder' after form fields cp_formbuilder() function
+	-added action hooks 'cp_action_add_new_listing' and 'cp_action_update_listing' into cp_add_new_listing() and cp_update_listing() functions
+
+
+3.2 - 11/5/2012
+fixes:
+	-fixed errors on PHP 5.4.x
+	-adblock extension for browsers was hiding title of an ad
+	-widgets in sidebar had duplicated identificators
+	-search widget was not properly displayed in IE7 and IE8
+	-map was incorrectly displayed after contact form used, or reposition of tabs
+	-submit buttons in tinymce html editor was incorrectly positioned in IE
+	-corrected use of $wpdb->insert() and $wpdb->update() where applicable
+	-search in specific category did not search tags
+	-search suggest was returning tags without assigned ads
+	-while purchase membership with bank transfer, incorrect labels was displayed
+	-fixed undefined indexes while creating ad packages
+	-disabling 'charge for listings' was not disable purchase of featured ad
+	-corrected misspelled word  for membership reminders
+	-geo location was not removed from database while deleting ad
+	-search url had missed trailing slash on subdirectory installs
+	-some css and js files was hardcoded, not enqueued
+	-external JS libraries was not enqueued over ssl, if applicable
+	-sender name in email from contact form did no had stripped slashes
+	-custom email after registration was not sending, WP default was sent
+	-fixed background display issue on iphone
+	-customers was able to modify their membership level by using hidden fields
+	-migration script from CP 3.0.4 to 3.0.5 was causing 'out of memory' on larger sites
+	-fixed backend protection option which did not work on multisite installs
+	-pagination urls while using refine search on WP older than 3.4 was causing errors
+	-shortcodes was displayed in content preview
+	-paypal ipn check in "System Info" page was showing incorrect results
+	-html tags was not stripped if 'Allow HTML' option set to 'No'
+	-radio, checkbox and select field values was not selected properly if saved with spaces
+	-firefox displayed warning while returning from paypal if using ipn on non ssl sites
+	-statuses of ads, packs, payments and forms was not localized
+	-if 'user set password' option was disabled, wasn't possible to add user from back-end
+	-membership benefit message was displayed after membership expiration
+	-renewed ad wasn't placed on the top of newest ads
+	-distance unit was not properly translated in refine results box
+	-'cp_zipcode' field was missed from updating geocode
+	-blog category selection box was not displaying properly
+
+changes:
+	-implemented template wrappers
+	-implemented new themed login pages
+	-implemented new files uploader
+	-added importer with example csv files
+	-added compatibility with WP default permalink structure (without rewrite)
+	-added custom menu to footer
+	-added example child theme which displays featured ads on homepage
+	-added columns option for categories list on homepage
+	-changed document doctype
+	-added viewport meta data
+	-changed usage of 'rel' attribute to 'data-rel'
+	-added classes for IE in html tag
+	-updated JS libraries (cufon, selectbox, jquery cdn, timepicker, datepicker, slider, autocomplete)
+	-added notice about membership benefit while posting an ad
+	-added user data into membership transactions list
+	-added alternative prune sql query, can be activated with 'CP_ALTERNATIVE_PRUNE_SQL' constant
+	-moved 'register_form' hook over submit button
+	-tinymce is loading now as inline popup instead of browser popup
+	-added separate feed url for blog pages
+	-added ads into main feed
+	-added 'cp_author_info' hook into ad sidebar, author sidebar and author page
+	-function 'cp_edit_ad_formbuilder' has been wrapped
+	-recaptcha is added now to registration page by using 'register_form' hook
+	-price slider parted on 2 ranges now, shows thousands checkbox
+	-improved price cleaning feature, it's recommended to have it enabled
+	-added tabs with listings and posts on author page
+	-added new author sidebar
+	-renamed 'user sidebar' to 'dashboard sidebar'
+	-added price formatting settings, available on "ClassiPress->Pricing" page
+	-improved installation and updating process
+	-added relisting feature
+	-paypal and banktransfer are added to payment options list by using hooks
+	-added link to tutorial about enabling paypal ipn
+	-added css class 'featured' to featured ads
+	-added line breaks for author description
+	-Facebook, Twitter and Website links are hidden now if not provided by author
+
+
+3.1.9 - 5/14/2012
+fixes:
+	-refine results from category page was not working correctly
+	-membership discount was calculated wrong when operate with thousands
+	-new registrations was not counted if using custom prefixes and user roles
+	-added missed hook to list payment options on membership page
+	-text domain was missed for bank transfer email
+	-profile link in comment form was pointing to backend
+	-image uploader didn't worked on settings page
+	-site title on login pages was not display site name
+	-image uploader didn't allow to add images into body
+	-user was redirected from category page into search page if doing refine results
+	-reset password page was displaying default wordpress page
+	-not completed membership order was not overriden if placed new one
+	-the go button in add new page did't worked on iphone
+	-adpack warning was displayd if charging for ad was disabled
+	-"allow parent category posting" option didn't worked correctly with setting "when empty"
+
+changes:
+	-added compatibility check for WP older than 3.3
+	-added id attribute to select fields in edit ad form
+	-changed display of user logins registered by facebook
+	-added activate membership link on transaction page
+	-google maps use stored in db location if available to display map
+	-added hook "cp_action_payment_button()" for dashboard payment buttons
+	-added multi-currency support for ad
+	-added filter "cp_currency_position" which allow to modify price, currency, and it's position
+	-added filter "cp_percentage_listing_fee" which allow to modify listing fee if we using "% of seller ad price" option
+	-added option to enable custom fields search
+	-added charset to paypal form
+	-facebook login option was removed from theme
+	-added compatibility with Social Connect plugin
+	-added compatibility with Ultimate Facebook plugin
+	-improved categories list display, now supports hierarchy
+	-added pagination to transaction page
+	-added localization to form field labels and tooltips
+	-added verification exclusion for firefox while processing paypal standard payments
+	-improved tables installation process
+	-added verification for prune period
+
+
+3.1.8 - 3/15/2012
+fixes:
+	-currency symbol position does not update on 'Add New' page
+	-added missed hooks in popular ads loop
+	-pagination didn't worked correctly in popular ads tab
+	-membership subscription reminder didn't send emails
+	-leave a reply form was outside the shadowblock
+	-function cp_get_geocode() didn't worked correctly
+	-facebook logout url in some cases was invalid
+	-redirect to membership purchase page without choosing category if required for all
+	-coupon discount wasn't subtracted from membership static
+	-transaction status wasn't checked when using simple paypal payments
+	-ad tags wasn't shown on ad listing page
+	-views counter wasn't shown on ad listing page
+	-return to site after payment sometimes caused blank page
+	-refine results criteria was lost when viewing next page
+	-posts and pages was not included into search results
+
+changes:
+	-added feature to delete ads from dashboard
+	-added action messages in dashboard
+	-added post meta cache for popular ads
+	-added new stats functions and cache for them
+	-added edit ad link for ad owner on ad listing page
+	-added compatibility with WangGuard plugin
+	-changed way of quering popular posts in popular posts widget
+	-added descriptive information in paypal emails
+	-added activated membership email for user
+	-added activation membership option and link in email when using bank transfer
+	-added 'pending' paypal email for non IPN transactions if payment wasn't processed immediately
+	-added collecting and cache for images
+	-memory optimization on homepage
+	-optimized quantity of database queries
+
+
+3.1.7 - 2/10/2012
+fixes:
+	-paypal ipn not point to classipress url
+	-paypal transactions not logged on transactions screen
+	-wrong link 'view more ads' if changed permalinks
+	-breadcrumb format with page numbers
+	-date format when creating ads from the back-end
+	-error on single ad page if an ad have no category assigned
+	-selecting package type if membership satisfies is required
+	-some terms not translated
+	-can't insert additional images into an ad from the back-end
+	-daily stat counter always shows 1 for day count
+	-some translations cause problems to map
+	-option hide empty subcategories sometimes hide subcategories that are not empty
+	-wrong date in blog posts widget
+	-refine results don't return ads with multiple checkboxes selected
+	-some languages files didn't work with validation form
+	-search filters was affecting search in the back-end
+	-facebook auto login issue
+	-link to iso region code table was expired
+	-facebook login/logout urls on subdirectory installations
+	-membership categories gets unset on resaving settings
+	-prevent from buggy ad submissions if no ad packs defined
+	-new user email custom from name was overrided by default name
+	-membership categories gets unset on resaving settings
+	-in some cases membership calculates wrong results
+
+changes:
+	-added options to manage transactions
+	-added logging transactions for bank transfer payments
+	-added emails on purchase an ad and membership by using bank transfer
+	-added refine results while searching in categories
+	-disabled searching post meta in basic search
+	-search drop-down menu preselecting while browsing categories
+	-changed displaying login to display_name for facebook users
+	-swapped out get_userdatabylogin(), get_user_by_email() and replaced with get_user_by()
+	-populate image alt text with post title if no custom text specified
+
+
+3.1.6 - 12/23/2011
+fixes:
+	-facebook login was not working correctly
+	-pagination issue with the homepage listing tabs
+	-coupon currency symbol location option set to right side
+	-Romania spelling in country drop-down
+	-apostrophe got backslashed when saved in ad package settings
+	-allow forced expiration of ads from the back-end
+	-text strings missing from .po language file
+
+changes:
+	-language .mo files should be placed in a 'languages' folder in 'wp-content' instead of inside the 'classipress' folder
+	-swapped out get_currentuserinfo() and replaced with wp_get_current_user() on the user profile page
+
+
+3.1.5 - 10/7/2011
+fixes:
+	-facebook connect loop issue
+	-category selector missing go button issue
+	-links on the profile page displayed html instead of link
+	-header logo now properly links to the home page
+	-potential XSS vulnerabilities in the Facebook and Twitter widgets
+	-bug when saving ad pack on front-end form display
+	-logging out redirect to root on wordpress sub-directory installs
+	-issue when adding new coupons after upgrading from 3.1.3
+	-issue with popular blog posts sidebar widget not showing correct number
+
+changes:
+	-enhanced the ajax category selector to handle unlimited categories
+	-can now delete website logo from options page
+
+
+3.1.4 - 8/16/11
+fixes:
+	-updated TimThumb script to the latest version to fix security exploit hole
+	-escaped multiple variables and sql statements to further harden theme security
+
+changes:
+	-changed home page to use home_url() instead of bloginfo('url') as the href
+	-adjusted style to work better when no images option is enabled and also updated tooltip
+	-improved performance by replacing multiple direct queries with single WordPress API calls
+
+
+3.1.3 - 7/27/11
+fixes:
+	-fixed spelling of Antarctica country that gets setup during ClassiPress first install
+	-fixed membership orders issue with multisite
+	-fixed IE7 category selection jQuery issue
+	-fixed pagination issue
+	-fixed Facebook authentication issue with existing users
+	-fixed issue with Facebook button showing when Facebook authentication was disabled
+	-removed the Yahoo search auto suggestion engine since it was deprecated by Yahoo
+	-added one pixel to height of search box to match the category height
+	-fixed issue where upgrade message still shows even after theme upgrade is completed
+
+changes:
+	-geocoding enhancements for the location search
+	-facebook authentication enable/disable option
+	-renamed loop-ad.php to loop-ad_listing.php and updated get_template_part where necessary
+	-added missing AppThemes API hooks to single-ad_listing.php and loop-ad_listing.php files
+
+
+
+3.1.2 - 7/19/11
+fixes:
+	-bumped version variable since it was missed in 3.1.1
+	-fixed is_multisite() check on the system info admin page
+	-fixed total user count on dashboard for multisite installs
+
+changes:
+	-removed theme version info from dashboard page since it's also on the system info admin page
+	-changed system info theme version number to pull from global var instead of deprecated db value
+
+
+
+3.1.1 - 7/15/11
+fixes:
+	-fixed issue on theme-comments template where $ was accidentally added to a function
+	-fixed issue where spaces in refine search didn't work correctly
+	-fixed error in refine search when selecting a city caused an implode error
+
+changes:
+	-none
+
+
+
+3.1 - 7/10/11
+fixes:
+	-fixed problem with "sticky" option showing up multiple times in WP3.1
+	-updated appthemes function issue related to international dates on the dashboard
+	-fixed spelling in filename theme-depricated.php to theme-deprecated.php
+	-added an IE9 hack to avoid cufon scripting issue and tested to make sure all other browsers were not affected
+	-fixed WordPress custom menu navigation for use in all browsers and validated XHTML on the menu
+	-fixed colorbox and flash embed overlay issue
+	-fixed issue with prices field acting different between posting and editing
+	-fixed checkbox single page CSV display issue to now automatically ad spaces between the values
+	-fixed price to place ad calculation when using % of sellers ad price option
+	-fixed pagination counting issue on the "Most Popular" tab on the homepage
+	-fixed Radio and Checkbox not showing correctly in preview issue
+	-fixed form layouts "modified" times to be properly updated when forms are changed and saved
+	-fixed sub-category so it doesn't display the sidebar widget when no sub categories exist (instead of "No categories")
+	-moved validate js calls to individual admin pages to avoid conflict with edit ad/post meta field buttons
+	-issue where search auto-complete would not escape html entities (i.e & would be &amp;)
+	-dashboard widgets no longer show move icon when hover on bar
+	-issue where html was allowed to be passed into non-text area fields
+	-added padding left style to embedded ad objects so native videos are centered
+	-added missing css div class around post-block to show white border and match the rest of the blocks
+	-added a min height to the home page tabs section to reduce page jump on tab change
+	-added a show/hide function for the pricing admin option tab to only show relevant fields
+	-new installs will attempt to set permalink structure and then flush rewrite rules instead of manually having to do
+	-bug when image gallery was embedded in blog post and created an error. created new attachment page template to handle it
+	-fixed trackback/pingback section for blog posts so they now properly display
+	-escaped comment fields to improve security
+
+changes:
+	-added pricing option to charge for "only featured listings"
+	-added option to remove the "No Categories" text from the categories lists
+	-enhanced the theme-scripts javascript by moving it into a PHP file for use with user options controlling javascript objects
+	-enhanced customer WordPress menus to also allow sub page navigation
+	-added custom menu navigation area to control dashboard links
+	-added new classipress dashboard metrics - total customers today, yesterday, and overall
+	-added classipress option to turn on and off "clean price" function and added developers filter 'appthemes_clean_price'
+	-added login_form do_action to the custom login page. also replaced hardcoded register with wp_register function
+	-added Misc category during theme install so that posting is possible without configuring a new category
+	-maps tab now only shows up if a piece of the address can be found on the post
+	-added min length field to all "text box" fields which can be set in the Custom Fields option page
+	-added new edit ad WP admin write panel which contains all ad custom fields, images, and ad info
+	-added second parameter to the cp_get_price() function so we can use on ad edit write panel
+	-added ad listing time picker format to edit ad write panel
+	-added date registered, last login, & number of ads columns to the WordPress admin users page
+	-added option to sort by date registered, last login, & posts columns to the WordPress admin users page
+	-upgraded jQuery validate from 1.6 to 1.8.1 which includes several new language packs and jQuery 1.6 compatibility fixes
+	-upgraded jQuery from 1.4.4 to 1.6.1 for the Google CDN advanced option
+	-removed jQuery core from the Google CDN advanced option since it loads ALL scripts
+	-switched to WordPress jQuery UI and use other jQuery components that are dependent on them
+	-restyled all select drop-down menus using jQuery so user experience is consistent across all browsers
+	-changed font size for search box and drop-down category menu
+	-implemented many extra security protocols by escaping fields and sql statements
+	-added the from and email address info to the body of the "contact ad poster" email
+	-moved all hardcoded taxonomy and post type names to constants so it's easy to change in one place
+	-added Turkish Lira as a new PayPal currency payment option
+	-added new IPN debug check on system info page to help with troubleshooting
+	-better optimized the install script and added a new db only upgrade script which can manually be run
+	-added the sortable id column to the admin users view since WordPress core no longer includes it
+	-upgraded Google Maps API from 2.0 to 3.0. No longer requires API key. Removed legacy fields & added region & language
+	-moved theme and child theme css functions from theme-header into theme-enqueue for faster load speed
+	-added new db table and update script for geocoding each ad listing so radius search is very accurate
+	-added javascript set focus on username field on login, register, forgot password pages
+	-after admin logs in, they're redirected to the ClassiPress dashboard instead of WordPress dashboard
+	-removed Gravatar hovercards option since it no longer appears to be working. need to test further in 3.2
+	-new ad images now use the ad title as the alt/caption text instead of image file name (i.e. 23456.jpg)
+	-admin option tabs now show selected tab after save is complete
+	-renamed ad sidebar id from sidebar_ad to sidebar_listing due to ad blocker plugin issue
+	-added a default ad, ad category, and tags when brand new install
+	-added post_class(); and id to the blog post loop div to give better control over individual items
+	-added the new AppThemes hook framework which enables 75+ new hooks throughout the theme
+	-added new theme-actions.php file for functions using the new theme hooks
+	-added fade transition to the colorbox.js image previewer on single ads
+	-added two new comments files for ad listing and pages for greater hook control
+	-modularized the payment processing engine and added new payment hooks to allow for plugins
+
+
+3.0.5.4 - 3/21/11
+fixes:
+	-fixed hierarchy breadcrumb issue where not all parent categories showed up
+	-fixed tooltip and image upload Javascript related issues on the edit-item page
+	-fixed problem where selecting a category and clicking search always searched with bad results, now it searches using a wildcard for all items within the category.
+	-fixed all the classes that were labled ad-[classname] and changed to prefix to post-[classname] to avoid Ad Blocker Plus issues.
+	-fixed single ad page contact form which no longer allows you to send messages by just filling out the captcha equation
+	-fixed custom email headers that caused gmail to send the "email as an attachment"
+	-fixed pagination arrows on the homepage that were not working
+	-fixed warning that was displayed when turning on "Hide Empty Child Categories"
+	-fixed css spacing issue for multiple blog categories displayed
+	-fixed dashboard stats plotting graph in IE
+	-fixed colorbox for Wordpress 3.1 update
+	-fixed IE6/7 javascript issue making it possible to edit dropdown fields from those browsers
+	-fixed tinyMCE for wordpress 3.1, and also fixed validation issues including the issue with chrome and tinyMCE
+	-fixed edit page to properly update new custom posts type tags called "ad_tag" tags
+	-fixed tinyMCE validation error message locations (by making them all uniform under the field label)
+	-fixed styles for "edit ad" page where image meta data was not floating correctly in IE
+	-fixed radio button issue both with the edit page, and with the "None" selected issue
+	-fixed clock and folder icons so the bottoms aren't cutoff in IE
+
+changes:
+	-added option to remove the "No Categories" text from the categories lists
+	-added jquery validation to the comments fields
+	-added new cron job viewer tab under "System Info" admin page
+
+
+
+3.0.5.3 - 12/28/10
+fixes:
+	-fixed issue where tooltip was attaching itself to all a hrefs in the admin panels
+	-fixed colorbox and validation scripts that were not working for some customers
+	-fixed sidebar blog dates from widget that was pulling todays date instead of the blog date
+	-fixed required validation for checkboxes and radio buttons.
+	-fixed featured.php and index.php child theme portability issue
+	-fixed Enable Blog -> No option.
+	-fixed the coupons module, multiple bugs were fixed here.
+	-fixed "relisted ads" to update the listing date to the day it was relisted (shows up as "Just Listed" when relisted)
+	-fixed broken sidebar tabs when posting a comment
+	-fixed ad-block class by changing it to post-block to avoid ad blockers from failing to display classipress correctly
+	-added the registration link back into the login page
+	-fixed issue where ads only displayed 3 images even when more images were allowed and uploaded
+	-fixed problem where coupon caused negative ad price to be calculated
+	-fixed all the bugs associated with the checkboxes and radio buttons on the ad-edit page
+	-fixed checkboxes and radio buttons so they appear correctly (instead of a drop-down) on the form builder preview page
+	-fixed positioning issue with form validation error messages on both new ad and edit ad pages
+	-fixed bug in loop.php where html would show up in ad listings blurb if character count was over 165
+	-fixed bug where auto-complete search would only work if you were logged in as an admin & "Back Office Access" was not disabled
+	-fixed upgrade script so it doesn't prompt new installs to upgrade
+
+
+changes:
+	-added pagination on the user dashboard page so only 10 ads are listed per page
+	-added support for custom hierarchical taxonomy permalinks for ad categories (only works in WP 3.1+)
+	-added new admin chart dashboard widget showing total sales and new ads over the last 30 days (Small Business Edition or higher)
+	-added two new advanced settings admin options. turn off wordpress version meta tag & disable admin menu (only works in WP 3.1+)
+	-updated appthemes.com urls to include www
+
+
+
+
+3.0.5.2 - 11/23/10
+fixes:
+	-paypal IPN white screen on return URL was fixed and IPN settings adjusted for some minor bugs found
+	-fixed custom.css issue where it was being called above the other styles
+	-fixed bug where you could not modify the field values for some default fields (like State)
+	-fixed bug where field values were not hidden on custom field types where its not applicable
+	-fixed IE8 upload images bug where image 2 upload area was not displayed
+	-fixed slowness caused by stats module being called on home page
+	-fixed issue where large images were showing up on the popular tab instead of the thumbnails
+	-fixed issue where large user-photo images where showing up in the ad previews
+	-fixed issue when allow ad images was set to no, it now expands full-width
+	-fixed rss feed so it now shows ads instead of blog posts
+	-fixed Enable Blog option to properly hide navigation to blog when set to "No"
+
+changes:
+	-added custom menu native functionality to allow primary navigation menu to be build in wordpress menus area
+	-added a dedicated tag cloud for ads and ad categories
+	-completely rebuilt the stats module so it's much more efficient and robust
+	-added new admin option to disable the stats module on the home page, blog, category pages
+	-set cufon font replacement to off on new installs
+	-set gravatar hovercards to off on new installs
+	-replaced image jquery hover on home page with css to help with performance
+	-removed slider jquery fadein to help with home page performance
+	-moved some javascript files so they only load up when needed
+	-minified the jCarouselLite javascript to help with performance
+	-stripped down the css file needed for jquery autocomplete to help with performance
+	-added new option to use Google CDN hosted jquery instead of included to help with performance
+	-added new option to disable the posters gravatar thumbnail image on ad listings
+	-removed the duplicate thumbnail image on the single ad page so it only shows up as the main image
+	-added caching mechanism for the drop-down category menu and directory home page listing for performance
+	-added caching expires admin option to set when the cache should expire
+	-added new admin option to manually flush the cache (also auto flushes when options are saved)
+	-moved some search category options to encompass the home page directory layout and main category menu
+	-added a total views column to the customer dashboard so they can see how popular their ads are
+
+
+
+
+3.0.5.1 - 11/16/10
+fixes:
+	-fixed a bug in the upgrade script where it only migrated five posts at a time (instead of all)
+	-fixed a bug in the upgrade script where the migration summary numbers were incorrect
+	-fixed an issue with the profile picture not being styled correctly
+	-fixed an issue with existing ad images being to large on the main results pages
+
+
+3.0.5 - 11/16/10
+fixes:
+	-corrected media uploads settings link listed on System Info (includes/admin/admin-options.php)
+	-fixed strength meter on edit profile page (tpl-profile.php line 82)
+	-admins now get redirected to the WordPress back-office after logging in
+	-fixed dashboard when paypal not enabled, and bank transfer is enabled
+	-fixed escape slashes that may have been showing up in "contact owner" emails
+	-fix dropdown option values that didn't default to selected values
+	-fixed long custom field titles problem
+	-fixed two column directory homepage width issues
+	-fixed the PayPal IPN feature
+	-fixed ad and blog post stat counters so they don't double count in some instances
+	-fixed search results and paging where count was incorrect in some situations
+	-fixed search so when searching in a parent category, it will also find it in child categories
+
+
+changes:
+	-added character encoding admin option to google maps (includes/admin/admin-values.php, includes/sidebar-gmap.php)
+	-added new countries to google maps drop-down list (includes/admin/admin-values.php)
+	-changed posts to use "Custom Post Types" with "Custom Taxonomy".
+	-added radio buttons and checkboxes to the custom field values.
+	-main image in single ad can now be clicked to launch the images gallery popup. (single-default.php)
+	-changed "lightbox" scripts from shadowbox to colorbox.(multiple files and added colorbox folder)
+	-enhanced the image upload by requiring the images to be uploaded in order, fixes image 2 upload bug (multiple files)
+	-enhanced the post ad area by including field tooltips to give visitor guidance on what to place in the field (multiple files)
+	-added the feature to mark ads as "SOLD" (multiple files)
+	-renamed images that start with ad to avoid adblocker issues
+	-added custom meta boxes to the new admin write panel
+	-added datepicker to the expires date in the admin "Edit Ad" write panel's custom meta box
+	-modified search widget to display categories in alphabetical order by name (includes/theme-widgets.php line 49)
+	-added coupons module to allow discounting ads (multiple files)
+	-tightened up styles and rounded corners & buttons for more modern look
+	-reworked main header nav style & changed drop-downs to use superfish & hoverintent
+	-added a new /includes/js/general.js file so customers can include their own javascript without losing it in theme updates
+	-added cufon font replacement system to allow font styling
+	-added recaptcha anti-spam system to registration form
+	-added drag and drop form layout field positioning which auto saves on drop
+	-added password field to registration form
+	-added brand new admin page called email. moved email options over and also created new user reg email template
+	-added the "report this post" feature
+	-moved all admin wp_register_script and wp_enqueue_style into a new file called admin-enqueue.php
+	-added new jquery tabs to admin option pages for better organization
+	-added new admin option field to override the admin option pages table width
+	-added scrolling category checklist when creating or editing form layouts
+	-changed all localization tags from 'cp' to standarize on 'appthemes'
+	-made page template path variables into admin options so admin can easily change them
+	-moved featured slider code from home page to separate includes file called featured.php
+	-add user registration disabled message on sign-up page when reg is not enabled
+	-renamed the /form/ folder to /forms/ & all mentions to be in line with all theme directory structures
+	-restyled the categories nav drop-down
+	-removed old deprecated files (moved single-blog.php into single.php & single-default.php changed to single-ad_listing.php)
+	-added loop.php and loop-ad.php to handle the loop and consolidate reusable code
+	-added auto-detection to home page sidebar widget. Logged in users now display their thumbnail and last login
+	-added the ad posters uploaded pic or gravatar thumbnail to each posters ad (sidebar poster tab)
+	-added the ad posters other ads below the ad poster details in the sidebar poster tab
+	-added jquery single ad images hover fade in/out effect
+	-included the ad post title in image alt and title tags for added SEO benefits
+	-added jquery ad image hover enlarge preview effect on ad loop with on/off admin option
+	-added post type selector on ad and post edit admin screens so you can easily change the post type
+	-merged index-directory.php and index-standard.php into index.php
+	-deprecated the Blog Category ID admin option field and replaced with Blog Page ID
+	-author page now displays most recent ad listings and blog posts (if any)
+	-changed alignment and sizes of ad boxes since thumbnail image has changed
+	-changed the default medium image upload size to 200 x 150
+	-changed ad, post, and page title tags from h2 to h1 for SEO benefits
+	-added ad category description field to show on category page under category name. also added to title tag in main nav drop-down for hover description and SEO benefits
+	-added search results keyword highlighting
+	-added incorrect spelling auto-suggest engine on search results
+	-added jquery auto-complete search based on ad tags
+	-added debugging option under settings => advanced to print out the wp query_vars array
+	-added hover stop function to the featured ads slider so visitors can pause the slider
+	-blog sidebar "popular" tab now shows top blog posts based on page views instead of comment count
+	-blog posts now display small view counter on blog listing page
+	-replaced the default sidebar ads widget with a new one so you can now edit directly from the text area without html
+	-added a Facebook like box sidebar widget with multiple options
+	-enhanced user dashboard sidebar. now includes profile picture, last login, link to author page, and other details
+	-added alt text edit field on the edit ad page template so users can insert keywords per image for seo benefits
+	-edit ad image fields now display the image type, upload date, and demensions
+	-added a new real-time Twitter sidebar widget
+	-enhanced the recent blog posts sidebar widget so you can now edit the title and set the number of posts shown
+	-replaced old thumbnail placeholder images with a new one without text to support multi-languages
+	-changed some sidebar items to unordered lists instead of divs
+	-added new comments Gravatar hovercard option
+	-added featured image slider fade in effect
+	-search results now keep the searched term in the search field and the searched category selected
+	-added new ClassiPress admin dashboard total showing pending ads. also linked both pending and live ads to the ad edit page
+	-added a whole bunch of new options for the search bar. i.e. show count, hide empty, hierarchical, orderby, depth
+
+
+
+3.0.4 - 8/13/10
+fixes:
+	-fixed problem with CRON pruning not working properly (includes/theme-cron.php line 40)
+	-fixed problem with tinyMCE HTML editor now loading properly on the "Edit Post" page. (includes/theme-functions.php line 1103-1110)
+	-fixed edit page not pulling proper previously selected values to drop down menus. (includes/theme-functions.php line 1084)
+	-fixed issue with embed or other html tags not being saved even when "allow html" was enabled. (includes/form/step-functions.php line 609-610, includes/theme-functions.php line 1012)
+	-fixed drop down issue on edit page where "blank" items would be forced to choose "first item in list", now can remain blank (includes/theme-functions.php line 1085)
+	-moved payment gateway dropdown to review page and "hid" the dropdown when ad has no cost (includes/form/ multiple files)
+	-fixed login page to work properly with child themes to match the child theme header and footer (includes/theme-login.php)
+	-fixed search problem where no results came back when searching a parent category. (search.php line 35)
+	-fixed home page sidebar widgets issue when language packs were being used. (sidebar.php line 52)
+	-fixed issue with get_option('home'). Replaced all instances with get_option('siteurl') (multiple files 6 instances)
+
+changes:
+	-added support for top-level category styling on directory-style home page layout. (includes/theme-functions.php line 1554)
+	-added PayPal IPN option to all editions except Personal Edition.
+	-added bank transfer payment gateway (includes/gateways/banktransfer)
+	-added WordPress body_class(); function to the <body> tag (header.php line 24)
+	-added new tinyMCE video button for easy addition of videos to submitted ads (/includes/theme-functions.php line 927 & 929)
+	-moved the favicon inclusion from /includes/theme-header.php to header.php. also added auto detect check
+
+
+
+3.0.3 - 7/21/10
+
+fixes:
+	-fixed bug where certain admin pages weren't being translated even after the correct text was added. (includes/theme-functions.php)
+	-fixed google maps where TM overflows out of the box with CSS (styles/master.css line 185)
+	-fixed bug where child theme style.css was not getting included in the header (includes/theme-header.php)
+	-fixed bug which broke the sidebars when translated into a different language. added new register_sidebar arg "id" to key off instead of name. (theme-sidebars.php, and all sidebar files)
+	-added ability for members to relist free ads for the original duration of the free ad (lines 46 and 240 in tpl-dashboard.php and theme-functions.php)
+	-fixed use of depricated 'siteurl' variable where it was used in the theme (theme-enqueue.php lines 28-29)
+	-fixed the problem where some people exerienced broken layout when feature slider has certain types of content (master.css line 127)
+	-added the favicon to the header properly and allow the use of favicons in the child themes image folder (includes/theme-header.php lines 40-42)
+	-adjusted css layout in html header, master.css was depricated and css styles moved to style.css, custom.css renamed to avoid overwriting customer files
+	-added reset.css and modified theme-header to properly and effeciently work with child themes (includes/theme-header.php)
+	-fixed the "Pack Price" issue where it rounded all prices instead of allowing an exact price to be set (install files)
+	-added ability to use the child theme functions file to override a large set of functions, see the READEME-FIRST.txt file for details.
+	-greatly increased the ability to create child themes by enhancing the index.php archive.php and single.php files making nearly all the child theme files 1 to 1
+	-no longer need to include index.php archive.php and single.php files in your child theme for it to work
+	-fixed the problem where the option "Allow Ad Editing" set to no did nothing, now it protects your ads from editing.(tpl-dashboard.php line 249, tpl-edit-item.php line 128)
+	-fixed problem where text-area custom fields show up with the list items near the photo, now they display above the "description" and added some CSS to seperate text area sections. (single-default.php and style.css)
+	-fixed HMTL validation where main image had no ALT tag.(includes/theme-functions.php)
+	-added ability to use CSS on the custom fields by adding the "field name" as the "ID" for the list tag. (includes/theme-functions.php)
+	-added the IP address of the visitor that sends an inquiry to the ad owner when sending contact form emails (includes/theme-emails.php line 224 added)
+	-fixed contact form tab issue where contact tab would not be shown after form was submitted (includes/js/theme-scripts.js)
+	-fixed the duplicate posts that would show up in the "From the Blog" sidebar widget. (includes/sidebar-blog-posts.php)
+	-added the feature and option that allows you to force all prices that are empty to appear as zero dollars of currency (includes/theme-functions.php and includes/admin/admin-values.php)
+	-minor changes to sidebar and widgets to prepare classipress for wordpress 3.0 (includes/theme-widgets.php and sidebar.php)
+	-Fixed wordpress posts quickedit css so that titles were not modified and now looks and feels appropriate (includes/admin/admin-style.css).
+	-Renamed the widgets builtin to ClassiPress by giving them the "CP" prefix to make them easy to identify and use (includes/theme-widgets.php)
+	-Update of cp_set_post_status function to be more efficient, and simpler therefore faster to execute (includes/form/step-functions.php)
+	-Fixed the sidebar widget issue where the "Blog" categories were still showing up (includes/theme-widgets.php)
+	-Fixed the blog author link that was incorrectly posting in the From the Blog widget (includes/sidebar-blog-posts.php line 50)
+	-Setup WP cron scheduler to expire posts instead of running on single page (includes/theme-con.php was created + many other changes)
+	-Fixed the problem where tinyMCE would only work on 1 text area, now works on all text areas when enabled. (includes/theme-functions.php and includes/form/step-functions.php)
+	-Fixed the problem where the 4 column option for the category menu dropdown didn't work, it works now. (includes/theme-functions.php)
+	-Added upgrade assistant tool available on the ClassiPress dashboard displayed next to the version if upgrade is needed. (includes/admin/admin-options.php and includes/admin/install-script.php)
+	-fixed twitter, classipress, and forum feed urls (includes/theme-functions.php lines 1888-1890)
+
+changes:
+	-restyled the single ad images section. (style.css, single-default.php)
+	-added new translation file that excludes the admin pages. makes it easier to translate front-end text only. (classipress-no-admin.pot)
+	-included plugins as .zip files so it's compatible to install using the WordPress plugin upload feature.
+
+
+
+3.0.2 - 4/22/10
+
+fixes:
+	-fixed sidebars & footer widgets so they now work when cp is translated into other languages (sidebar.php, sidebar-ad.php, sidebar-blog.php, sidebar-page.php, sidebar-user.php, footer.php)
+	-fixed google maps get direction function so it no longer gives you a 404 page not found. (includes/sidebar-gmap.php)
+	-fixed category bug for nav menu and directory home page view of sub cats options. Added new parameter to the cp_cat_menu_drop_down function so you now can pass in the new of sub cats you want to see. (header.php, index-directory.php, /includes/theme-functions.php)
+	-fixed TinyMCE js validation on new ad submission form so you don't have to click next step twice and the error message appears correctly. (includes/theme-functions.php, styles/master.css)
+	-replaced all date functions with date_i18n for better internationalization (multiple files. not necessary to change if you only use standard English date format)
+	-added body background color style to prevent white background on slower page loads. (styles/master.css line 34 & 445)
+	-added a fixed height to the featured ads slider box so on page load, it doesn't leave a huge space below it. (styles/master.css)
+	-fixed "% of sellers ad price" pricing option bug and spelling error. it now calculates the correct price (includes/form/step2.php, includes/form/step-functions.php)
+	-fixed ad inquiry form confirmation where body has quotes or apostrophes is adds a forward slash. (includes/theme-emails.php line 59)
+	-fixed new ad submission form step 2 when clicking on the "go back" button in IE. It wasn't caching the page which showed "Webpage has expired" message. (tpl-add-new.php line 12)
+	-fixed home page pagination bug where blog posts were making it seem like there were multiple pages (includes/theme-functions.php, index-directory.php, index-standard.php)
+
+changes:
+	-removed title atribute from ad image so hover doesn't show image file name. (includes/theme-functions.php line 249)
+	-added function to automatically insert an expiration date on an ad if it's manually created (via new post or automated script). This prevents ads from instantly expiring with no expire date. (includes/theme-functions.php added cp_check_expire_date function)
+	-added new ad submission form validation support for 30 default languages. new option added on the admin settings page. (includes/js/validate/localization, includes/admin/admin-values.php, includes/theme-enqueue.php)
+	-added new function (cp_make_clickable) to automatically hyperlink urls or email addresses found in custom fields. (includes/theme-functions.php, single-default.php)
+	-added new option to override the generic WordPress new user registration and forgot password email headers. Now it uses your own email address and blog name. (/includes/theme-emails.php, includes/admin/admin-values.php)
+	-added custom.css file so customers can add their own .css without having to touch the core .css files. Thx Levi. (styles/custom.css, includes/theme-header.php)
+	-added new admin section called advanced options which includes the option to disable core .css files. This allows customers to build child themes (includes/theme-header.php, includes/admin/admin-values.php)
+	-minor text changes in the footer credit (footer.php)
+	-added empty index.php files to the core directories to prevent directory browsing.
+	-on new theme activation, set the default new WordPress user role to contributor only if it's currently set to the subscriber default.
+	-added new trim function to ad listing titles on the home page to prevent pushing the price field down. (index-directory.php, index-standard.php)
+	-added new option to show zero sub categories in the main menu and index-directory.php page. (includes/theme-functions.php, includes/admin/admin-values.php line 1511)
+	-added new plugin called "New User Email Setup" in the plugins folder. This allows you to customize the generic WordPress new registration emails.
+	-made some minor adjustments to the styles on how the background gradient image was loading. (styles/master.css line 149)
+
+
+
+
+3.0.1 - 4/07/10
+
+fixes:
+	-added parameter for uniqid function to comply with php 4.3 or earlier. (tpl-add-new.php)
+	-added substr function on directory home page featured titles to help prevent wrap. (index-directory.php)
+	-fixed problem with some profile fields not saving data. (tpl-profile.php)
+	-fixed profile sidebar twitter and facebook urls so they now show updated links (sidebar-user.php)
+	-fixed minor css bug by removing the float: left for ad thumbnails (/styles/master.css line 219)
+	-fixed disappearing nav drop-down issue. changed z-index to 999 (/styles/master.css line 101)
+	-added two new currency position options so you can have spaces (/includes/admin/admin-options.php, /includes/theme-functions.php)
+	-fixed image uploads so more than six now correctly get uploaded. (/includes/theme-functions.php line 490)
+	-forced image names and extensions to lowercase on file check. some systems threw error if .JPG, etc (/includes/theme-functions.php line 447)
+	-add inquiry emails were missing the reply-to email address. (/includes/theme-emails.php)
+	-text on search button wasn't setup for localization. added correct _e wrap. (/includes/theme-widgets.php)
+	-added missing custom url logo field to the settings page. (/includes/admin/admin-values.php)
+	-when using ad packs, ad length wasn't getting passed into paypal correctly. it was using prune length instead. (/includes/form/step2.php, /includes/form/step-functions.php)
+	-price per category wasn't showing up for new CP customers. replaced legacy get_option tags with correct ones. (/includes/theme-functions.php, /includes/form/step1.php)
+	-added two new sidebar widgets called "top ads today" & "top ads overall". made the search widget usable on multiple sidebars. unregistered the default search widget. (includes/theme-stats.php, includes/theme-widgets.php)
+	-changed admin alert to check for "contains" /%postname%/ instead of exact match so other permalink styles can be used (includes/admin/admin-notices.php)
+
+changes:
+	-changed security check from user levels to roles. also added new value to disable this feature (/includes/theme-security.php, /includes/admin/admin-values.php)
+	-moved featured home page ads price under the image and removed the (). Added a trim function so long titles get cut down. (master.css, index-directory.php)
+	-added a "pending listings" total to the account statistics profile sidebar. (tpl-profile.php)
+	-added a new option to hide/show the featured ads section on the home page. (index-directory.php, index-standard.php, /includes/admin/admin-values.php)
+	-added a new option to control the featured ads title length before trimming occurs. (index-directory.php, index-standard.php, /includes/admin/admin-values.php)
+	-setup single ad page to display custom fields in order they were set in custom form layout. created new function and moved duplicate code from edit item page. (/includes/theme-functions.php, single-default.php, tpl-edit-item.php)
+	-added option for "Collect Payments Currency Symbol" to seperate collection currency symbol from ad currency symbol (and added auto-lookup from payments dropdown).
+
+
+3.0 - 4/01/10
+Completely rewritten code with too many enhancements and new features to list.
+
+
+2.9.3
+fixes:
+	-added another <div class="clear"></div> to prevent margins from breaking on categories (index.php line 13)
+	-fixed spelling mistake "succesfully" on post confirmation page (post-form.php line 13)
+	-fixed IE 8 fancybox incompatability (replaced entire /js/fancybox/jquery.fancybox-1.2.1.pack.js file)
+	-added tinyMCE support to new ad submission (post-form.php line 6-25)
+	-fixed price sorting on the homepage. Didn't sort numeric values correctly before (index.php added a +0 to the sort querystring value of meta_value)
+	-added tighter security to ad owners so their jumbled email address isn't visible in the source code. (single.php removed hidden field. added new line on 155)
+	-removed set_time_limit in form_process.php. Not needed and causes warning messages on some servers.
+
+
+2.9.2
+fixes:
+	-centered modal form message when registration is required (removed width: 960px; from master.css line 120)
+	-fixed another continue button bug on step 1 of modal form. (process_form_ajax.php multiple lines starting at 19)
+	-fixed total live ad counter on dashboard page (tpl-dashboard.php multiple lines 67 thru 97)
+	-fixed spelling error on ad form page (highlighed to highlighted)
+	-rolled back modal form to slider form
+	-added * next to required fields on ad edit page. Removed mandatory check for phone & moved location field up (tpl-edit-ad.php)
+	-fixed other ads listed by author section so it shows all live ads by author (author.php)
+	-added localization tag around "Categories" sidebar text (tpl-edit-ad.php)
+	-tightened up children sidebar li elements. Padded top/bottom to space out more. (master.css lines 93 and added line 107 & 141)
+	-fixed form so field values aren't reset if error is shown. (post-form.php)
+	-included currency symbol on paypal confirmation total. (post-form.php line 67)
+	-aligned sidebar lines under h2 text instead of above. Affects all .css files.
+
+changes:
+	-changed .classform and added .adfields to css. Moved field width to html instead of within .css
+	-added "x" to close error box and #closelink elements. (post-form.php line 10 & master.css )
+	-updated bundled plugins to the latest versions
+	-dynamically create and find WP upload folder for image uploads (form_process.php line 80ish).
+	-create friendly image names when uploaded with post. Now uses part of ad title for increased SEO. (New function in functions.php lines 38-41 & form_process line 83ish)
+
+
+2.9.1
+fixes:
+	-fixed incorrect calculation on category pricing total (header.php line 154)
+	-ad modal form resized from 780px to 560px (header.php line 143)
+	-free categories are now automatically published instead of being a draft unless it's featured. (classifiedform.class.php lines 106-112)
+	-changed text "step x of 2" to "step x of 3" since there are actually three steps. (step1.php & step2.php lines 2 & 1)
+	-fixed IE css issue on modal form. (all css files. removed "width: 95%;" from .classform class line 38ish)
+	-fixed step2 confirmation message in IE. Changed from <H2> to <p> (step2.php line 3)
+	-item number hidden parameter wasn't working for paypal. Minor issue but fixed. (functions.php line 603)
+	-included logo and report button .psd design files
+	-fixed continue button on step 1 of modal form when there are carriage returns in description field. (process_form_ajax.php lines 115-129)
+
+2.9
+fixes:
+	- fixed submited spelling error on post-form.php
+	- fixed show category icon on search.php results
+	- removed onsubmit search box function b/c it was causing problems with slashes
+	- made default prune status admin option set to "no"
+	- changed index.php main_page_img check from == 'yes' to != 'no' to instantly show thumbnails on new install
+	- fixed css files so W3C validated with no errors
+	- changed .js files to load using wp_enqueue_script to avoid conflicts with other .js files
+	- changed "posted" date to use date format under WP general settings page
+
+changes:
+	- added new customer dashboard with edit & pause ad features
+	- created new header-nav box with pages and login options
+	- overhauled the header and created a 468x60 ad spot
+	- created 2 new levels of dropdown navigation for the header pages
+	- revamped and created 5 new levels of dropdown navigation for the categories
+	- added Google maps option so ads will show map of item location
+	- added category-level pricing. Supports free categories as well
+	- added percentage-based pricing. Ad cost will depend on what item listing cost is
+	- added featured ad option so you can pay extra to be listed first
+	- added countdown timer to show remaining time left for each ad
+	- created new options field called "exclude pages from nav" to prevent new dashboard pages from showing in navigation
+	- added ascending and descending sorting by column header
+	- login, register and forgot password pages now match theme
+	- added sidebar.php and moved code from core classipress files
+	- added a new author.php page
+	- added orderby and order parameters to the wp_list_categories function on index.php
+	- added depth=1 into the footer wp_list_categories function on footer.php
+	- created a master.css file so it's easier to update all color schemes
+	- added the paypal button instead of linking to paypal's site to speed up load time
+	- replaced prototype and scriptaculous with jquery
+	- replaced lightbox with fancybox which uses jquery
+	- added new admin option to allow/disallow ad editing
+	- refactored admin options code
+	- added new ad form field called URL
+	- added a new custom field that records the total cost of the ad
+	- added a user profile page with gravatar support (requires plugin)
+	- added support for sociable plugin
+	- moved all includes to a include directory instead of theme root
+	- created app directory for non standard WP
+	- added favicon to admin options menu
+
+
+2.8.2
+fixes:
+	- fixed theme files so localization and .mo files work properly
+	- localized admin pages
+	- added note next to price field
+	- added missing options saved fade message on admin pages
+	- fixed expires date on submission custom field value
+
+changes:
+	- added 15 new PayPal currencies on drop down list
+	- included .po and .pot files
+
+
+2.8.1
+fixes:
+	- changed hardcoded select statement wp_posts to $wpdb->posts in header.php
+	- removed the addslashes function from the post description. Now supports embedded video submissions when "accept html" is enabled in form_process.php
+	- added report.jpg missing image in /styles/default/
+
+changes:
+	- added friendly search urls (i.e. /search/red+car instead of /?s=red+car) in header.php
+
+
+2.8
+fixes:
+	- set trim on all admin fields to remove blank spaces
+	- created placeholder image on listing if no image was uploaded
+	- fixed multiple spelling errors
+	- overall page width has been increased to 980px
+	- search box returns default text when click out of box
+	- fixed many trivial bugs
+	- optimized code and created multiple new functions
+	- category images now have transparent backgrounds instead of white
+	- after submitting ad the "post a classified" button now works
+	- pre-populates known ad fields for registered users
+
+
+changes:
+	- four new color schemes easily changable via options page
+	- made image buttons blank for easy translation
+	- description snippet added under ad title
+	- posted date column now shows more detailed info (posted 2 hours ago, etc)
+	- comments page added and feature enabled
+	- 404.php error page has been added
+	- created search.php page
+	- created page.php page
+	- added new widget sidebar for pages
+	- wrote new search function to include custom fields
+	- new pagination added to replace next and previous buttons
+	- moved values to custom fields instead of using post description field
+	- created expires date custom field
+	- breadcrumb category path added to single.php page
+	- next and previous links added to single.php page
+	- email this post plugin support
+	- print this post plugin support
+	- tagging is now enabled
+	- top posts of the day plugin support
+	- post hit counter plugin support added
+	- currency symbol field is now a text box. Was broken before
+	- optimized and cleaned up options page
+	- added "expand inquiry form" option
+	- support for multi-languages by creating a .pot file
+	- feedburner rss support
+	- google analytics support
+	- adsense support
+	- deprecated all instant messenger fields from new ad form
+	- optimized layout for ad form
+	- increased description max character amount to 5000
+	- added custom text box area on ad form
+	- removed redundant "listing details" section on single.php
+	- created several new admin menus for easier management
+	- added new icons to ad information column
+	- included several placeholder 125x125 ad images
+	- post expiration date being saved in a custom field
+	- improved seo for page meta title tags
+
+
+
+2.0.7
+fixes:
+	- 2.7 upgrade bug. the category icons wouldn't get saved
+	- some bug fixes in the publish form for IE. some texts woren't aligned right
+	- log-out link in the header wasn't working (wp 2.7 upgrade bug).
+changes:
+	- aded a meta tag for description in the header for better SEO
+	- aded a new icon over the uploaded images in the image manager so you can view the images and decide if you want to delete them.
+	- report email now also includes the ip and hostname of the person who reported the url
+file changes:
+	- ie.css (new file created)
+	- header.php
+	- single.php
+	- functions.php
+	- post-form.php
+	- style.css (just the version number of the theme on line 5)
+
+
+2.0.6
+fixes:
+	- small rss fix
+	- small bug from upgrading to wordpress 2.7. this bug was preventing the categories from displaying in the ClassiPress admin panel above the icons.
+file changes:
+	- functions.php
+	- style.css (just the version number of the theme on line 5)
+
+
+2.0.5
+changes:
+	- when someone logges in from the form in the header he will not be redirected to the admin panel any more. Instead he will be redirected back to the home page. that way your users will get a better experience from your site
+fixes:
+	- fixed the broken image when uploading (this was a IE only)
+file changes:
+	- header.php
+	- js/iconified.js
+	- css/iconified.css
+	- style.css (just the version number of the theme on line 5)
+
+
+
+2.0.4
+changes:
+	- added the ability to choose other currency than the three default ones
+	- on the home page I added the ability to show the first uploaded image from a post instead of the category icon of an ad
+	- when someone is logged in they no longer see the login box in the header. they will see a text like "Logged in as USERNAME" and a link to log-out
+fixes:
+	- fixed header static text. I forgat to change the static "$10" with the dinamic currency and ad value
+	- fixed some spacing issues with the column names on the front page
+	- shortened the php currency text (you probably won't understand this, but I just wanted to remember I did this :)  )
+file changes:
+	- functions.php
+	- header.php
+	- index.php
+	- style.css
+	- single.php
+
+
+
+2.0.3
+fixes:
+	- fixed small IE problem in footer
+	- renamed file "wwiconified.css" to iconified.css and moved it to /css theme directory
+	- renamed file "wwiconified.js" to iconified.js and moved it to /js theme directory
+	- fixed delete image problem from image upload. the image was not showing up
+	- fixed the text counter problem. the "characters left" number was not decreasing
+file changes:
+	- footer.php
+
+
+
+2.0.2
+fixes:
+	- fixed header IE problem. the login box wasn't display correct.
+file changes:
+	- header.php
+	- style.css
+
+
+
+2.0.1
+fixes:
+	- fixed header problem. when paypal was deactivated the header would break.
+file changes:
+	- header.php

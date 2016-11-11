@@ -1,0 +1,506 @@
+/* settings page */
+
+[class*="classipress_page"] code {
+	line-height: 1.9;
+	letter-spacing: 1px;
+}
+
+[class*="classipress_page"] textarea {
+	display: block;
+}
+
+[class*="classipress_page"] .social-ico {
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+[class*="classipress_page"] i.feedburnerico:before {
+	content: "\f303";
+	color: #FF7800;
+}
+
+[class*="classipress_page"] i.twitterico:before {
+	content: "\f301";
+	color: #0093BD;
+}
+
+[class*="classipress_page"] i.facebookico:before {
+	content: "\f304";
+	color: #3B5998;
+}
+
+[class*="classipress_page"] i.googleico:before {
+	content: "\f462";
+	;
+	color: #F93333;
+}
+
+[class*="classipress_page"] i.sharethisico:before {
+	content: "\f237";
+	;
+	color: #4BAA5B;
+}
+/* admin main styles*/
+
+table.form-table.cp-custom th {
+	position: relative;
+	padding-right: 24px;
+}
+
+.info a {
+	color: #333;
+	text-decoration: none;
+	border-bottom: 1px dotted #333;
+}
+
+.info a:hover {
+	color: #666;
+	border-bottom: 1px dotted #666;
+}
+
+.warning {
+	background: #FFEBE8;
+	border: 1px solid #CC0000;
+	padding: 10px;
+	color: #333;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+/**/
+
+#boxy {
+	margin: 10px 0;
+}
+
+ul#stats {
+	font-size: 12px;
+}
+/**/
+
+div.stats-info {
+	float: left;
+	width: 45%;
+}
+
+div.stats_overview {
+	float: right;
+	width: 45%;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border: 1px solid #DFDFDF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.stats_overview,
+.overview_today {
+	float: left;
+	width: 50%;
+}
+
+.stats_overview,
+.overview_previous {
+	float: left;
+	width: 50%;
+}
+
+.stats_overview p.overview_day {
+	font-size: 12px !important;
+	color: #666666;
+	font-weight: bold;
+	margin-top: 6px;
+}
+
+.stats_overview p {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-shadow: 0 1px 0 #FFFFFF;
+	text-transform: uppercase;
+}
+
+.stats_overview h3 {
+	text-align: center;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.stats_overview p.overview_count {
+	color: #333333;
+	font-size: 20px !important;
+	font-weight: bold;
+}
+
+.stats_overview p.overview_type em {
+	background: none repeat scroll 0 0 #FFFBE4;
+	border-radius: 3px 3px 3px 3px;
+	padding: 1px 5px 2px;
+}
+
+.stats_overview p.overview_type,
+.stats_overview p.overview_type_seek {
+	color: #999999;
+	font-size: 9px !important;
+	margin-bottom: 7px;
+}
+
+.stats_overview p.overview_type_seek em {
+	background: none repeat scroll 0 0 #FFFBE4;
+	border-radius: 3px 3px 3px 3px;
+	padding: 1px 5px 2px;
+}
+/**/
+
+.alt:hover,
+.even:hover {
+	background-color: #EAF2FA !important
+}
+/* error styles */
+
+input.invalid,
+textarea.invalid,
+select.invalid {
+	background-color: #FFEBE8 !important;
+	border-color: #C00 !important
+}
+
+label.invalid {
+	float: none;
+	font: bold 12px arial;
+	color: #C00;
+	padding-left: 20px;
+	vertical-align: top
+}
+
+.updated p,
+.error p {
+	line-height: 1.2em !important;
+}
+/* round out the category div corners */
+
+#form-categorydiv div.tabs-panel {
+	overflow: auto;
+	width: 100%;
+	height: 250px;
+	border: 1px solid #DFDFDF;
+	-khtml-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+ul#categorychecklist {
+	padding: 5px 10px;
+}
+
+ul#categorychecklist li {
+	padding: 1px 0;
+}
+
+ul#categorychecklist input {
+	margin-bottom: 0 !important;
+}
+
+ul#categorychecklist label.selectit {}
+
+ul#categorychecklist ul.children,
+ul#categorychecklist ul.children ul.children,
+ul#categorychecklist ul.children ul.children ul.children {
+	margin-left: 20px;
+}
+/**/
+
+#tblspacer {
+	margin: 20px 0;
+}
+
+.fields-panel {
+	float: right;
+	width: 30%;
+}
+
+.edit-fields-panel {
+	float: left;
+	width: 68%;
+}
+
+.edit-fields-panel .mobile-only {
+	display: none;
+}
+
+.fixed .column-form-field {
+	width: 45%;
+}
+
+.fixed .column-form-field input[type=text],
+.fixed .column-form-field select,
+.fixed .column-form-field textarea {
+	width: 100%;
+}
+
+span#curr {
+	vertical-align: top;
+}
+
+input.radiobutt {
+	vertical-align: text-top;
+}
+
+.admin-msg {
+	margin: 10px 10px -10px 10px;
+}
+/* css for custom fields meta box on ad edit page */
+
+.postbox .form-table td label {
+	display: block;
+}
+/* css for date& timepicker */
+
+#ui-datepicker-div {
+	font-size: 12px;
+}
+
+.ui-datepicker-trigger {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.ui-datepicker-trigger:before {
+	content: "\f508";
+}
+
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+	height: 25px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: -25px 0 10px 65px;
+}
+
+.ui-timepicker-div dl dd.ui_tpicker_millisec,
+.ui-timepicker-div dl dd.ui_tpicker_microsec {
+	margin: 0;
+}
+
+.ui-timepicker-div .ui_tpicker_hour div {
+	padding-right: 2px;
+}
+
+.ui-timepicker-div .ui_tpicker_minute div {
+	padding-right: 6px;
+}
+
+.ui-timepicker-div .ui_tpicker_second div {
+	padding-right: 6px;
+}
+
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+/* refine search jquery slider */
+
+.ui-slider {
+	position: relative;
+	text-align: left;
+}
+
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor: default;
+}
+
+.ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+
+.ui-slider-horizontal {
+	height: .8em;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.3em;
+	margin-left: -.6em;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+
+.ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+}
+
+.ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+}
+
+.ui-slider-vertical {
+	width: .8em;
+	height: 100px;
+}
+
+.ui-slider-vertical .ui-slider-handle {
+	left: -.3em;
+	margin-left: 0;
+	margin-bottom: -.6em;
+}
+
+.ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+}
+
+.ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+}
+
+.ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+}
+
+#refine_widget div#slider-range,
+#refine_widget div#dist-slider {
+	margin: 2px 0 10px;
+}
+
+#refine_widget ul.refine .ui-widget-content {
+	border: 1px solid #CCCCCC !important;
+}
+/* admin ajax sorting styles */
+
+tbody.ui-sortable tr {
+	border-top: 1px solid #dfdfdf;
+	border-left: 1px solid #dfdfdf;
+	border-right: 1px solid #dfdfdf;
+}
+
+tbody.sortable tr.even:hover {
+	cursor: move;
+}
+
+tr.ui-placeholder {
+	background-color: #dbdbdb;
+}
+
+tr.ui-state-highlight {
+	color: #F6F698;
+	height: 5.5em;
+	line-height: 1.2em;
+}
+
+tr.ui-sortable-helper {
+	height: 8.5em;
+	line-height: 1.2em;
+	background-color: #dbdbdb;
+}
+
+span#loading img {
+	margin-bottom: -1px;
+}
+/* dashboard charts */
+
+#placeholder {
+	width: 100%;
+	height: 250px;
+}
+
+#charttooltip {
+	font-size: 11px;
+	border: 1px solid #e3e3e3;
+	background-color: #f1f1f1;
+	padding: 3px 7px;
+	margin-left: 15px;
+	-khtml-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	text-shadow: 1px 1px 0 #ffffff;
+}
+
+#admin-order-summary {
+	margin-bottom: 20px;
+}
+/* icons */
+
+.custom-forms-ico {
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+i.edit-layout:before {
+	content: "\f133";
+}
+
+i.edit-properties:before {
+	content: "\f119";
+}
+
+i.remove:before {
+	content: "\f158";
+	color: red;
+}
+
+i.remove-disabled:before {
+	color: #FFDADA;
+}
+/* responsive */
+
+@media screen and (max-width: 782px) {
+	.fixed .column-date,
+	.fixed .column-author,
+	.fixed .column-taxonomy-ad_cat,
+	.fixed .column-taxonomy-ad_tag,
+	.fixed .column-cp_price,
+	.fixed .column-cp_daily_count,
+	.fixed .column-cp_total_count,
+	.fixed .column-cp_sys_expire_date,
+	.fixed .column-thumbnail,
+	.fixed .column-description,
+	.fixed .column-categories,
+	.fixed .column-modified,
+	.fixed .column-status,
+	.fixed .column-cfield-number,
+	.fixed .column-cfield-description,
+	.fixed .column-cfield-modified {
+		display: none;
+	}
+	.fields-panel {
+		float: none;
+		width: 100%;
+	}
+	.edit-fields-panel .fixed .column-form-preview {
+		display: none;
+	}
+	.edit-fields-panel {
+		float: none;
+		width: 100%;
+	}
+	.edit-fields-panel .widefat th,
+	.edit-fields-panel .widefat td {
+		font-size: 12px;
+	}
+	.edit-fields-panel .mobile-only {
+		display: block;
+	}
+}

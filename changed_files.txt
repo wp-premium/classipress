@@ -1,0 +1,6 @@
+Modified		changelog.txt
+Modified		classipress.pot
+Modified		functions.php
+Modified		includes/enqueue.php
+Modified		includes/views.php
+Modified		style.css

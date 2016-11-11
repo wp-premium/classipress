@@ -1,0 +1,67 @@
+@font-face {
+	font-family: 'appthemes';
+	src:url('../fonts/appthemes/appthemes.eot?9gzrqu');
+	src:url('../fonts/appthemes/appthemes.eot?9gzrqu#iefix') format('embedded-opentype'),
+		url('../fonts/appthemes/appthemes.ttf?9gzrqu') format('truetype'),
+		url('../fonts/appthemes/appthemes.woff?9gzrqu') format('woff'),
+		url('../fonts/appthemes/appthemes.svg?9gzrqu#appthemes') format('svg');
+	font-style: normal;
+}
+
+.at,
+.at:before,
+[class*=dashicons-at]:before {
+	font-family: 'appthemes';
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	text-decoration: inherit;
+	font-weight: normal;
+	font-style: normal;
+	vertical-align: top;
+	text-align: center;
+	-webkit-transition: color .1s ease-in 0;
+	transition: color .1s ease-in 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.at-appthemes:before,
+.dashicons-at-appthemes:before {
+	content: "\e602";
+}
+
+.at-payments:before,
+.dashicons-at-payments:before {
+	content: "\e601";
+}
+
+.at-tip:before {
+	content: "\f059";
+}
+
+.at-learn:before {
+	content: "\f118";
+}
+
+.at-discussion:before {
+	content: "\f125";
+}
+
+.at-marketplace:before {
+	content: "\f513";
+}
+
+.at-chart-bar:before {
+	content: "\f080";
+}
+
+.at-chart-pie:before {
+    content: "\e900";
+}
+
+.at-news:before {
+	content: "\f1ea";
+}

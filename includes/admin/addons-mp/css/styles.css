@@ -1,0 +1,76 @@
+/* Filter Bar */
+
+.wp-filter .filter-links.addons-filter {
+	display: inline;
+}
+
+.wp-filter.app-mp-addons {
+	margin-bottom: 0;
+}
+
+.wp-filter .search-form select.app-mp-addons-filter {
+	margin-left: 10px;
+}
+
+.wp-filter .search-form select.app-mp-addons-filter:last-child {
+	margin-right: 20px;
+}
+
+/* Addon */
+
+.plugin-card-top {
+	min-height: 170px;
+}
+
+.plugin-card-bottom {
+	min-height: 90px;
+}
+
+.plugin-icon,
+.plugin-icon img {
+	width: 190px;
+	height: 130px;
+}
+
+.plugin-card .desc,
+.plugin-card .name {
+	margin-left: 210px;
+	margin-right: 60px;
+}
+
+.plugin-card a  {
+	text-decoration: none;
+}
+
+.plugin-card .price {
+	font-size: 22px;
+	margin: 0;
+}
+
+.plugin-card .column-category,
+.plugin-card .column-requirements {
+	float: left;
+	clear: left;
+	margin-bottom: 4px;
+	padding-top: 5px;
+}
+
+/* Responsiveness */
+
+@media screen and (max-width: 1100px) and (min-width: 782px), (max-width: 480px) {
+
+	.plugin-card .action-links {
+		position: static;
+		margin-left: 210px;
+		width: auto;
+	}
+
+	.plugin-card .name-top {
+		min-height: 150px;
+	}
+
+	.plugin-card .desc {
+		margin-left: 0;
+	}
+
+}
