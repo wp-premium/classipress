@@ -1,0 +1,7 @@
+/*
+ * Default styles for "AppThemes Recent Posts" widget
+ */
+
+.recent-box-content .recent-box-rating {
+	max-width:210px;
+}

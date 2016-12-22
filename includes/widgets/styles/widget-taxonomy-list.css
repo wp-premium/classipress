@@ -1,0 +1,21 @@
+/* Taxonomies List */
+
+.widget-taxonomy-list {
+	text-align: justify;
+	-ms-text-justify: distribute-all-lines;
+	text-justify: distribute-all-lines;
+}
+.widget-taxonomy-list:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+.widget-taxonomy-list .catcol {
+	text-align: left;
+    vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1
+}
