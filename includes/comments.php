@@ -167,21 +167,21 @@ function cp_main_comment_form() {
 
 						<p class="comments">
 							<label for="author"><?php _e( 'Name', APP_TD ); ?> <?php if ( $req ) _e( '(required)', APP_TD ); ?></label>
-							<input type="text" name="author" id="author" class="text required" value="<?php echo esc_attr( $commenter['comment_author'] ); ?>" size="22" tabindex="1" />
+							<input type="text" name="author" id="author" class="text required" value="<?php echo esc_attr( $commenter['comment_author'] ); ?>" size="22" tabindex="4" />
 						</p>
 
 						<div class="clr"></div>
 
 						<p class="comments">
 							<label for="email"><?php _e( 'Email (will not be visible)', APP_TD ); ?> <?php if ( $req ) _e( '(required)', APP_TD ); ?></label>
-							<input type="text" name="email" id="email" class="text required email" value="<?php echo esc_attr( $commenter['comment_author_email'] ); ?>" size="22" tabindex="2" />
+							<input type="text" name="email" id="email" class="text required email" value="<?php echo esc_attr( $commenter['comment_author_email'] ); ?>" size="22" tabindex="5" />
 						</p>
 
 						<div class="clr"></div>
 
 						<p class="comments">
 							<label for="url"><?php _e( 'Website', APP_TD ); ?></label>
-							<input type="text" name="url" id="url" class="text" value="<?php echo esc_attr( $commenter['comment_author_url'] ); ?>" size="22" tabindex="3" />
+							<input type="text" name="url" id="url" class="text" value="<?php echo esc_attr( $commenter['comment_author_url'] ); ?>" size="22" tabindex="6" />
 						</p>
 
 						<div class="clr"></div>
@@ -191,13 +191,13 @@ function cp_main_comment_form() {
 					<!--<li><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small><div class="clr"></div></li>-->
 
 					<p class="comments-box">
-						<textarea name="comment" rows="" cols="" id="comment" class="required" tabindex="4"></textarea>
+						<textarea name="comment" rows="" cols="" id="comment" class="required" tabindex="7"></textarea>
 					</p>
 
 					<div class="clr"></div>
 
 					<p class="comments">
-						<input name="submit" type="submit" id="submit" tabindex="5" class="btn_orange" value="<?php _e( 'Leave a Reply', APP_TD ); ?>" />
+						<input name="submit" type="submit" id="submit" tabindex="8" class="btn_orange" value="<?php _e( 'Leave a Reply', APP_TD ); ?>" />
 						<input type="hidden" name="comment_post_ID" value="<?php echo $post->ID; ?>" />
 					</p>
 

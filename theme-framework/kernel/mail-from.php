@@ -96,7 +96,7 @@ class APP_Mail_From {
 	 * @return bool
 	 */
 	static function _is_valid() {
-		$args = array( 'name', 'email', 'reply' );
+		$args = array( 'name', 'email', 'reply', 'reply_name', 'reply_email' );
 		foreach ( $args as $arg ) {
 			if ( ! isset( self::$args[ $arg ] ) ) {
 				return false;
@@ -104,6 +104,10 @@ class APP_Mail_From {
 		}
 
 		if ( ! is_email( self::$args['email'] ) ) {
+			return false;
+		}
+
+		if ( self::$args['reply_email'] && ! is_email( self::$args['reply_email'] ) ) {
 			return false;
 		}
 
@@ -155,11 +159,25 @@ class APP_Mail_From {
 			return $mail;
 		}
 
-		$replyto = sprintf( "Reply-To: %s <%s> \r\n", self::$args['name'], self::$args['email'] );
-		if ( is_array( $mail['headers'] ) ) {
-			$mail['headers'][] = $replyto;
+		if ( self::$args['reply_name'] && self::$args['reply_email'] ) {
+			$name = self::$args['reply_name'];
+			$email = self::$args['reply_email'];
 		} else {
-			$mail['headers'] .= $replyto;
+			$name = self::$args['name'];
+			$email = self::$args['email'];
+		}
+
+		$replyto = sprintf( "Reply-To: %s <%s> \r\n", $name, $email );
+
+		// add or override the "Reply-To" field
+		if ( is_array( $mail['headers'] ) ) {
+			$mail['headers']['reply_to'] = $replyto;
+		} else {
+			if ( preg_match( '/Reply-To: (.*) \r\n/', $mail['headers'], $matches ) ) {
+				$mail['headers'] = preg_replace( '/' . $matches[0] . '/', $replyto, $mail['headers'] );
+			} else {
+				$mail['headers'] .= $replyto;
+			}
 		}
 
 		return $mail;
@@ -206,6 +224,7 @@ class APP_Mail_From {
 		$exclude_domains = array(
 			'yahoo.com',
 			'aol.com',
+			'my.com',
 		);
 		$exclude_domains = apply_filters( 'appthemes_mail_from_blacklist', $exclude_domains );
 
@@ -268,6 +287,8 @@ class APP_Mail_From {
 			'email' => get_option( 'admin_email' ),
 			'name' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
 			'reply' => false,
+			'reply_email' => false,
+			'reply_name' => false,
 		);
 		return apply_filters( 'appthemes_mail_from_defaults', $defaults );
 	}

@@ -250,16 +250,34 @@ function cp_count_ad_images( $ad_id ) {
  * @return int
  */
 function cp_get_featured_image_id( $post_id ) {
-	global $wpdb, $images_data;
+	global $images_data;
+
+	$attachment_query = array(
+		'post_parent'    => $post_id,
+		'post_status'    => 'inherit',
+		'numberposts'    => 1,
+		'post_type'      => 'attachment',
+		'post_mime_type' => 'image',
+		'order'          => 'ASC',
+		'orderby'        => 'ID',
+	);
 
 	$attachment_ids = get_post_meta( $post_id, '_app_media', true );
 
 	if ( ! empty( $attachment_ids ) ) {
-		$image_id = array_shift( $attachment_ids );
+		$attachment_query = array_merge( $attachment_query, array(
+			'post__in' => $attachment_ids,
+			'orderby'  => 'post__in'
+		) );
+		$images = get_children( $attachment_query );
+		if ( $images ) {
+			$image = array_shift( $images );
+			$image_id = $image->ID;
+		}
 	} elseif ( isset( $images_data[ $post_id ] ) ) {
 		$image_id = $images_data[ $post_id ];
 	} else {
-		$images = get_children( array( 'post_parent' => $post_id, 'post_status' => 'inherit', 'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'ID' ) );
+		$images = get_children( $attachment_query );
 		if ( $images ) {
 			$image = array_shift( $images );
 			$image_id = $image->ID;

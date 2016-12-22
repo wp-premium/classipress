@@ -144,11 +144,12 @@ function _appthemes_register_scripts() {
 
 	wp_register_style( 'jquery-ui-style', APP_FRAMEWORK_URI . '/styles/jquery-ui/jquery-ui.min.css', false, '1.11.2' );
 	wp_register_style( 'appthemes-icons', APP_FRAMEWORK_URI . '/styles/font-appthemes.css', false, '1.0.0' );
+	wp_register_style( 'appthemes-admin', APP_FRAMEWORK_URI . '/styles/admin-appthemes.css', false, '1.0.0' );
 	wp_register_script( 'validate', APP_FRAMEWORK_URI . '/js/validate/jquery.validate.min.js', array( 'jquery' ), '1.15.0' );
 
 	// Generic JS data.
 	wp_localize_script( 'jquery', 'AppThemes', array(
-		'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+		'ajaxurl'     => admin_url( 'admin-ajax.php', 'relative' ),
 		'current_url' => scbUtil::get_current_url(),
 	) );
 
@@ -160,6 +161,7 @@ function _appthemes_register_scripts() {
  */
 function _appthemes_admin_enqueue_scripts() {
 	wp_enqueue_style( 'appthemes-icons' );
+	wp_enqueue_style( 'appthemes-admin' );
 }
 
 /**

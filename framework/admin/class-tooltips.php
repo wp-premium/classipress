@@ -66,7 +66,11 @@ class APP_ToolTips {
 			td.tip { width: 16px; }
 			.tip-content { display: none; }
 			.tip-show { border: 1px solid #ccc; }
-			.at-tip { cursor: pointer; float: right; margin: 0 -24px 0 0; }
+			td.at-help { width: 1.5em; text-align: center; }
+			@media screen and (max-width: 782px) {
+				td.at-help { display: none !important; }
+			}
+			.at-tip { cursor: pointer; }
 			.at-tip:before { content: "\f223"; color: #CFCFCF; }
 			.at-tip-hover:before { color: inherit; }
 		</style>

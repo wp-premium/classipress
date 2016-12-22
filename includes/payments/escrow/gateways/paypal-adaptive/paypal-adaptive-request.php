@@ -142,10 +142,15 @@ class APP_PayPal_Adaptive_Request {
 		curl_setopt( $ch, CURLOPT_POST, TRUE );
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ) );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, $this->get_headers() );
+		curl_setopt( $ch, CURLOPT_SSLVERSION, 1 );
 
 		$response = json_decode( curl_exec( $ch ), true );
 
 		curl_close($ch);
+
+		if ( ! $response ) {
+			$order->log( sprintf( 'The following error ocurred while trying to execute the payment: "%s"', 'Could not get a cURL response' ) );
+		}
 
 		return $response;
 	}

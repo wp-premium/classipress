@@ -13,6 +13,10 @@ add_action( 'edited_term_taxonomy', '_appthemes_update_post_term_count', 10, 2 )
  * Recalculates term counts by including items from child terms.
  * Assumes all relevant children are already in the $terms argument.
  *
+ * @param array $terms
+ * @param array $taxonomies
+ * @param array $args
+ *
  * @return array Terms
  */
 function _appthemes_pad_term_counts( $terms, $taxonomies, $args ) {
@@ -54,6 +58,9 @@ function _appthemes_pad_term_counts( $terms, $taxonomies, $args ) {
 
 	$term_items = array();
 
+	$term_ids = array();
+	$terms_by_id = array();
+
 	foreach ( (array) $terms as $key => $term ) {
 		$terms_by_id[ $term->term_id ] = & $terms[ $key ];
 		$term_ids[ $term->term_taxonomy_id ] = $term->term_id;
@@ -61,7 +68,13 @@ function _appthemes_pad_term_counts( $terms, $taxonomies, $args ) {
 
 	$post_types = esc_sql( $options['post_type'] );
 	$post_statuses = esc_sql( $options['post_status'] );
-	$results = $wpdb->get_results( "SELECT object_id, term_taxonomy_id FROM $wpdb->term_relationships INNER JOIN $wpdb->posts ON object_id = ID WHERE term_taxonomy_id IN (" . implode( ',', array_keys( $term_ids ) ) . ") AND post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_statuses ) . "') ");
+
+	if ( $term_ids && $post_types && $post_statuses ) {
+		$results = $wpdb->get_results( "SELECT object_id, term_taxonomy_id FROM $wpdb->term_relationships INNER JOIN $wpdb->posts ON object_id = ID WHERE term_taxonomy_id IN (" . implode( ',', array_keys( $term_ids ) ) . ") AND post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_statuses ) . "') ");
+	} else {
+		$results = array();
+	}
+
 	foreach ( $results as $row ) {
 		$id = $term_ids[ $row->term_taxonomy_id ];
 		$term_items[ $id ][ $row->object_id ] = isset( $term_items[ $id ][ $row->object_id ] ) ? ++$term_items[ $id ][ $row->object_id ] : 1;
@@ -95,6 +108,14 @@ function _appthemes_pad_term_counts( $terms, $taxonomies, $args ) {
 }
 
 
+/**
+ * Updates post term count.
+ *
+ * @param int|array $term
+ * @param object|string $taxonomy
+ *
+ * @return void
+ */
 function _appthemes_update_post_term_count( $term, $taxonomy ) {
 	global $wpdb;
 
@@ -102,23 +123,42 @@ function _appthemes_update_post_term_count( $term, $taxonomy ) {
 		return;
 	}
 
+	// args passed to this function are inconsistent
+	if ( is_array( $term ) ) {
+		foreach ( $term as $term_id ) {
+			_appthemes_update_post_term_count( $term_id, $taxonomy );
+		}
+		return;
+	}
+	if ( is_object( $taxonomy ) ) {
+		$taxonomy = $taxonomy->name;
+	}
+
 	$options = _appthemes_get_term_count_args();
 
 	$post_types = esc_sql( $options['post_type'] );
 	$post_statuses = esc_sql( $options['post_status'] );
 
-	if ( is_object( $taxonomy ) && in_array( $taxonomy->name, $options['taxonomy'] ) ) {
-		$count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships INNER JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->term_relationships.object_id WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_statuses ) . "') AND term_taxonomy_id = %d", $term ) );
+	if ( in_array( $taxonomy, $options['taxonomy'] ) ) {
+		$count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships INNER JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->term_relationships.object_id WHERE $wpdb->posts.post_type IN ('" . implode( "', '", $post_types ) . "') AND $wpdb->posts.post_status IN ('" . implode( "', '", $post_statuses ) . "') AND $wpdb->term_relationships.term_taxonomy_id = %d", $term ) );
 		$wpdb->update( $wpdb->term_taxonomy, array( 'count' => $count ), array( 'term_taxonomy_id' => $term ) );
 	}
 
 }
 
+
+/**
+ * Returns term count args.
+ *
+ * @param string $option (optional)
+ *
+ * @return mixed
+ */
 function _appthemes_get_term_count_args( $option = '' ) {
 
 	static $args = array();
 
-	if( ! current_theme_supports( 'app-term-counts' ) ) {
+	if ( ! current_theme_supports( 'app-term-counts' ) ) {
 		return array();
 	}
 

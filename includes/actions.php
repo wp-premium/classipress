@@ -241,7 +241,7 @@ function cp_ad_loop_else() {
 
 			<div class="pad10"></div>
 
-			<p class"not-found><?php _e( 'Sorry, no listings were found.', APP_TD ); ?></p>
+			<p class="not-found"><?php _e( 'Sorry, no listings were found.', APP_TD ); ?></p>
 
 			<div class="pad10"></div>
 

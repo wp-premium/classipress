@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ClassiPress 3.5.7\n"
+"Project-Id-Version: ClassiPress 3.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-05 06:38:02+00:00\n"
+"POT-Creation-Date: 2016-12-15 06:59:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,7 +121,7 @@ msgid "% Responses"
 msgstr ""
 
 #: comments-ad_listing.php:35 comments-page.php:35 comments.php:35
-#: includes/search.php:361
+#: includes/search.php:357
 msgid "to"
 msgstr ""
 
@@ -412,11 +412,12 @@ msgstr ""
 msgid "Purchase a Membership Pack"
 msgstr ""
 
-#: form-membership-packages.php:41 includes/admin/options.php:1020
-#: includes/admin/options.php:1276 includes/admin/package-list.php:31
-#: includes/admin/package-list.php:118 includes/admin/package-single.php:27
-#: includes/admin/package-single.php:129 includes/admin/settings.php:1059
-#: includes/comments.php:169 includes/sidebar-contact.php:44
+#: form-membership-packages.php:41 framework/admin/class-system-info.php:120
+#: includes/admin/options.php:1020 includes/admin/options.php:1276
+#: includes/admin/package-list.php:31 includes/admin/package-list.php:118
+#: includes/admin/package-single.php:27 includes/admin/package-single.php:129
+#: includes/admin/settings.php:1059 includes/comments.php:169
+#: includes/sidebar-contact.php:44
 msgid "Name"
 msgstr ""
 
@@ -558,8 +559,8 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
-#: framework/admin/class-meta-box.php:72
-#: framework/admin/class-tabs-page.php:155 includes/admin/options.php:483
+#: framework/admin/class-meta-box.php:80
+#: framework/admin/class-tabs-page.php:156 includes/admin/options.php:483
 msgid "Click for more info"
 msgstr ""
 
@@ -570,234 +571,390 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: framework/admin/class-system-info.php:19
-#: framework/admin/class-system-info.php:20
-#: framework/admin/class-system-info.php:82
+#: framework/admin/class-system-info.php:25
+#: framework/admin/class-system-info.php:26
+#: framework/admin/class-system-info.php:104
 msgid "System Info"
 msgstr ""
 
-#: framework/admin/class-system-info.php:83
-#: framework/admin/class-system-info.php:387
-msgid "Cron Jobs"
-msgstr ""
-
-#: framework/admin/class-system-info.php:93
-msgid "Theme Info"
-msgstr ""
-
-#: framework/admin/class-system-info.php:96
-msgid "Theme Name"
-msgstr ""
-
-#: framework/admin/class-system-info.php:105
-msgid "Theme Version"
-msgstr ""
-
-#: framework/admin/class-system-info.php:118
-msgid "WordPress Info"
-msgstr ""
-
-#: framework/admin/class-system-info.php:121
-msgid "Home URL"
-msgstr ""
-
-#: framework/admin/class-system-info.php:130
-msgid "Site URL"
-msgstr ""
-
-#: framework/admin/class-system-info.php:139
-msgid "Theme Path"
-msgstr ""
-
-#: framework/admin/class-system-info.php:148
-msgid "WP Version"
-msgstr ""
-
-#: framework/admin/class-system-info.php:154
-msgid "Multisite"
-msgstr ""
-
-#: framework/admin/class-system-info.php:157
-msgid "WP Memory Limit"
-msgstr ""
-
-#: framework/admin/class-system-info.php:166
-msgid "WP Max Upload Size"
-msgstr ""
-
-#: framework/admin/class-system-info.php:175
-msgid "WP Debug Mode"
-msgstr ""
-
-#: framework/admin/class-system-info.php:181
-#: framework/admin/class-system-info.php:190
-#: framework/admin/class-system-info.php:199
-#: framework/admin/class-system-info.php:278
-#: framework/admin/class-system-info.php:287
-#: framework/admin/class-system-info.php:303
-#: framework/admin/class-system-info.php:328
-#: framework/admin/class-system-info.php:337
-#: framework/admin/class-system-info.php:346
-#: framework/admin/class-system-info.php:355
-#: includes/admin/package-single.php:182 includes/admin/settings.php:333
-#: includes/admin/settings.php:1081 includes/payments/admin/settings.php:116
-#: includes/payments/escrow/admin/settings.php:58
-msgid "Yes"
-msgstr ""
-
-#: framework/admin/class-system-info.php:181
-#: framework/admin/class-system-info.php:190
-#: framework/admin/class-system-info.php:199
-#: framework/admin/class-system-info.php:278
-#: framework/admin/class-system-info.php:287
-#: framework/admin/class-system-info.php:303
-#: framework/admin/class-system-info.php:328
-#: framework/admin/class-system-info.php:337
-#: framework/admin/class-system-info.php:346
-#: framework/admin/class-system-info.php:355 includes/admin/settings.php:334
+#: framework/admin/class-system-info.php:90
+#: includes/admin/listing-single.php:134 includes/admin/settings.php:334
 #: includes/admin/settings.php:1082
 msgid "No"
 msgstr ""
 
-#: framework/admin/class-system-info.php:184
-msgid "Force SSL Admin"
+#: framework/admin/class-system-info.php:90
+#: includes/admin/listing-single.php:133 includes/admin/package-single.php:182
+#: includes/admin/settings.php:333 includes/admin/settings.php:1081
+#: includes/payments/admin/settings.php:116
+#: includes/payments/escrow/admin/settings.php:58
+msgid "Yes"
 msgstr ""
 
-#: framework/admin/class-system-info.php:193
+#: framework/admin/class-system-info.php:105
+#: framework/admin/class-system-info.php:458
+msgid "Cron Jobs"
+msgstr ""
+
+#: framework/admin/class-system-info.php:117
+msgid "Theme Info"
+msgstr ""
+
+#: framework/admin/class-system-info.php:123
+msgid "The name of the current active theme."
+msgstr ""
+
+#: framework/admin/class-system-info.php:130
+#: framework/admin/class-system-info.php:545 includes/admin/dashboard.php:85
+msgid "Version"
+msgstr ""
+
+#: framework/admin/class-system-info.php:133
+msgid "The version of the current active theme."
+msgstr ""
+
+#: framework/admin/class-system-info.php:140
+msgid "Author URL"
+msgstr ""
+
+#: framework/admin/class-system-info.php:143
+msgid "The theme developers url."
+msgstr ""
+
+#: framework/admin/class-system-info.php:150
+msgid "Theme Path"
+msgstr ""
+
+#: framework/admin/class-system-info.php:153
+msgid "The path of the current active theme."
+msgstr ""
+
+#: framework/admin/class-system-info.php:160
 msgid "Child Theme"
 msgstr ""
 
-#: framework/admin/class-system-info.php:206
-msgid "Server Info"
+#: framework/admin/class-system-info.php:163
+msgid "Check if a child theme is active."
 msgstr ""
 
-#: framework/admin/class-system-info.php:209
-msgid "Server Software"
+#: framework/admin/class-system-info.php:164
+msgid "Using parent theme %s v%s"
 msgstr ""
 
-#: framework/admin/class-system-info.php:218
-msgid "PHP Version"
+#: framework/admin/class-system-info.php:174
+msgid "WordPress Info"
 msgstr ""
 
-#: framework/admin/class-system-info.php:224
-msgid "Function phpversion() is not available."
+#: framework/admin/class-system-info.php:177
+msgid "Home URL"
+msgstr ""
+
+#: framework/admin/class-system-info.php:180
+msgid "The url of your website's homepage."
+msgstr ""
+
+#: framework/admin/class-system-info.php:187
+msgid "Site URL"
+msgstr ""
+
+#: framework/admin/class-system-info.php:190
+msgid "The url of your WordPress install."
+msgstr ""
+
+#: framework/admin/class-system-info.php:197
+msgid "WP Version"
+msgstr ""
+
+#: framework/admin/class-system-info.php:200
+msgid "The version of WordPress installed."
+msgstr ""
+
+#: framework/admin/class-system-info.php:207
+msgid "WP Multisite"
+msgstr ""
+
+#: framework/admin/class-system-info.php:210
+msgid "Check to see if WordPress Multisite is enabled."
+msgstr ""
+
+#: framework/admin/class-system-info.php:217
+msgid "WP Memory Limit"
+msgstr ""
+
+#: framework/admin/class-system-info.php:220
+msgid "The maximum amount of memory (RAM) that your site can use."
 msgstr ""
 
 #: framework/admin/class-system-info.php:227
-msgid "MySQL Version"
-msgstr ""
-
-#: framework/admin/class-system-info.php:236
-msgid "PHP Post Max Size"
-msgstr ""
-
-#: framework/admin/class-system-info.php:242
-#: framework/admin/class-system-info.php:251
-#: framework/admin/class-system-info.php:260
-#: framework/admin/class-system-info.php:269
-#: framework/admin/class-system-info.php:278
-msgid "Function ini_get() is not available."
-msgstr ""
-
-#: framework/admin/class-system-info.php:245
-msgid "PHP Max Input Vars"
-msgstr ""
-
-#: framework/admin/class-system-info.php:254
-msgid "PHP Time Limit"
-msgstr ""
-
-#: framework/admin/class-system-info.php:263
-msgid "Upload Max Filesize"
-msgstr ""
-
-#: framework/admin/class-system-info.php:272
-msgid "Display Errors"
-msgstr ""
-
-#: framework/admin/class-system-info.php:281
-msgid "SUHOSIN Installed"
-msgstr ""
-
-#: framework/admin/class-system-info.php:294
-msgid "Image Support"
-msgstr ""
-
-#: framework/admin/class-system-info.php:297
-msgid "GD Library Installed"
-msgstr ""
-
-#: framework/admin/class-system-info.php:306
-msgid "Image Upload Path"
-msgstr ""
-
-#: framework/admin/class-system-info.php:319
-msgid "Other Checks"
-msgstr ""
-
-#: framework/admin/class-system-info.php:322
-msgid "JSON Decode"
-msgstr ""
-
-#: framework/admin/class-system-info.php:331
-msgid "cURL Enabled"
-msgstr ""
-
-#: framework/admin/class-system-info.php:340
-msgid "fsockopen Enabled"
-msgstr ""
-
-#: framework/admin/class-system-info.php:349
-msgid "OpenSSL Enabled"
-msgstr ""
-
-#: framework/admin/class-system-info.php:358
 msgid "WP Remote Post"
 msgstr ""
 
-#: framework/admin/class-system-info.php:364
-msgid "wp_remote_post() test was successful."
+#: framework/admin/class-system-info.php:230
+msgid ""
+"Checks to see if your hosting server is able to post information to another "
+"server. PayPal IPN uses this method of communication when sending back "
+"transaction information."
+msgstr ""
+
+#: framework/admin/class-system-info.php:237
+msgid "WP Debug Mode"
+msgstr ""
+
+#: framework/admin/class-system-info.php:240
+msgid "Check to see if WordPress debug mode is enabled."
+msgstr ""
+
+#: framework/admin/class-system-info.php:247
+msgid "Force SSL Admin"
+msgstr ""
+
+#: framework/admin/class-system-info.php:250
+msgid ""
+"Check to see if your site forces SSL (Secure Sockets Layer) also known as "
+"TLS (Transport Layer Security)."
+msgstr ""
+
+#: framework/admin/class-system-info.php:257 includes/admin/settings.php:134
+msgid "Language"
+msgstr ""
+
+#: framework/admin/class-system-info.php:260
+msgid ""
+"The current language used by WordPress. The default value is en_US "
+"(English)."
+msgstr ""
+
+#: framework/admin/class-system-info.php:267
+msgid "Language File Path"
+msgstr ""
+
+#: framework/admin/class-system-info.php:270
+msgid ""
+"Where to put your .mo language file for this theme (e.g. %1$s-%2$s.mo). The "
+"wp-admin \"Site Language\" drop-down must also be set to your locale."
+msgstr ""
+
+#: framework/admin/class-system-info.php:281
+msgid "Server Info"
+msgstr ""
+
+#: framework/admin/class-system-info.php:284
+msgid "Server Software"
+msgstr ""
+
+#: framework/admin/class-system-info.php:287
+msgid "The web server your hosting server is running."
+msgstr ""
+
+#: framework/admin/class-system-info.php:294
+msgid "PHP Version"
+msgstr ""
+
+#: framework/admin/class-system-info.php:297
+msgid ""
+"The version of PHP installed on your hosting server. We recommend a minimum "
+"PHP version of 5.4."
+msgstr ""
+
+#: framework/admin/class-system-info.php:298
+msgid "Function phpversion() is not available."
+msgstr ""
+
+#: framework/admin/class-system-info.php:304
+msgid "PHP Post Max Size"
+msgstr ""
+
+#: framework/admin/class-system-info.php:307
+msgid "The largest file size that can be contained in one $_POST."
+msgstr ""
+
+#: framework/admin/class-system-info.php:308
+#: framework/admin/class-system-info.php:318
+#: framework/admin/class-system-info.php:328
+#: framework/admin/class-system-info.php:368
+msgid "Function ini_get() is not available."
+msgstr ""
+
+#: framework/admin/class-system-info.php:314
+msgid "PHP Time Limit"
+msgstr ""
+
+#: framework/admin/class-system-info.php:317
+msgid ""
+"The amount of time (in seconds) your server will spend on a task before "
+"timing out. Set this higher to avoid timeout issues."
+msgstr ""
+
+#: framework/admin/class-system-info.php:324
+msgid "PHP Max Input Vars"
+msgstr ""
+
+#: framework/admin/class-system-info.php:327
+msgid ""
+"The maximum number of variables your server can use for a single function "
+"to avoid overloads."
+msgstr ""
+
+#: framework/admin/class-system-info.php:334
+msgid "SUHOSIN Installed"
+msgstr ""
+
+#: framework/admin/class-system-info.php:337
+msgid ""
+"Suhosin is an advanced protection system for PHP installations. Your host "
+"provider typically configures this."
+msgstr ""
+
+#: framework/admin/class-system-info.php:344
+msgid "MySQL Version"
+msgstr ""
+
+#: framework/admin/class-system-info.php:347
+msgid ""
+"The version of MySQL installed on your hosting server. We recommend a "
+"minimum mySQL version of 5.5."
+msgstr ""
+
+#: framework/admin/class-system-info.php:354
+msgid "Max Upload Size"
+msgstr ""
+
+#: framework/admin/class-system-info.php:357
+msgid ""
+"The largest file size that can be uploaded to your WordPress installation. "
+"If you get timeout errors when uploading a large file, this should be "
+"increased."
 msgstr ""
 
 #: framework/admin/class-system-info.php:364
-msgid "wp_remote_post() test failed."
+msgid "Display Errors"
 msgstr ""
 
-#: framework/admin/class-system-info.php:371
-#: includes/admin/addons-mp/addons-mp-class.php:732
-#: includes/admin/addons-mp/addons-mp-class.php:779
-msgid "Plugins"
+#: framework/admin/class-system-info.php:367
+msgid ""
+"Checks if your hosting server has PHP errors turned on. If so, they will "
+"display on the screen. This should be turned off in a production "
+"environment."
 msgstr ""
 
-#: framework/admin/class-system-info.php:374
-msgid "Installed Plugins"
+#: framework/admin/class-system-info.php:378
+msgid "Image Support"
 msgstr ""
 
-#: framework/admin/class-system-info.php:402
+#: framework/admin/class-system-info.php:381
+msgid "GD Library"
+msgstr ""
+
+#: framework/admin/class-system-info.php:384
+msgid ""
+"Checks to see if your hosting server has the GD Library installed which "
+"allows WordPress to dynamically manipulate images."
+msgstr ""
+
+#: framework/admin/class-system-info.php:391
+msgid "Image Upload Path"
+msgstr ""
+
+#: framework/admin/class-system-info.php:394
+msgid "The WordPress image upload path on your hosting server."
+msgstr ""
+
+#: framework/admin/class-system-info.php:405
+msgid "Other Checks"
+msgstr ""
+
+#: framework/admin/class-system-info.php:408
+msgid "JSON Decode"
+msgstr ""
+
+#: framework/admin/class-system-info.php:411
+msgid "Checks to see if the JSON Decode function is enabled on your hosting server."
+msgstr ""
+
+#: framework/admin/class-system-info.php:418
+msgid "cURL"
+msgstr ""
+
+#: framework/admin/class-system-info.php:421
+msgid ""
+"Checks to see if the CURL function is enabled on your hosting server. "
+"Payment gateways and sometimes other plugins usually required this in order "
+"to work properly."
+msgstr ""
+
+#: framework/admin/class-system-info.php:428
+msgid "fsockopen"
+msgstr ""
+
+#: framework/admin/class-system-info.php:431
+msgid ""
+"Checks to see if the fsockopen function is enabled on your hosting server. "
+"Payment gateways and sometimes other plugins usually required this in order "
+"to work properly."
+msgstr ""
+
+#: framework/admin/class-system-info.php:438
+msgid "OpenSSL"
+msgstr ""
+
+#: framework/admin/class-system-info.php:441
+msgid ""
+"Checks to see if the OpenSSL function is enabled on your hosting server. "
+"This is sometimes required by plugins but typically not for payment "
+"gateways."
+msgstr ""
+
+#: framework/admin/class-system-info.php:452
+msgid "Active Plugins"
+msgstr ""
+
+#: framework/admin/class-system-info.php:474
 msgid "Download Report"
 msgstr ""
 
-#: framework/admin/class-system-info.php:468
+#: framework/admin/class-system-info.php:507
+msgid ""
+"wp_remote_post() failed. PayPal IPN won't work with your server at this "
+"time. Contact your host provider."
+msgstr ""
+
+#: framework/admin/class-system-info.php:511
+msgid "Error: %s"
+msgstr ""
+
+#: framework/admin/class-system-info.php:513
+msgid "Status code: %s"
+msgstr ""
+
+#: framework/admin/class-system-info.php:546
+msgid "By"
+msgstr ""
+
+#: framework/admin/class-system-info.php:547
+msgid "Plugin site"
+msgstr ""
+
+#: framework/admin/class-system-info.php:582
 msgid "One-off event"
 msgstr ""
 
-#: framework/admin/class-system-info.php:493
+#: framework/admin/class-system-info.php:609
 msgid "You haven&#39;t created any cron job tasks yet."
 msgstr ""
 
-#: framework/admin/class-system-info.php:499
+#: framework/admin/class-system-info.php:615
 msgid "Hook Name"
 msgstr ""
 
-#: framework/admin/class-system-info.php:500
+#: framework/admin/class-system-info.php:616
 msgid "Frequency"
 msgstr ""
 
-#: framework/admin/class-system-info.php:501
+#: framework/admin/class-system-info.php:617
 msgid "Next Run Date"
 msgstr ""
 
-#: framework/admin/class-tabs-page.php:134 includes/admin/options.php:925
+#: framework/admin/class-tabs-page.php:127 includes/admin/options.php:925
 #: includes/payments/escrow/escrow-settings-form-class.php:58
 msgid "Save Changes"
 msgstr ""
@@ -1030,18 +1187,18 @@ msgstr ""
 msgid "No categories"
 msgstr ""
 
-#: framework/kernel/functions.php:1328
+#: framework/kernel/functions.php:1352
 #: includes/payments/admin/order-list.php:140
 msgid "%s ago"
 msgstr ""
 
-#: framework/kernel/view-types.php:258
+#: framework/kernel/view-types.php:259
 msgid ""
 "Retrieving page id by APP_View_Page subclass name is deprecated, use "
 "APP_View_Page::_get_page_id( $template ) instead!"
 msgstr ""
 
-#: framework/load.php:170
+#: framework/load.php:172
 msgid ""
 "The %s plugin is not detected. We strongly recommend you download and "
 "activate it so you can receive the latest updates when available. It also "
@@ -1285,6 +1442,11 @@ msgstr ""
 msgid "Themes"
 msgstr ""
 
+#: includes/admin/addons-mp/addons-mp-class.php:732
+#: includes/admin/addons-mp/addons-mp-class.php:779
+msgid "Plugins"
+msgstr ""
+
 #: includes/admin/addons-mp/addons-mp-class.php:780
 msgid "Payment Gateways"
 msgstr ""
@@ -1360,10 +1522,6 @@ msgstr ""
 
 #: includes/admin/dashboard.php:66 includes/admin/dashboard.php:71
 msgid "Pending Ads"
-msgstr ""
-
-#: includes/admin/dashboard.php:85
-msgid "Version"
 msgstr ""
 
 #: includes/admin/enqueue.php:49 includes/admin/options.php:654
@@ -1464,18 +1622,18 @@ msgstr ""
 msgid "Meta"
 msgstr ""
 
-#: includes/admin/listing-list.php:39 includes/admin/listing-single.php:401
-#: includes/admin/listing-single.php:407
+#: includes/admin/listing-list.php:39 includes/admin/listing-single.php:496
+#: includes/admin/listing-single.php:509
 #: includes/payments/admin/order-list.php:27
 #: includes/reports/admin/metabox.php:149
 msgid "Author"
 msgstr ""
 
-#: includes/admin/listing-list.php:43 includes/admin/listing-single.php:96
+#: includes/admin/listing-list.php:43 includes/admin/listing-single.php:106
 msgid "Views Today"
 msgstr ""
 
-#: includes/admin/listing-list.php:44 includes/admin/listing-single.php:104
+#: includes/admin/listing-list.php:44 includes/admin/listing-single.php:114
 msgid "Views Total"
 msgstr ""
 
@@ -1488,58 +1646,62 @@ msgid "Featured Ad (sticky)"
 msgstr ""
 
 #: includes/admin/listing-list.php:184 includes/admin/settings.php:549
-#: includes/admin/settings.php:589 includes/images.php:570
+#: includes/admin/settings.php:589 includes/images.php:588
 msgid "Image"
 msgstr ""
 
-#: includes/admin/listing-single.php:83
+#: includes/admin/listing-single.php:88
 msgid "Listing Info"
 msgstr ""
 
-#: includes/admin/listing-single.php:89
+#: includes/admin/listing-single.php:99
 msgid "Reference ID"
 msgstr ""
 
-#: includes/admin/listing-single.php:112
+#: includes/admin/listing-single.php:122
 msgid "Submitted from IP"
 msgstr ""
 
-#: includes/admin/listing-single.php:122
+#: includes/admin/listing-single.php:129
+msgid "Marked as Sold"
+msgstr ""
+
+#: includes/admin/listing-single.php:142
 msgid "Last Payment"
 msgstr ""
 
-#: includes/admin/listing-single.php:143
+#: includes/admin/listing-single.php:168
 msgid "Listing Details"
 msgstr ""
 
-#: includes/admin/listing-single.php:188 includes/custom-forms.php:162
+#: includes/admin/listing-single.php:218 includes/custom-forms.php:162
 msgid "-- Select --"
 msgstr ""
 
-#: includes/admin/listing-single.php:206
+#: includes/admin/listing-single.php:236
 msgid "No form fields found."
 msgstr ""
 
-#: includes/admin/listing-single.php:287
+#: includes/admin/listing-single.php:348
 msgid "Pricing Information"
 msgstr ""
 
-#: includes/admin/listing-single.php:328
+#: includes/admin/listing-single.php:401
 msgid ""
 "These settings allow you to override the defaults that have been applied to "
 "the listings based on the package the owner chose. They will apply until "
 "the listing expires."
 msgstr ""
 
-#: includes/admin/listing-single.php:336
+#: includes/admin/listing-single.php:414
 msgid "Listing Duration"
 msgstr ""
 
-#: includes/admin/listing-single.php:341 includes/functions.php:360
+#: includes/admin/listing-single.php:419 includes/functions.php:360
 msgid "days"
 msgstr ""
 
-#: includes/admin/listing-single.php:347
+#: includes/admin/listing-single.php:425
 msgid "Expires on"
 msgstr ""
 
@@ -2119,10 +2281,6 @@ msgstr ""
 msgid ""
 "If you set this to 'IT' and a user enters 'Florence' in the location search "
 "field, it will target 'Florence, Italy' rather than 'Florence, Alabama'."
-msgstr ""
-
-#: includes/admin/settings.php:134
-msgid "Language"
 msgstr ""
 
 #: includes/admin/settings.php:135
@@ -2950,6 +3108,7 @@ msgid "This is what your users will see as the &quot;from&quot; name."
 msgstr ""
 
 #: includes/admin/settings.php:1065 includes/sidebar-contact.php:50
+#: theme-framework/templates/foundation/form-registration.php:23
 #: tpl-profile.php:74
 msgid "Email"
 msgstr ""
@@ -3491,7 +3650,7 @@ msgstr ""
 msgid "Sorry, no results found."
 msgstr ""
 
-#: includes/checkout/class-checkout.php:299 includes/functions.php:338
+#: includes/checkout/class-checkout.php:388 includes/functions.php:338
 #: order-checkout.php:51
 msgid "Continue"
 msgstr ""
@@ -4227,6 +4386,7 @@ msgid "Name: %s"
 msgstr ""
 
 #: includes/emails.php:250 includes/emails.php:303
+#: theme-framework/includes/views-login.php:784
 msgid "E-mail: %s"
 msgstr ""
 
@@ -4238,24 +4398,27 @@ msgstr ""
 msgid "Sent from IP Address: %s"
 msgstr ""
 
-#: includes/emails.php:299
+#: includes/emails.php:299 theme-framework/includes/views-login.php:780
 msgid "[%s] New User Registration"
 msgstr ""
 
-#: includes/emails.php:301
+#: includes/emails.php:301 theme-framework/includes/views-login.php:782
 msgid "New user registration on your site %s:"
 msgstr ""
 
 #: includes/emails.php:302 includes/emails.php:348 includes/options.php:190
-#: theme-framework/includes/views-login.php:334
+#: theme-framework/includes/views-login.php:405
+#: theme-framework/includes/views-login.php:783
+#: theme-framework/includes/views-login.php:797
 msgid "Username: %s"
 msgstr ""
 
-#: includes/emails.php:346
+#: includes/emails.php:346 theme-framework/includes/views-login.php:795
 msgid "[%s] Your username and password"
 msgstr ""
 
 #: includes/emails.php:349 includes/options.php:191
+#: theme-framework/includes/views-login.php:798
 msgid "Password: %s"
 msgstr ""
 
@@ -4583,43 +4746,43 @@ msgstr ""
 msgid "Error in deleting the image."
 msgstr ""
 
-#: includes/images.php:484 includes/images.php:489
+#: includes/images.php:502 includes/images.php:507
 msgid "Image "
 msgstr ""
 
-#: includes/images.php:513
+#: includes/images.php:531
 msgid "Missing Attachment"
 msgstr ""
 
-#: includes/images.php:578
+#: includes/images.php:596
 msgid "Delete Image"
 msgstr ""
 
-#: includes/images.php:579
+#: includes/images.php:597
 msgid "Upload Date:"
 msgstr ""
 
-#: includes/images.php:580
+#: includes/images.php:598
 msgid "File Info:"
 msgstr ""
 
-#: includes/images.php:589
+#: includes/images.php:607
 msgid "Alt Text:"
 msgstr ""
 
-#: includes/images.php:630 includes/plupload/app-plupload.php:71
+#: includes/images.php:648 includes/plupload/app-plupload.php:71
 msgid "Add Image"
 msgstr ""
 
-#: includes/images.php:639
+#: includes/images.php:657
 msgid "You are allowed %s image(s) per ad."
 msgstr ""
 
-#: includes/images.php:639
+#: includes/images.php:657
 msgid "KB max file size per image."
 msgstr ""
 
-#: includes/images.php:639
+#: includes/images.php:657
 msgid "Check the box next to each image you wish to delete."
 msgstr ""
 
@@ -5011,6 +5174,22 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
+#: includes/payments/admin/settings.php:58
+msgid "Left (%s1.00)"
+msgstr ""
+
+#: includes/payments/admin/settings.php:59
+msgid "Right (1.00%s)"
+msgstr ""
+
+#: includes/payments/admin/settings.php:60
+msgid "Left with space (%s 1.00)"
+msgstr ""
+
+#: includes/payments/admin/settings.php:61
+msgid "Right with space (1.00 %s)"
+msgstr ""
+
 #: includes/payments/admin/settings.php:65
 msgid "Thousand Separator"
 msgstr ""
@@ -5133,13 +5312,13 @@ msgstr ""
 msgid "[%1$s] Funds for \"%2$s\" (Order ID #%3$s)"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive-request.php:202
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive-request.php:207
 msgid ""
 "PayPal was unable to verify the payment receivers. Please contact site "
 "owner."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive-request.php:227
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive-request.php:232
 msgid "Added user '%1$s' with email '%2$s' as receiver"
 msgstr ""
 
@@ -5206,6 +5385,8 @@ msgstr ""
 
 #: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:225
 #: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:255
+#: theme-framework/templates/foundation/form-login.php:18
+#: theme-framework/templates/foundation/form-registration.php:18
 #: tpl-profile.php:43
 msgid "Username"
 msgstr ""
@@ -5218,6 +5399,8 @@ msgstr ""
 
 #: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:231
 #: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:261
+#: theme-framework/templates/foundation/form-login.php:23
+#: theme-framework/templates/foundation/form-registration.php:37
 msgid "Password"
 msgstr ""
 
@@ -5393,7 +5576,7 @@ msgid "review all pending orders"
 msgstr ""
 
 #: includes/payments/gateways/bank-transfer/bt-emails.php:20
-#: includes/search.php:268
+#: includes/search.php:264
 #. translators: <Single Order Link> or <Link to All Orders>
 msgid "%1$s or %2$s"
 msgstr ""
@@ -6124,41 +6307,41 @@ msgstr ""
 msgid "Search Index Update Progress: %g%s complete."
 msgstr ""
 
-#: includes/search.php:69 includes/search.php:674 includes/widgets.php:293
-#: search.php:11 searchbar.php:27
-msgid "What are you looking for?"
-msgstr ""
-
-#: includes/search.php:122
+#: includes/search.php:118
 msgid "need at least two characters"
 msgstr ""
 
-#: includes/search.php:226
+#: includes/search.php:222
 msgid "Refine Results"
 msgstr ""
 
-#: includes/search.php:278
+#: includes/search.php:274
 msgid "miles"
 msgstr ""
 
-#: includes/search.php:278
+#: includes/search.php:274
 msgid "kilometers"
 msgstr ""
 
-#: includes/search.php:304
+#: includes/search.php:300
 msgid "Radius"
 msgstr ""
 
-#: includes/search.php:352
+#: includes/search.php:348
 msgid "Precise price"
 msgstr ""
 
-#: includes/search.php:360
+#: includes/search.php:356
 msgid "from"
 msgstr ""
 
-#: includes/search.php:378
+#: includes/search.php:374
 msgid "Refine Results &rsaquo;&rsaquo;"
+msgstr ""
+
+#: includes/search.php:670 includes/widgets.php:293 search.php:11
+#: searchbar.php:27
+msgid "What are you looking for?"
 msgstr ""
 
 #: includes/security.php:37
@@ -6334,15 +6517,15 @@ msgstr ""
 msgid "Error: The \"%1$s\" field should be at least %2$d characters long."
 msgstr ""
 
-#: includes/views-checkout.php:1111
+#: includes/views-checkout.php:1112
 msgid "Error: The \"%s\" field is invalid."
 msgstr ""
 
-#: includes/views-checkout.php:1459
+#: includes/views-checkout.php:1460
 msgid "You need to choose ad package."
 msgstr ""
 
-#: includes/views-checkout.php:1463
+#: includes/views-checkout.php:1464
 msgid "Choosen ad package does not exist."
 msgstr ""
 
@@ -7057,41 +7240,41 @@ msgid ""
 "it."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:132
+#: theme-framework/includes/views-login.php:160
 msgid "<strong>ERROR</strong>: The username field is empty."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:136
+#: theme-framework/includes/views-login.php:164
 msgid "<strong>ERROR</strong>: The password field is empty."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:178
+#: theme-framework/includes/views-login.php:211
 msgid ""
 "Cookies are blocked or not supported by your browser. You must enable "
 "cookies to continue."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:182
+#: theme-framework/includes/views-login.php:215
 msgid "You are now logged out."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:185
+#: theme-framework/includes/views-login.php:218
 msgid "User registration is currently not allowed."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:188
+#: theme-framework/includes/views-login.php:221
 msgid "Check your email for the confirmation link."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:191
+#: theme-framework/includes/views-login.php:224
 msgid "Check your email for your new password."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:194
+#: theme-framework/includes/views-login.php:227
 msgid "Registration complete. Please check your e-mail."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:197
+#: theme-framework/includes/views-login.php:230
 msgid "Your password has been reset. Please login."
 msgstr ""
 
@@ -7099,47 +7282,47 @@ msgstr ""
 msgid "Password Recovery"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:263
+#: theme-framework/includes/views-login.php:334
 msgid "Sorry, that key does not appear to be valid. Please try again."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:282
+#: theme-framework/includes/views-login.php:353
 msgid "<strong>ERROR</strong>: Enter a username or e-mail address."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:286
+#: theme-framework/includes/views-login.php:357
 msgid "<strong>ERROR</strong>: There is no user registered with that email address."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:300
+#: theme-framework/includes/views-login.php:371
 msgid "<strong>ERROR</strong>: Invalid username or e-mail."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:314
+#: theme-framework/includes/views-login.php:385
 msgid "Password reset is not allowed for this user"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:332
+#: theme-framework/includes/views-login.php:403
 msgid "Someone requested that the password be reset for the following account:"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:335
+#: theme-framework/includes/views-login.php:406
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:336
+#: theme-framework/includes/views-login.php:407
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:351
+#: theme-framework/includes/views-login.php:422
 msgid "[%s] Password Reset"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:357
+#: theme-framework/includes/views-login.php:428
 msgid "The e-mail could not be sent."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:357
+#: theme-framework/includes/views-login.php:428
 msgid "Possible reason: your host may have disabled the mail() function..."
 msgstr ""
 
@@ -7147,63 +7330,63 @@ msgstr ""
 msgid "Password Reset"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:419
+#: theme-framework/includes/views-login.php:509
 msgid "The passwords do not match."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:548
+#: theme-framework/includes/views-login.php:669
 msgid "<strong>ERROR</strong>: Please enter a username."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:550
+#: theme-framework/includes/views-login.php:671
 msgid ""
 "<strong>ERROR</strong>: This username is invalid because it uses illegal "
 "characters. Please enter a valid username."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:553
+#: theme-framework/includes/views-login.php:674
 msgid ""
 "<strong>ERROR</strong>: This username is already registered, please choose "
 "another one."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:558
+#: theme-framework/includes/views-login.php:679
 msgid "<strong>ERROR</strong>: Please type your e-mail address."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:560
+#: theme-framework/includes/views-login.php:681
 msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:563
+#: theme-framework/includes/views-login.php:684
 msgid ""
 "<strong>ERROR</strong>: This email is already registered, please choose "
 "another one."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:572
+#: theme-framework/includes/views-login.php:693
 msgid "<strong>ERROR</strong>: Please enter a password."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:574
+#: theme-framework/includes/views-login.php:695
 msgid "<strong>ERROR</strong>: Please enter the password twice."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:576
+#: theme-framework/includes/views-login.php:697
 msgid "<strong>ERROR</strong>: The passwords do not match."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:594
+#: theme-framework/includes/views-login.php:715
 msgid ""
 "<strong>ERROR</strong>: Couldn&#39;t register you... please contact the <a "
 "href=\"mailto:%s\">webmaster</a> !"
 msgstr ""
 
-#: theme-framework/includes/views-login.php:682
+#: theme-framework/includes/views-login.php:856
 msgid "The default WordPress login page is still accessible."
 msgstr ""
 
-#: theme-framework/includes/views-login.php:683
+#: theme-framework/includes/views-login.php:857
 msgid ""
 "After you ensure that permalinks on your site are working correctly and you "
 "are not using any \"maintenance mode\" plugins, please disable it in your "
@@ -7306,7 +7489,7 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: theme-framework/kernel/mail-from.php:287
+#: theme-framework/kernel/mail-from.php:308
 msgid ""
 "Email provider of \"%1$s\" address do not allow to use their email "
 "addresses by other servers. The \"%2$s\" address will be used to send out "
@@ -7381,11 +7564,15 @@ msgstr ""
 msgid "Password:"
 msgstr ""
 
-#: theme-framework/templates/form-login.php:27 tpl-login.php:51
+#: theme-framework/templates/form-login.php:27
+#: theme-framework/templates/foundation/form-login.php:37 tpl-login.php:51
 msgid "Remember me"
 msgstr ""
 
-#: theme-framework/templates/form-login.php:31 tpl-login.php:61
+#: theme-framework/templates/form-login.php:31
+#: theme-framework/templates/foundation/form-login.php:45
+#: theme-framework/templates/foundation/form-registration.php:50
+#: tpl-login.php:61
 msgid "Lost your password?"
 msgstr ""
 
@@ -7403,6 +7590,8 @@ msgstr ""
 
 #: theme-framework/templates/form-password-recovery.php:17
 #: theme-framework/templates/form-password-reset.php:23
+#: theme-framework/templates/foundation/form-password-recovery.php:30
+#: theme-framework/templates/foundation/form-password-reset.php:36
 #: tpl-password-recovery.php:40 tpl-password-reset.php:77
 msgid "Reset Password"
 msgstr ""
@@ -7413,11 +7602,13 @@ msgid "Enter your new password below."
 msgstr ""
 
 #: theme-framework/templates/form-password-reset.php:8
+#: theme-framework/templates/foundation/form-password-reset.php:18
 #: tpl-password-reset.php:39
 msgid "New password"
 msgstr ""
 
 #: theme-framework/templates/form-password-reset.php:13
+#: theme-framework/templates/foundation/form-password-reset.php:22
 #: tpl-password-reset.php:44
 msgid "Confirm new password"
 msgstr ""
@@ -7441,6 +7632,20 @@ msgstr ""
 
 #: theme-framework/templates/form-registration.php:29 tpl-registration.php:67
 msgid "Password Again:"
+msgstr ""
+
+#: theme-framework/templates/foundation/form-password-recovery.php:17
+msgid "Username or Email"
+msgstr ""
+
+#: theme-framework/templates/foundation/form-password-recovery.php:33
+#: theme-framework/templates/foundation/form-registration.php:49
+msgid "Log in"
+msgstr ""
+
+#: theme-framework/templates/foundation/form-registration.php:42
+#: tpl-profile.php:115
+msgid "Password Again"
 msgstr ""
 
 #: tpl-full-width.php:56
@@ -7493,10 +7698,6 @@ msgstr ""
 
 #: tpl-profile.php:110
 msgid "Leave this field blank unless you would like to change your password."
-msgstr ""
-
-#: tpl-profile.php:115
-msgid "Password Again"
 msgstr ""
 
 #: tpl-profile.php:118

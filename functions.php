@@ -10,7 +10,7 @@
  */
 
 // Constants
-define( 'CP_VERSION', '3.5.7' );
+define( 'CP_VERSION', '3.5.8' );
 define( 'CP_DB_VERSION', '2683' );
 
 define( 'APP_POST_TYPE', 'ad_listing' );

@@ -12,12 +12,16 @@ abstract class APP_Tabs_Page extends scbAdminPage {
 	public $tabs;
 	public $tab_sections;
 
+	protected $table_classes = array();
+
 	abstract protected function init_tabs();
 
 	function __construct( $options = null ) {
 		parent::__construct( false, $options );
 
 		$this->tabs = new APP_List;
+
+		$this->table_classes = array_merge( $this->table_classes, array( 'form-table', esc_attr( $this->args['page_slug'] ) . '-table' ) );
 	}
 
 	function page_loaded() {
@@ -56,22 +60,11 @@ abstract class APP_Tabs_Page extends scbAdminPage {
 
 	// A generic page header
 	function page_header() {
-		echo "<div class='wrap'>\n";
+		echo '<div class="wrap ' . esc_attr( $this->args['page_slug'] ) . '-page">' . "\n";
 	}
 
 	function page_footer() {
 		parent::page_footer();
-?>
-		<style type="text/css">
-			table.form-table th {
-				position: relative;
-				padding-right: 24px;
-			}
-			table.form-table td fieldset label {
-				display: block;
-			}
-		</style>
-<?php
 	}
 
 	function page_content() {
@@ -127,7 +120,7 @@ abstract class APP_Tabs_Page extends scbAdminPage {
 				} else {
 					$formdata = $this->options;
 				}
-				$this->render_section( $section['fields'], $formdata->get() );
+				$this->render_section( $section['fields'], $formdata->get(), $section_id );
 			}
 		}
 
@@ -135,25 +128,33 @@ abstract class APP_Tabs_Page extends scbAdminPage {
 		echo '</form>';
 	}
 
-	private function render_section( $fields, $formdata = false ) {
+	private function render_section( $fields, $formdata = false, $section_id = '' ) {
 		$output = '';
 
 		foreach ( $fields as $field ) {
 			$output .= $this->table_row( $this->before_rendering_field( $field ), $formdata );
 		}
 
-		echo $this->table_wrap( $output );
+		echo $this->table_wrap( $output, $section_id );
+	}
+
+	public function table_wrap( $content, $section_id = '' ) {
+
+		$table_classes = array_merge( $this->table_classes, array( "{$section_id}-section" ) );
+		$args = array( 'class' => implode( ' ', $table_classes ) );
+
+		return html( 'table', $args, $content );
 	}
 
 	public function table_row( $field, $formdata = false ) {
 
 		if ( empty( $field['tip'] ) ) {
-			$tip = '';
+			$tip = html( 'td class="at-help"', '&nbsp;' );
 		} else {
-			$tip  = html( 'i', array(
+			$tip  = html( 'td class="at-help"', html( 'i', array(
 				'class' => 'at at-tip',
 				'data-tooltip' => APP_ToolTips::supports_wp_pointer() ? $field['tip'] : __( 'Click for more info', APP_TD ),
-			) );
+			) ) );
 
 			if ( ! APP_ToolTips::supports_wp_pointer() ) {
 				$tip .= html( "div class='tip-content'", $field['tip'] );

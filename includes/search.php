@@ -65,10 +65,6 @@ function cp_get_search_term() {
 	// get not escaped search query
 	$search_term = get_search_query( false );
 
-	if ( empty( $search_term ) ) {
-		$search_term = __( 'What are you looking for?', APP_TD );
-	}
-
 	return $search_term;
 }
 

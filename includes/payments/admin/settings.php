@@ -55,10 +55,10 @@ class APP_Payments_Settings_Admin extends APP_Tabs_Page {
 					'type' => 'select',
 					'name' => 'currency_position',
 					'values' => array(
-						'left' => 'Left ({symbol}1.00)',
-						'right' => 'Right (1.00{symbol})',
-						'left_space' => 'Left with space ({symbol} 1.00)',
-						'right_space' => 'Right with space (1.00 {symbol})'
+						'left' => sprintf( __( 'Left (%s1.00)', APP_TD ), '{symbol}' ),
+						'right' => sprintf( __( 'Right (1.00%s)', APP_TD ), '{symbol}' ),
+						'left_space' => sprintf( __( 'Left with space (%s 1.00)', APP_TD ), '{symbol}' ),
+						'right_space' => sprintf( __( 'Right with space (1.00 %s)', APP_TD ), '{symbol}' ),
 					),
 				),
 				array(

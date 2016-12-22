@@ -6,18 +6,60 @@
  */
 class APP_Dynamic_Checkout{
 
+	/**
+	 * The steps list object.
+	 *
+	 * @var APP_Relational_Checkout_List
+	 */
 	protected $steps;
+
+	/**
+	 * The current step ID.
+	 *
+	 * @var bool|string
+	 */
 	protected $current_step = false;
+
+	/**
+	 * The finished step flag.
+	 *
+	 * @var bool
+	 */
 	protected $step_finished = false;
+
+	/**
+	 * The cancelled step flag.
+	 *
+	 * @var bool
+	 */
 	protected $step_cancelled = false;
 
-	protected $hash, $order_id, $checkout_type;
+	/**
+	 * The checkout hash.
+	 *
+	 * @var string
+	 */
+	protected $hash;
+
+	/**
+	 * The Order ID.
+	 *
+	 * @var int
+	 */
+	protected $order_id;
+
+	/**
+	 * The current checkout type
+	 *
+	 * @var string
+	 */
+	protected $checkout_type;
 
 	/**
 	 * Setups checkout.
 	 *
-	 * @param string $checkout_type
-	 * @param string $hash (optional)
+	 * @param string $checkout_type Checkout type.
+	 * @param string $hash          Optional. Checkout hash.
 	 *
 	 * @return void
 	 */
@@ -27,6 +69,7 @@ class APP_Dynamic_Checkout{
 		$this->checkout_type = substr( $checkout_type, 0, 25 );
 		if ( empty( $this->hash ) ) {
 			$this->hash = substr( sha1( time() . mt_rand( 0, 1000 ) ), 0, 20 );
+			$this->set_expiration();
 			$this->add_data( 'checkout_type', $this->checkout_type );
 		}
 
@@ -55,6 +98,45 @@ class APP_Dynamic_Checkout{
 
 	public function process_step( $id ){
 		return $this->call_step( $id, 'process' );
+	}
+
+	/**
+	 * Sets expiration for a checkout data.
+	 *
+	 * When expiration will set all further calls of add_data() method will use
+	 * this expiration value, until new expiration value will be set.
+	 *
+	 * This allows to dynamically control the checkout expiration on a different
+	 * steps. Since different steps have a different time limit on passing them.
+	 *
+	 * @param int $expiration Optional. Time until expiration in seconds.
+	 *                         Default 86400 (1 day). 0 - no expiration.
+	 */
+	public function set_expiration( $expiration = DAY_IN_SECONDS ) {
+		$data = $this->get_data();
+		if ( ! $data ) {
+			$data = array();
+		}
+
+		$data['expiration'] = (int) $expiration;
+
+		set_transient( $this->get_transient_key(), $data, $expiration );
+
+		// Do not autoload option and make transient unexpirable.
+		if ( ! $expiration ) {
+			delete_option( '_transient_timeout_' . $this->get_transient_key() );
+		}
+	}
+
+	/**
+	 * Completes the checkout after all steps finished.
+	 *
+	 * Checkout data will be preserved for a one day and then finally deleted.
+	 */
+	public function complete_checkout() {
+		do_action( 'appthemes_checkout_completed', $this );
+		// Keep completed checkout data for a one day.
+		$this->set_expiration( DAY_IN_SECONDS );
 	}
 
 	protected function call_step( $id, $type = 'display' ){
@@ -114,8 +196,14 @@ class APP_Dynamic_Checkout{
 		}
 
 		if ( $this->step_finished ) {
-			$this->redirect( appthemes_get_step_url( $this->get_next_step( $id ) ) );
-			appthemes_exit( "finish_step_{$this->current_step}" );
+			$next_step = $this->get_next_step( $id );
+
+			if ( $this->current_step === $next_step ) {
+				$this->complete_checkout();
+			} else {
+				$this->redirect( appthemes_get_step_url( $next_step ) );
+				appthemes_exit( "finish_step_{$this->current_step}" );
+			}
 		}
 
 		$this->current_step = false;
@@ -194,9 +282,8 @@ class APP_Dynamic_Checkout{
 	/**
 	 * Stores given data in checkout.
 	 *
-	 * @param string $key
-	 * @param mixed $value
-	 *
+	 * @param string $key   Data key.
+	 * @param mixed  $value Data value.
 	 * @return void
 	 */
 	public function add_data( $key, $value ) {
@@ -206,8 +293,10 @@ class APP_Dynamic_Checkout{
 			$data = array();
 		}
 
+		$expiration = ( isset( $data['expiration'] ) ) ?  $data['expiration'] : DAY_IN_SECONDS;
+
 		$data[ $key ] = $value;
-		set_transient( $this->get_transient_key(), $data, 60 * 60 * 24 );
+		set_transient( $this->get_transient_key(), $data, $expiration );
 	}
 
 	/**

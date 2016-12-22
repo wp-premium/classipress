@@ -73,13 +73,28 @@ class APP_Login extends APP_Login_Base {
 
 	private $error;
 
-	function __construct( $template ) {
+	/**
+	 * Sets up page view.
+	 *
+	 * @param string $template
+	 *
+	 * @return void
+	 */
+	public function __construct( $template ) {
 		self::$_template = $template;
 		parent::__construct( $template, __( 'Login', APP_TD ) );
 		add_filter( 'login_url', array( $this, '_change_login_url' ), 10, 2 );
 	}
 
-	function _change_login_url( $url, $redirect_to ) {
+	/**
+	 * Changes the login URL.
+	 *
+	 * @param string $url
+	 * @param string $redirect_to
+	 *
+	 * @return string
+	 */
+	public function _change_login_url( $url, $redirect_to ) {
 		return self::get_url( 'redirect', $redirect_to );
 	}
 
@@ -95,11 +110,16 @@ class APP_Login extends APP_Login_Base {
 		return apply_filters( 'app_login_pre_redirect', true );
 	}
 
-	static function get_id() {
+	/**
+	 * Returns page ID.
+	 *
+	 * @return int
+	 */
+	public static function get_id() {
 		return self::_get_page_id( self::$_template );
 	}
 
-	static function redirect_field() {
+	public static function redirect_field() {
 		if ( isset( $_REQUEST['redirect_to'] ) ) {
 			$redirect = $_REQUEST['redirect_to'];
 		} else {
@@ -113,7 +133,15 @@ class APP_Login extends APP_Login_Base {
 		) );
 	}
 
-	static function get_url( $context = 'display', $redirect_to = '' ) {
+	/**
+	 * Returns page URL.
+	 *
+	 * @param string $context (optional)
+	 * @param string $redirect_to (optional)
+	 *
+	 * @return string
+	 */
+	public static function get_url( $context = 'display', $redirect_to = '' ) {
 		return appthemes_get_login_url( $context, $redirect_to );
 	}
 
@@ -167,7 +195,12 @@ class APP_Login extends APP_Login_Base {
 		$this->error = $user;
 	}
 
-	function notices() {
+	/**
+	 * Displays notices.
+	 *
+	 * @return void
+	 */
+	public function notices() {
 		$message = '';
 
 		if ( ! isset( $this->error ) || ! empty( $_GET['loggedout'] ) ) {
@@ -225,17 +258,50 @@ class APP_Password_Recovery extends APP_Login_Base {
 		return array( 'lostpassword', 'retrievepassword' );
 	}
 
-	function __construct( $template ) {
+	/**
+	 * Sets up page view.
+	 *
+	 * @param string $template
+	 *
+	 * @return void
+	 */
+	public function __construct( $template ) {
 		self::$_template = $template;
 		parent::__construct( $template, __( 'Password Recovery', APP_TD ) );
+		add_filter( 'lostpassword_url', array( $this, '_change_lostpassword_url' ), 10, 2 );
 	}
 
-	static function get_id() {
+	/**
+	 * Changes the lost password URL.
+	 *
+	 * @param string $url
+	 * @param string $redirect_to
+	 *
+	 * @return string
+	 */
+	public function _change_lostpassword_url( $url, $redirect_to ) {
+		return self::get_url( 'redirect', $redirect_to );
+	}
+
+	/**
+	 * Returns page ID.
+	 *
+	 * @return int
+	 */
+	public static function get_id() {
 		return self::_get_page_id( self::$_template );
 	}
 
-	static function get_url( $context = '' ) {
-		return appthemes_get_password_recovery_url( $context );
+	/**
+	 * Returns page URL.
+	 *
+	 * @param string $context (optional)
+	 * @param string $redirect_to (optional)
+	 *
+	 * @return string
+	 */
+	public static function get_url( $context = '', $redirect_to = '' ) {
+		return appthemes_get_password_recovery_url( $context, $redirect_to );
 	}
 
 	function process_form() {
@@ -257,7 +323,12 @@ class APP_Password_Recovery extends APP_Login_Base {
 		do_action( 'lost_password' );
 	}
 
-	function notices() {
+	/**
+	 * Displays notices.
+	 *
+	 * @return void
+	 */
+	public function notices() {
 
 		if ( isset( $_GET['invalidkeyerror'] ) && '1' == $_GET['invalidkeyerror'] ) {
 			appthemes_display_notice( 'error', __( 'Sorry, that key does not appear to be valid. Please try again.', APP_TD ) );
@@ -372,16 +443,35 @@ class APP_Password_Reset extends APP_Login_Base {
 		return array( 'resetpass', 'rp' );
 	}
 
-	function __construct( $template ) {
+	/**
+	 * Sets up page view.
+	 *
+	 * @param string $template
+	 *
+	 * @return void
+	 */
+	public function __construct( $template ) {
 		self::$_template = $template;
 		parent::__construct( $template, __( 'Password Reset', APP_TD ) );
 	}
 
-	static function get_id() {
+	/**
+	 * Returns page ID.
+	 *
+	 * @return int
+	 */
+	public static function get_id() {
 		return self::_get_page_id( self::$_template );
 	}
 
-	static function get_url( $context = '' ) {
+	/**
+	 * Returns page URL.
+	 *
+	 * @param string $context (optional)
+	 *
+	 * @return string
+	 */
+	public static function get_url( $context = '' ) {
 		return appthemes_get_password_reset_url( $context );
 	}
 
@@ -434,7 +524,12 @@ class APP_Password_Reset extends APP_Login_Base {
 		wp_password_change_notification( $user );
 	}
 
-	function notices() {
+	/**
+	 * Displays notices.
+	 *
+	 * @return void
+	 */
+	public function notices() {
 
 		if ( isset( $this->error->errors ) && sizeof( $this->error->errors ) > 0 && $this->error->get_error_code() ) {
 			$error_html = '<ul class="errors">';
@@ -458,24 +553,50 @@ class APP_Registration extends APP_Login_Base {
 		return 'register';
 	}
 
-	function __construct( $template ) {
+	/**
+	 * Sets up page view.
+	 *
+	 * @param string $template
+	 *
+	 * @return void
+	 */
+	public function __construct( $template ) {
 		self::$_template = $template;
 		parent::__construct( $template, __( 'Register', APP_TD ) );
 
-		add_action( 'appthemes_after_registration', 'wp_new_user_notification', 10 );
+		add_action( 'appthemes_after_registration', 'appthemes_new_user_notification', 10, 2 );
 		add_filter( 'register_url', array( $this, '_change_register_url' ), 10, 1 );
 
 	}
 
-	function _change_register_url( $url ) {
+	/**
+	 * Changes the register URL.
+	 *
+	 * @param string $url
+	 *
+	 * @return string
+	 */
+	public function _change_register_url( $url ) {
 		return self::get_url( 'raw' );
 	}
 
-	static function get_id() {
+	/**
+	 * Returns page ID.
+	 *
+	 * @return int
+	 */
+	public static function get_id() {
 		return self::_get_page_id( self::$_template );
 	}
 
-	static function get_url( $context = '' ) {
+	/**
+	 * Returns page URL.
+	 *
+	 * @param string $context (optional)
+	 *
+	 * @return string
+	 */
+	public static function get_url( $context = '' ) {
 		return appthemes_get_registration_url( $context );
 	}
 
@@ -623,7 +744,12 @@ class APP_Registration extends APP_Login_Base {
 		exit;
 	}
 
-	function notices() {
+	/**
+	 * Displays notices.
+	 *
+	 * @return void
+	 */
+	public function notices() {
 		if ( isset( $this->error->errors ) && sizeof( $this->error->errors ) > 0 && $this->error->get_error_code() ) {
 			$error_html = '<ul class="errors">';
 			foreach ( $this->error->errors as $error ) {
@@ -633,6 +759,49 @@ class APP_Registration extends APP_Login_Base {
 			appthemes_display_notice( 'error', $error_html );
 		}
 	}
+}
+
+
+/**
+ * Email login credentials to a newly-registered user.
+ * A new user registration notification is also sent to admin email.
+ *
+ * @param int    $user_id        User ID.
+ * @param string $plaintext_pass Optional. The user's plaintext password. Default empty.
+ *
+ * @return void
+ */
+function appthemes_new_user_notification( $user_id, $plaintext_pass = '' ) {
+	$user = get_userdata( $user_id );
+
+	// The blogname option is escaped with esc_html on the way into the database in sanitize_option
+	// we want to reverse this for the plain text arena of emails.
+	$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+	$subject = sprintf( __( '[%s] New User Registration', APP_TD ), $blogname );
+
+	$message  = html( 'p', sprintf( __( 'New user registration on your site %s:', APP_TD ), $blogname ) ) . PHP_EOL;
+	$message .= html( 'p', sprintf( __( 'Username: %s', APP_TD ), $user->user_login ) ) . PHP_EOL;
+	$message .= html( 'p', sprintf( __( 'E-mail: %s', APP_TD ), $user->user_email ) ) . PHP_EOL;
+
+	$email = array( 'to' => get_option( 'admin_email' ), 'subject' => $subject, 'message' => $message );
+	$email = apply_filters( 'appthemes_email_admin_new_user', $email, $user_id, $plaintext_pass );
+
+	appthemes_send_email( $email['to'], $email['subject'], $email['message'] );
+
+	if ( empty( $plaintext_pass ) ) {
+		return;
+	}
+
+	$subject = sprintf( __( '[%s] Your username and password', APP_TD ), $blogname );
+
+	$message  = html( 'p', sprintf( __( 'Username: %s', APP_TD ), $user->user_login ) ) . PHP_EOL;
+	$message .= html( 'p', sprintf( __( 'Password: %s', APP_TD ), $plaintext_pass ) ) . PHP_EOL;
+	$message .= html( 'p', html_link( wp_login_url() ) ) . PHP_EOL;
+
+	$email = array( 'to' => $user->user_email, 'subject' => $subject, 'message' => $message );
+	$email = apply_filters( 'appthemes_email_user_new_user', $email, $user_id, $plaintext_pass );
+
+	appthemes_send_email( $email['to'], $email['subject'], $email['message'] );
 }
 
 
@@ -659,6 +828,11 @@ function appthemes_add_login_post_context( $url, $original_url, $context ) {
 add_filter( 'clean_url', 'appthemes_add_login_post_context', 10, 3 );
 
 
+/**
+ * Displays notice on settings page about disabled redirect from WordPress login pages.
+ *
+ * @return void
+ */
 function appthemes_disabled_login_redirect_notice() {
 	global $pagenow;
 
@@ -682,6 +856,5 @@ function appthemes_disabled_login_redirect_notice() {
 	$notice = __( 'The default WordPress login page is still accessible.', APP_TD ) . '<br />';
 	$notice .= sprintf( __( 'After you ensure that permalinks on your site are working correctly and you are not using any "maintenance mode" plugins, please disable it in your <a href="%s">theme settings</a>.', APP_TD ), $options['settings_page'] );
 	echo scb_admin_notice( $notice );
-
 }
 add_action( 'admin_notices', 'appthemes_disabled_login_redirect_notice' );

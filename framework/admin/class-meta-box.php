@@ -13,6 +13,13 @@ class APP_Meta_Box extends scbPostMetabox {
 	protected $field_names;
 
 	/**
+	 * Protected version of parent's Private property $id.
+	 *
+	 * @var string
+	 */
+	protected $box_id;
+
+	/**
 	 * Sets up metabox.
 	 *
 	 * @param string $id
@@ -27,6 +34,7 @@ class APP_Meta_Box extends scbPostMetabox {
 
 		$this->actions[] = 'admin_print_styles';
 		$this->actions[] = 'add_meta_boxes';
+		$this->box_id = $id;
 
 		parent::__construct( $id, $title, array(
 			'post_type' => $post_types,
@@ -42,7 +50,7 @@ class APP_Meta_Box extends scbPostMetabox {
 	 * @return array
 	 */
 	public function form_fields() {
-		return $this->form();
+		return apply_filters( "appthemes_{$this->box_id}_metabox_fields", $this->form() );
 	}
 
 	/**

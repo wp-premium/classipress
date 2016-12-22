@@ -157,6 +157,7 @@ function appthemes_order_table_css() {
 	<style type="text/css">
 		.post-type-transaction .top .actions:first-child,
 		.post-type-transaction .bottom .actions:first-child,
+		.post-type-transaction .wrap .page-title-action,
 		.post-type-transaction .wrap .add-new-h2 {
 			display: none;
 		}

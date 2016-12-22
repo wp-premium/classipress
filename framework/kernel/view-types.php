@@ -34,7 +34,7 @@ abstract class APP_View {
 	abstract function condition();
 
 
-	function __construct() {
+	public function __construct() {
 		// 'init' hook (always ran)
 		if ( method_exists( $this, 'init' ) ) {
 			add_action( 'init', array( $this, 'init' ) );
@@ -95,6 +95,7 @@ abstract class APP_View {
 			'template_include' => 'template_include',
 			'appthemes_title_parts' => 'title_parts',
 			'appthemes_notices' => 'notices',
+			'appthemes_open_graph_meta_tags' => 'meta_tags',
 			'breadcrumb_trail_items' => 'breadcrumbs',
 		);
 
@@ -110,7 +111,7 @@ abstract class APP_View {
 		}
 	}
 
-	function notices() {
+	public function notices() {
 		appthemes_display_notices();
 	}
 }
@@ -187,7 +188,7 @@ class APP_View_Page extends APP_View {
 	}
 
 	public function condition() {
-		if ( is_page_template( $this->get_template() ) ) {
+		if ( is_singular( 'page' ) && is_page_template( $this->get_template() ) ) {
 			return true;
 		}
 
@@ -474,6 +475,32 @@ class APP_View_Page extends APP_View {
 			delete_post_meta( $post_id, '_preserved_page_template', $preserved_template );
 		}
 	}
+
+	/**
+	 * Modify open graph meta tags for special pages.
+	 *
+	 * @param array $tags
+	 *
+	 * @return array
+	 */
+	public function meta_tags( $tags ) {
+		$tags['og:type'] = 'website';
+
+		$to_remove = array(
+			'article:author',
+			'article:published_time',
+			'article:modified_time',
+		);
+
+		foreach ( $to_remove as $tag ) {
+			if ( isset( $tags[ $tag ] ) ) {
+				unset( $tags[ $tag ] );
+			}
+		}
+
+		return $tags;
+	}
+
 }
 
 add_action( 'appthemes_first_run', array( 'APP_View_Page', 'install' ), 9 );

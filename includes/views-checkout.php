@@ -1106,8 +1106,9 @@ class CP_Listing_Form_Edit extends CP_Listing_Checkout_Step {
 			} else if ( ! empty( $field_value ) && in_array( $field->field_type, array( 'checkbox', 'radio', 'drop-down' ) ) ) {
 
 				$options = cp_explode( ',', $field->field_values );
+				$options_escaped = array_map( 'esc_attr', $options );
 				// check if the posted value is one of the provided by form
-				if ( array_diff( (array)$field_value, $options ) ) {
+				if ( array_diff( (array)$field_value, $options ) && array_diff( (array)$field_value, $options_escaped ) ) {
 					$errors->add( 'invalid-' . $field->field_name, sprintf( __( 'Error: The "%s" field is invalid.', APP_TD ), translate( $field->field_label, APP_TD ) ) );
 				}
 

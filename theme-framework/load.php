@@ -106,19 +106,22 @@ function _appthemes_load_theme_features() {
  */
 function _appthemes_register_theme_scripts() {
 
+	// Minimize prod or show expanded in dev.
+	$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 	require_once APP_THEME_FRAMEWORK_DIR . '/js/localization.php';
 
-	wp_register_script( 'colorbox', APP_THEME_FRAMEWORK_URI . '/js/colorbox/jquery.colorbox.min.js', array( 'jquery' ), '1.6.1' );
-	wp_register_style( 'colorbox', APP_THEME_FRAMEWORK_URI . '/js/colorbox/colorbox.css', false, '1.6.1' );
-	wp_register_style( 'font-awesome', APP_THEME_FRAMEWORK_URI . '/styles/font-awesome.min.css', false, '4.2.0' );
+	wp_register_script( 'colorbox', APP_THEME_FRAMEWORK_URI . "/js/colorbox/jquery.colorbox{$min}.js", array( 'jquery' ), '1.6.1' );
+	wp_register_style( 'colorbox', APP_THEME_FRAMEWORK_URI . "/js/colorbox/colorbox{$min}.css", false, '1.6.1' );
+	wp_register_style( 'font-awesome', APP_THEME_FRAMEWORK_URI . "/lib/font-awesome/css/font-awesome{$min}.css", false, '4.7.0' );
 
-	wp_register_script( 'footable', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.min.js', array( 'jquery' ), '2.0.3' );
-	wp_register_script( 'footable-grid', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.grid.min.js', array( 'footable' ), '2.0.3' );
-	wp_register_script( 'footable-sort', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.sort.min.js', array( 'footable' ), '2.0.3' );
-	wp_register_script( 'footable-filter', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.filter.min.js', array( 'footable' ), '2.0.3' );
-	wp_register_script( 'footable-striping', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.striping.min.js', array( 'footable' ), '2.0.3' );
-	wp_register_script( 'footable-paginate', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.paginate.min.js', array( 'footable' ), '2.0.3' );
-	wp_register_script( 'footable-bookmarkable', APP_THEME_FRAMEWORK_URI . '/js/footable/jquery.footable.bookmarkable.min.js', array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable{$min}.js", array( 'jquery' ), '2.0.3' );
+	wp_register_script( 'footable-grid', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.grid{$min}.js", array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable-sort', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.sort{$min}.js", array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable-filter', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.filter{$min}.js", array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable-striping', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.striping{$min}.js", array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable-paginate', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.paginate{$min}.js", array( 'footable' ), '2.0.3' );
+	wp_register_script( 'footable-bookmarkable', APP_THEME_FRAMEWORK_URI . "/js/footable/jquery.footable.bookmarkable{$min}.js", array( 'footable' ), '2.0.3' );
 
 	_appthemes_localize_theme_scripts();
 }

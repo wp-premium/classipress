@@ -162,7 +162,7 @@ if ( ! function_exists( 'cp_formbuilder' ) ) {
 							$html_options .= html( 'option', array( 'value' => '' ), __( '-- Select --', APP_TD ) );
 							foreach ( $options as $option ) {
 								$args = array( 'value' => $option );
-								if ( $option == $post_meta_val ) {
+								if ( ( $option == $post_meta_val ) || ( esc_attr( $option ) == $post_meta_val ) ) {
 									$args['selected'] = 'selected';
 								}
 								$args = apply_filters( 'cp_formbuilder_' . $result->field_name . '_option', $args, $result, $post );

@@ -79,10 +79,20 @@ function cp_sticky_option_submit_box() {
  */
 class CP_Listing_Info_Metabox extends APP_Meta_Box {
 
+	/**
+	 * Setups metabox.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		parent::__construct( 'listing-info', __( 'Listing Info', APP_TD ), APP_POST_TYPE, 'normal', 'high' );
 	}
 
+	/**
+	 * Returns an array of form fields.
+	 *
+	 * @return array
+	 */
 	public function form_fields() {
 		$form_fields = array(
 			array(
@@ -115,6 +125,16 @@ class CP_Listing_Info_Metabox extends APP_Meta_Box {
 				'default' => appthemes_get_ip(),
 				'extra' => array( 'readonly' => 'readonly' ),
 			),
+			array(
+				'title' => __( 'Marked as Sold', APP_TD ),
+				'type' => 'select',
+				'name' => 'cp_ad_sold',
+				'values' => array(
+					'yes' => __( 'Yes', APP_TD ),
+					'no'  => __( 'No', APP_TD ),
+				),
+				'default' => 'no',
+			),
 		);
 
 		if ( cp_payments_is_enabled() ) {
@@ -135,14 +155,24 @@ class CP_Listing_Info_Metabox extends APP_Meta_Box {
 
 
 /**
- * Listing Custom Forms Metabox
+ * Listing Custom Forms Metabox.
  */
 class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 
+	/**
+	 * Setups metabox.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		parent::__construct( 'listing-custom-forms', __( 'Listing Details', APP_TD ), APP_POST_TYPE, 'normal', 'high' );
 	}
 
+	/**
+	 * Returns an array of form fields.
+	 *
+	 * @return array
+	 */
 	public function form_fields() {
 		$i = 0;
 		$form_fields = array();
@@ -189,7 +219,7 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 				}
 
 				foreach ( $options as $option ) {
-					$choices[ $option ] = translate( $option, APP_TD );
+					$choices[ esc_attr( $option ) ] = translate( $option, APP_TD );
 				}
 				$form_fields[ $i ]['choices'] = $choices;
 			}
@@ -211,6 +241,14 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 		return $form_fields;
 	}
 
+	/**
+	 * Filter data before display.
+	 *
+	 * @param array $form_data
+	 * @param object $post
+	 *
+	 * @return array
+	 */
 	public function before_display( $form_data, $post ) {
 		$custom_form_fields = $this->get_custom_form_fields();
 
@@ -226,6 +264,14 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 		return $form_data;
 	}
 
+	/**
+	 * Filter data before save.
+	 *
+	 * @param array $post_data
+	 * @param int $post_id
+	 *
+	 * @return array
+	 */
 	protected function before_save( $post_data, $post_id ) {
 		$custom_form_fields = $this->get_custom_form_fields();
 
@@ -252,6 +298,11 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 		return $post_data;
 	}
 
+	/**
+	 * Returns custom form fields.
+	 *
+	 * @return array
+	 */
 	public function get_custom_form_fields() {
 
 		// get the ad category ID
@@ -265,6 +316,11 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 		return $form_fields;
 	}
 
+	/**
+	 * Returns current post ID.
+	 *
+	 * @return int
+	 */
 	public function get_post_id() {
 		if ( ! empty( $_GET['post'] ) ) {
 			return $_GET['post'];
@@ -279,19 +335,36 @@ class CP_Listing_Custom_Forms_Metabox extends APP_Meta_Box {
 
 
 /**
- * Listing Pricing Information Metabox
+ * Listing Pricing Information Metabox.
  */
 class CP_Listing_Pricing_Metabox extends APP_Meta_Box {
 
+	/**
+	 * Setups metabox.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		parent::__construct( 'listing-pricing', __( 'Pricing Information', APP_TD ), APP_POST_TYPE, 'normal', 'high' );
 	}
 
+	/**
+	 * Enqueues admin scripts.
+	 *
+	 * @return void
+	 */
 	public function admin_enqueue_scripts() {
 		wp_enqueue_style( 'jquery-ui-style' );
 		wp_enqueue_script( 'timepicker', get_template_directory_uri() . '/includes/js/timepicker.min.js', array( 'jquery-ui-core', 'jquery-ui-datepicker' ), '1.5.0' );
 	}
 
+	/**
+	 * Displays extra HTML before the form.
+	 *
+	 * @param object $post
+	 *
+	 * @return void
+	 */
 	public function before_form( $post ) {
 ?>
 		<script type="text/javascript">
@@ -328,6 +401,11 @@ class CP_Listing_Pricing_Metabox extends APP_Meta_Box {
 		echo html( 'p', __( 'These settings allow you to override the defaults that have been applied to the listings based on the package the owner chose. They will apply until the listing expires.', APP_TD ) );
 	}
 
+	/**
+	 * Returns an array of form fields.
+	 *
+	 * @return array
+	 */
 	public function form_fields() {
 		global $cp_options;
 
@@ -361,15 +439,27 @@ class CP_Listing_Pricing_Metabox extends APP_Meta_Box {
 
 
 /**
- * Listing Attachments Metabox
+ * Listing Attachments Metabox.
  */
 class CP_Listing_Media extends APP_Media_Manager_Metabox {
 
+	/**
+	 * Setups metabox.
+	 *
+	 * @return void
+	 */
 	public function __construct( $id, $title, $post_type, $context = 'normal', $priority = 'default' ) {
 		parent::__construct( $id, $title, $post_type, $context, $priority );
 	}
 
-	function display( $post ) {
+	/**
+	 * Displays content.
+	 *
+	 * @param object $post
+	 *
+	 * @return void
+	 */
+	public function display( $post ) {
 
 		$attachment_ids = get_post_meta( $post->ID, '_app_media', true );
 
@@ -393,14 +483,26 @@ class CP_Listing_Media extends APP_Media_Manager_Metabox {
 
 
 /**
- * Listing Author Metabox
+ * Listing Author Metabox.
  */
 class CP_Listing_Author_Metabox extends APP_Meta_Box {
 
+	/**
+	 * Setups metabox.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		parent::__construct( 'listingauthordiv', __( 'Author', APP_TD ), APP_POST_TYPE, 'side', 'low' );
 	}
 
+	/**
+	 * Displays content.
+	 *
+	 * @param object $post
+	 *
+	 * @return void
+	 */
 	public function display( $post ) {
 		global $user_ID;
 		?>

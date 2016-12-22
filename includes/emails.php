@@ -259,7 +259,7 @@ function cp_contact_ad_owner_email( $post_id ) {
 	$email = array( 'to' => $author_email, 'subject' => $subject, 'message' => $message, 'from' => $from_email, 'from_name' => $from_name );
 	$email = apply_filters( 'cp_email_user_ad_contact', $email, $post_id );
 
-	APP_Mail_From::apply_once( array( 'email' => $email['from'], 'name' => $email['from_name'], 'reply' => true ) );
+	APP_Mail_From::apply_once( array( 'reply_email' => $email['from'], 'reply_name' => $email['from_name'], 'reply' => true ) );
 	appthemes_send_email( $email['to'], $email['subject'], $email['message'] );
 
 	return $errors;

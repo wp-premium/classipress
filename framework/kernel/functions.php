@@ -702,17 +702,31 @@ function appthemes_create_child_list( $subcats = array(), $taxonomy = 'category'
 }
 
 /**
- * Insert a term if it doesn't already exist
+ * Insert a term if it doesn't already exist.
  *
- * @param string $name The term name
- * @param string $tax The taxonomy
+ * @since 1.0.0
+ * @since 1.1.0 Added the $args parameter and expanded comments.
  *
- * @return int/WP_Error The term id
+ * @param string       $term     The term to add or update.
+ * @param string       $taxonomy The taxonomy to which to add the term.
+ * @param array|string $args {
+ *     Optional. Array or string of arguments for inserting a term.
+ *
+ *     @type string $alias_of    Slug of the term to make this term an alias of.
+ *                               Default empty string. Accepts a term slug.
+ *     @type string $description The term description. Default empty string.
+ *     @type int    $parent      The id of the parent term. Default 0.
+ *     @type string $slug        The term slug to use. Default empty string.
+ * }
+ * @return array|WP_Error An array containing the `term_id` and `term_taxonomy_id`,
+ *                        WP_Error otherwise.
  */
-function appthemes_maybe_insert_term( $name, $tax ) {
-	$term_id = term_exists( $name, $tax );
+function appthemes_maybe_insert_term( $term, $taxonomy, $args = array() ) {
+	$parent  = ( isset( $args['parent'] ) ) ? $args['parent'] : '';
+	$term_id = term_exists( $term, $taxonomy, $parent );
+
 	if ( ! $term_id ) {
-		$term_id = wp_insert_term( $name, $tax );
+		$term_id = wp_insert_term( $term, $taxonomy, $args );
 	}
 
 	return $term_id;
@@ -940,7 +954,8 @@ function appthemes_get_edit_comment_url( $comment_id = 0, $context = 'display' )
 /**
  * Return url of login page
  *
- * @param string $context
+ * @param string $context (optional)
+ * @param string $redirect_to (optional)
  *
  * @return string
  */
@@ -986,11 +1001,18 @@ function appthemes_get_registration_url( $context = 'display' ) {
 /**
  * Return url of password recovery page
  *
- * @param string $context
+ * @param string $context (optional)
+ * @param string $redirect_to (optional)
  *
  * @return string
  */
-function appthemes_get_password_recovery_url( $context = 'display' ) {
+function appthemes_get_password_recovery_url( $context = 'display', $redirect_to = '' ) {
+	$args = array();
+
+	if ( ! empty( $redirect_to ) ) {
+		$args['redirect_to'] = urlencode( $redirect_to );
+	}
+
 	if ( current_theme_supports( 'app-login' ) && ( $page_id = APP_Password_Recovery::get_id() ) ) {
 		$url = get_permalink( $page_id );
 	} else {
@@ -1000,6 +1022,8 @@ function appthemes_get_password_recovery_url( $context = 'display' ) {
 	if ( ! empty( $_GET['action'] ) && empty( $_GET['key'] ) ) {
 		$url = add_query_arg( 'action', $_GET['action'], $url );
 	}
+
+	$url = add_query_arg( $args, $url );
 
 	return esc_url( $url, null, $context );
 }

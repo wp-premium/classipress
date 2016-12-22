@@ -1,3 +1,18 @@
+3.5.8 - 2016-12-15
+fixes:
+	- Fixed incompatibility with WordPress 4.7
+	- Contact form and DMARC
+	- Tabindex in comments
+	- Ampersand in custom field of custom form
+	- Reply to addresses when using contact form
+	- Default image no-thumb lost during ad update
+	- Typo error in actions.php file
+	- Search bar/refine search bug "what are you looking for"
+
+changes:
+	- Added option "Mark as Sold" to admin edit listing metabox
+
+
 3.5.7 - 2016-07-05
 fixes:
 	- Removed duplicate esc_url() filter on Google Maps url
