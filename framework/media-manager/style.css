@@ -1,0 +1,11 @@
+/* File extensions */
+.media-manager .file-extension { margin: 5px 0; }
+.media-manager .file-extension a { margin-left: 20px; }
+.media-manager .file-extension.file-pdf { background: url('images/file-pdf.png') no-repeat; }
+.media-manager .file-extension.file-word { background: url('images/file-word.png') no-repeat; }
+.media-manager .file-extension.file-excel { background: url('images/file-excel.png') no-repeat; }
+.media-manager .file-extension.file-image { background: url('images/file-image.png') no-repeat; }
+.media-manager .file-extension.file-audio { background: url('images/file-audio.png') no-repeat; }
+.media-manager .file-extension.file-video { background: url('images/file-video.png') no-repeat; }
+.media-manager .file-extension.file-other { background: url('images/file-other.png') no-repeat; }
+.media-manager .button { float: right; }

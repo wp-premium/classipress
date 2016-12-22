@@ -1,0 +1,56 @@
+/* wp-admin custom styles */
+
+
+/* system info page */
+
+@media screen and (max-width: 782px) {
+	.app-system-info-page .form-table th,
+	.app-system-info-page .form-table td {
+		display: table-cell;
+	}
+
+	.app-system-info-page td.at-help {
+		display: none;
+	}
+}
+
+.app-system-info-page table.form-table {
+	background: #fff;
+}
+
+.app-system-info-page table.form-table th {
+	width: 30%;
+	padding: 9px;
+}
+
+.app-system-info-page table.form-table td {
+	padding: 9px;
+}
+
+.app-system-info-page .form-table th,
+.app-system-info-page .form-wrap label {
+	vertical-align: inherit;
+	font-weight: 400;
+}
+
+.app-system-info-page table.form-table tr:nth-child(2n) td,
+.app-system-info-page table.form-table tr:nth-child(2n) th {
+	background: #fcfcfc;
+}
+
+.app-system-info-page label {
+	cursor: initial;
+}
+
+.app-system-info-page table.form-table p.description {
+	margin-top: 0;
+	font-style: normal;
+}
+
+.app-system-info-page .text-error {
+	color: #f00;
+}
+
+.app-system-info-page .text-success {
+	color: #46b450;
+}

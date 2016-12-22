@@ -1,0 +1,12 @@
+/*
+Theme Name:     ClassiPress Example Child Theme
+Theme URI:      http://appthemes.com/
+Description:    Example child theme for the ClassiPress theme
+Author:         AppThemes
+Author URI:     http://appthemes.com/
+Template:       classipress
+Version:        0.1.0
+*/
+
+@import url("../classipress/style.css");
+

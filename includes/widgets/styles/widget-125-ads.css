@@ -1,0 +1,30 @@
+/*
+Default styles for "AppThemes 125x125 Ads" widget
+*/
+
+.widget-125-ads ul.ads {
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden;
+	zoom: 1;
+	list-style: none;
+}
+
+.widget-125-ads ul.ads li {
+	float: left;
+	margin: 11px 0 0;
+	padding: 0;
+	background: none;
+	text-shadow: none;
+}
+
+.widget-125-ads ul.ads li.alt {
+	float: right;
+}
+
+.widget-125-ads ul.ads li a {
+	display: block;
+	border: 1px solid #ddd;
+	padding: 11px;
+	background: #fff;
+}
