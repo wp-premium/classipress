@@ -21,9 +21,9 @@ add_action( 'wp_head', '_cp_customize_css', 999 );
 function _cp_enqueue_customizer_color_previewer() {
 	global $cp_options;
 
-	$suffix_js = cp_get_enqueue_suffix();
+	$min = cp_get_enqueue_suffix();
 
-	wp_enqueue_script( 'cp_themecustomizer', get_template_directory_uri()."/includes/js/theme-customizer{$suffix_js}.js", array( 'customize-controls' ), CP_VERSION, true );
+	wp_enqueue_script( 'cp_themecustomizer', get_template_directory_uri()."/includes/js/theme-customizer{$min}.js", array( 'customize-controls' ), CP_VERSION, true );
 
 	$params = array(
 		'color_scheme' => $cp_options->stylesheet,
@@ -763,7 +763,10 @@ function _cp_customize_css() {
 		<?php if ( $cp_options->footer_width ) : ?>
 			.footer_main_res { width: <?php echo $cp_options->footer_width; ?>; }
 			@media screen and (max-width: 860px) {
-				.footer_main_res { width: 100%; }
+				.footer_main_res {
+					width: 100%;
+					overflow: hidden;
+				}
 				#footer .inner {
 					float: left;
 					width: 95%;

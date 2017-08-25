@@ -1,0 +1,9 @@
+/* IE 8 compatibility styles */
+
+.ie8 .selectBox-options li a {
+	white-space: pre;
+}
+
+.ie8 .tabcontrol > div {
+	float: left;
+}

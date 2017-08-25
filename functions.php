@@ -10,8 +10,8 @@
  */
 
 // Constants
-define( 'CP_VERSION', '3.5.8' );
-define( 'CP_DB_VERSION', '2683' );
+define( 'CP_VERSION', '3.6.0' );
+define( 'CP_DB_VERSION', '2794' );
 
 define( 'APP_POST_TYPE', 'ad_listing' );
 define( 'APP_TAX_CAT', 'ad_cat' );

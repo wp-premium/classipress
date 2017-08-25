@@ -8,12 +8,10 @@
 	margin-bottom: 0;
 }
 
-.wp-filter .search-form select.app-mp-addons-filter {
+.wp-filter .search-form .app-mp-addons-filter {
 	margin-left: 10px;
-}
-
-.wp-filter .search-form select.app-mp-addons-filter:last-child {
-	margin-right: 20px;
+	margin-right: 10px;
+	vertical-align: baseline;
 }
 
 /* Addon */

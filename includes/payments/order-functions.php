@@ -56,6 +56,7 @@ function appthemes_setup_orders() {
 		'public' => true,
 		'show_ui' => $show_ui,
 		'show_in_menu' => 'app-payments',
+		'show_in_admin_bar'   => false,
 		'exclude_from_search'  => true,
 		'has_archive'  => true,
 		'rewrite' => array('slug' => 'order')

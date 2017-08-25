@@ -1,7 +1,7 @@
 @import 'blue.css';
 
 .header_top {
-	background: #1a1a1a url(../images/topheader_bg.gif) repeat-x top;
+	background: #1A1A1A url(../images/topheader_bg.gif) repeat-x top;
 	border-bottom: 2px solid #323232;
 }
 

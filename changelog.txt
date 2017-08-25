@@ -1,3 +1,25 @@
+3.6.0 - 2017-07-28
+fixes:
+	- Added the missing global content_width value with cp_content_width filter to override
+	- Horizontal slope on mobile device
+	- Home message does not allow shortcodes
+	- Use term_description() in taxonomy templates
+	- "Top Ads Overall" and "Top Ads Today" widgets don't always count ad listing hits
+
+changes:
+	- Moved .pot file to languages folder
+	- Minified images using imagemin
+	- Updated head in wrapper.php to more modern standards
+	- Moved IE styles to separate css files and use WordPress conditional check
+	- Bumped Google CDN jQuery from 1.12.3 to 1.12.4
+	- Use https for Google hosted scripts since they're automatically redirected from http anyhow
+	- Added tinynav.js min version
+	- Always use min versions of js scripts for faster loading unless SCRIPT_DEBUG constant is defined
+	- Added basic support for rtl languages. Removed old styles/master-rtl.css which was never being loaded
+	- Append theme version number to stylesheet urls so cache is cleared with new versions
+	- Updated AppThemes MarketPlace Add-ons Browser
+
+
 3.5.8 - 2016-12-15
 fixes:
 	- Fixed incompatibility with WordPress 4.7

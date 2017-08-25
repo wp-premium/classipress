@@ -1,29 +1,29 @@
 /* main */
 
 span.colour {
-	color: #3b5998;
+	color: #3B5998;
 }
 
 div.bigright span {
-	color: #3b5998;
+	color: #3B5998;
 	font-weight: bold;
 }
 
 div#mcwrap span {
 	font-size: 16px;
-	color: #3b5998;
+	color: #3B5998;
 	font-weight: bold;
 }
 
 a {
-	color: #3b5998;
+	color: #3B5998;
 }
 
 .btn_orange,
 .pages a,
 .pages span {
 	background-color: #19346C;
-	color: #fff;
+	color: #FFF;
 }
 /* header */
 
@@ -43,14 +43,14 @@ a {
 
 .header_main_res #logo h1 {
 	font-size: 38px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res #logo h1 a {
 	text-decoration: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res .description {
@@ -60,7 +60,7 @@ a {
 }
 
 .header_menu {
-	background: #3b5998;
+	background: #3B5998;
 }
 /* top search button styles */
 
@@ -69,21 +69,21 @@ a {
 }
 
 .btn-topsearch:before {
-	color: #3b5998;
+	color: #3B5998;
 }
 /* category menu */
 
 .adv_categories ul li.active {
 	margin: 0 -7px 0 -8px;
 	padding: 4px 7px 4px 8px;
-	color: #fff;
-	background: #3b5998;
+	color: #FFF;
+	background: #3B5998;
 }
 
 .adv_categories .catcol ul li.maincat a {
 	margin: 0;
 	padding: 4px 0;
-	color: #3b5998;
+	color: #3B5998;
 	text-decoration: none;
 }
 /* content */
@@ -93,12 +93,12 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 18px/1.2em Arial, Helvetica, sans-serif;
-	color: #3b5998;
+	color: #3B5998;
 }
 
 .content_res .priceblockbig p.location span {
 	font-weight: bold;
-	color: #3b5998;
+	color: #3B5998;
 }
 
 .content_res .priceblocksmall p.price {
@@ -106,24 +106,24 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 13px/1.2em Arial, Helvetica, sans-serif;
-	color: #3b5998;
+	color: #3B5998;
 }
 
 .content_res .stepsline div.l_ready {
-	background: #3b5998;
+	background: #3B5998;
 }
 
 .content_res .stepsline div.no_ready {
-	border: 1px solid #2c416f;
+	border: 1px solid #2C416F;
 }
 
 .content_res .stepsline div.ni_ready {
-	background: #3b5998;
-	border-top: 1px solid #5671a9;
+	background: #3B5998;
+	border-top: 1px solid #5671A9;
 }
 
 .content_left p.bigprice {
-	color: #3b5998;
+	color: #3B5998;
 	float: right;
 	font-size: 18px;
 	font-weight: bold;
@@ -137,67 +137,67 @@ a {
 }
 
 .tags span {
-	background: #3b5998;
+	background: #3B5998;
 }
 
 .tags span:before {
-	border-color: transparent #3b5998 transparent transparent;
+	border-color: transparent #3B5998 transparent transparent;
 }
 /* sidebar refine search */
 
 #refine_widget ul.refine li input#amount,
 #refine_widget ul.refine li input#distance {
-	color: #3b5998;
+	color: #3B5998;
 	border: 0;
 	font-weight: bold;
 }
 
 .ui-widget-header {
-	background: #3b5998;
+	background: #3B5998;
 }
 /* footer */
 
 .footer_menu {
-	background: #3b5998;
+	background: #3B5998;
 }
 
 .footer_main_res div.column p {
 	margin: 0;
 	padding: 0;
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #5671a9;
+	color: #5671A9;
 }
 
 .footer_main_res div.column p a {
-	color: #5671a9;
+	color: #5671A9;
 }
 
 .footer_main_res div.column ul li a {
-	color: #5671a9;
+	color: #5671A9;
 	text-decoration: none;
 }
 
 .footer_main_res div.column {
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #5671a9;
+	color: #5671A9;
 }
 /* tooltip */
 
 #easyTooltip {
-	background-color: #3b5998;
-	color: #fff;
+	background-color: #3B5998;
+	color: #FFF;
 }
 /* payments styles */
 
 .order-gateway h1,
 .order-gateway h2 {
-	color: #3b5998;
+	color: #3B5998;
 }
 /* progress tracker */
 
 ol.progtrckr li.progtrckr-done,
 ol.progtrckr li.progtrckr-todo {
-	border-bottom-color: #3b5998;
+	border-bottom-color: #3B5998;
 }
 
 ol.progtrckr li.progtrckr-done:before {
@@ -208,17 +208,17 @@ ol.progtrckr li.progtrckr-done:before {
 .tab-dashboard ul.tabnavig li a.selected {
 	border-bottom: 1px solid #19346C;
 	background-color: #19346C;
-	color: #fff;
+	color: #FFF;
 }
 
 .tab-dashboard ul.tabnavig li a {
-	background-color: #3b5998;
+	background-color: #3B5998;
 	height: 19px;
-	color: #fff;
+	color: #FFF;
 }
 /* reports */
 
-.reports_form input[type="submit"] {
+.reports_form input[type='submit'] {
 	background-color: #19346C;
 }
 /* responsive styles */
