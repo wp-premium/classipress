@@ -371,8 +371,11 @@ abstract class APP_Order {
 		if ( $this->payment['total'] < 0 )
 			$this->payment['total'] = 0;
 
-		$this->update_meta( 'total_price', $this->payment['total'] );
+		$total = get_post_meta( $this->id, 'total_price', true );
 
+		if ( $total != $this->payment['total'] ) {
+			$this->update_meta( 'total_price', $this->payment['total'] );
+		}
 	}
 
 	/**

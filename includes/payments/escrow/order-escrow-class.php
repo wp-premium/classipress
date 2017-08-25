@@ -37,7 +37,11 @@ class APP_Escrow_Order extends APP_Order {
 
 		parent::__construct( $post, $items );
 
-		$this->receivers = get_post_meta( $this->id, 'receivers', true );
+		$receivers = get_post_meta( $this->id, 'receivers', true );
+
+		if ( ! empty( $receivers ) ) {
+			$this->receivers = (array) $receivers;
+		}
 	}
 
 	/**

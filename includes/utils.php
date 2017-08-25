@@ -64,7 +64,7 @@ function _cp_enable_permalink_settings() {
 /**
  * Utility class to output tables in emails.
  */
-class APP_Email_Table extends APP_Table{
+class CP_Email_Membership_Table extends APP_Table{
 
 	public function __construct( $items ){
 		$this->items = $items;

@@ -1,29 +1,29 @@
 /* main */
 
 span.colour {
-	color: #b22222;
+	color: #B22222;
 }
 
 div.bigright span {
-	color: #b22222;
+	color: #B22222;
 	font-weight: bold;
 }
 
 div#mcwrap span {
 	font-size: 16px;
-	color: #b22222;
+	color: #B22222;
 	font-weight: bold;
 }
 
 a {
-	color: #b22222;
+	color: #B22222;
 }
 
 .btn_orange,
 .pages a,
 .pages span {
 	background-color: #8B0000;
-	color: #fff;
+	color: #FFF;
 }
 /* header */
 
@@ -43,14 +43,14 @@ a {
 
 .header_main_res #logo h1 {
 	font-size: 38px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res #logo h1 a {
 	text-decoration: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res .description {
@@ -60,24 +60,24 @@ a {
 }
 
 .header_menu {
-	background: #b22222;
+	background: #B22222;
 }
 /* top search button styles */
 
 .btn-topsearch {
-	background-color: #8B0000
+	background-color: #8B0000;
 }
 
 .btn-topsearch:before {
-	color: #b22222;
+	color: #B22222;
 }
 /* category menu */
 
 .adv_categories ul li.active {
 	margin: 0 -7px 0 -8px;
 	padding: 4px 7px 4px 8px;
-	color: #fff;
-	background: #b22222;
+	color: #FFF;
+	background: #B22222;
 }
 
 .adv_categories .catcol ul li.maincat a {
@@ -93,12 +93,12 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 18px/1.2em Arial, Helvetica, sans-serif;
-	color: #b22222;
+	color: #B22222;
 }
 
 .content_res .priceblockbig p.location span {
 	font-weight: bold;
-	color: #b22222;
+	color: #B22222;
 }
 
 .content_res .priceblocksmall p.price {
@@ -106,20 +106,20 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 13px/1.2em Arial, Helvetica, sans-serif;
-	color: #b22222;
+	color: #B22222;
 }
 
 .content_res .stepsline div.l_ready {
-	background: #b22222;
+	background: #B22222;
 }
 
 .content_res .stepsline div.no_ready {
-	border: 1px solid #6d1414;
+	border: 1px solid #6D1414;
 }
 
 .content_res .stepsline div.ni_ready {
-	background: #b22222;
-	border-top: 1px solid #bd716d;
+	background: #B22222;
+	border-top: 1px solid #BD716D;
 }
 
 .content_left p.bigprice {
@@ -137,17 +137,17 @@ a {
 }
 
 .tags span {
-	background: #b22222;
+	background: #B22222;
 }
 
 .tags span:before {
-	border-color: transparent #b22222 transparent transparent;
+	border-color: transparent #B22222 transparent transparent;
 }
 /* sidebar refine search */
 
 #refine_widget ul.refine li input#amount,
 #refine_widget ul.refine li input#distance {
-	color: #b22222;
+	color: #B22222;
 	border: 0;
 	font-weight: bold;
 }
@@ -158,14 +158,14 @@ a {
 /* footer */
 
 .footer_menu {
-	background: #b22222;
+	background: #B22222;
 }
 
 .footer_main_res div.column p {
 	margin: 0;
 	padding: 0;
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #d05959;
+	color: #D05959;
 }
 
 .footer_main_res div.column p a {
@@ -179,25 +179,25 @@ a {
 
 .footer_main_res div.column {
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #d05959;
+	color: #D05959;
 }
 /* tooltip */
 
 #easyTooltip {
-	background-color: #b22222;
-	color: #fff;
+	background-color: #B22222;
+	color: #FFF;
 }
 /* payments styles */
 
 .order-gateway h1,
 .order-gateway h2 {
-	color: #b22222;
+	color: #B22222;
 }
 /* progress tracker */
 
 ol.progtrckr li.progtrckr-done,
 ol.progtrckr li.progtrckr-todo {
-	border-bottom-color: #b22222;
+	border-bottom-color: #B22222;
 }
 
 ol.progtrckr li.progtrckr-done:before {
@@ -208,17 +208,17 @@ ol.progtrckr li.progtrckr-done:before {
 .tab-dashboard ul.tabnavig li a.selected {
 	border-bottom: 1px solid #8B0000;
 	background-color: #8B0000;
-	color: #fff;
+	color: #FFF;
 }
 
 .tab-dashboard ul.tabnavig li a {
-	background-color: #b22222;
+	background-color: #B22222;
 	height: 19px;
-	color: #fff;
+	color: #FFF;
 }
 /* reports */
 
-.reports_form input[type="submit"] {
+.reports_form input[type='submit'] {
 	background-color: #8B0000;
 }
 /* responsive styles */

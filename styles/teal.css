@@ -1,29 +1,29 @@
 /* main */
 
 span.colour {
-	color: #186c95;
+	color: #186C95;
 }
 
 div.bigright span {
-	color: #186c95;
+	color: #186C95;
 	font-weight: bold;
 }
 
 div#mcwrap span {
 	font-size: 16px;
-	color: #186c95;
+	color: #186C95;
 	font-weight: bold;
 }
 
 a {
-	color: #186c95;
+	color: #186C95;
 }
 
 .btn_orange,
 .pages a,
 .pages span {
 	background-color: #134E6B;
-	color: #fff;
+	color: #FFF;
 }
 /* header */
 
@@ -43,14 +43,14 @@ a {
 
 .header_main_res #logo h1 {
 	font-size: 38px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res #logo h1 a {
 	text-decoration: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res .description {
@@ -60,7 +60,7 @@ a {
 }
 
 .header_menu {
-	background: #186c95;
+	background: #186C95;
 }
 /* top search button styles */
 
@@ -69,21 +69,21 @@ a {
 }
 
 .btn-topsearch:before {
-	color: #186c95;
+	color: #186C95;
 }
 /* category menu */
 
 .adv_categories ul li.active {
 	margin: 0 -7px 0 -8px;
 	padding: 4px 7px 4px 8px;
-	color: #fff;
-	background: #186c95;
+	color: #FFF;
+	background: #186C95;
 }
 
 .adv_categories .catcol ul li.maincat a {
 	margin: 0;
 	padding: 4px 0;
-	color: #186c95;
+	color: #186C95;
 	text-decoration: none;
 }
 /* content */
@@ -93,12 +93,12 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 18px/1.2em Arial, Helvetica, sans-serif;
-	color: #186c95;
+	color: #186C95;
 }
 
 .content_res .priceblockbig p.location span {
 	font-weight: bold;
-	color: #186c95;
+	color: #186C95;
 }
 
 .content_res .priceblocksmall p.price {
@@ -106,24 +106,24 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 13px/1.2em Arial, Helvetica, sans-serif;
-	color: #186c95;
+	color: #186C95;
 }
 
 .content_res .stepsline div.l_ready {
-	background: #186c95;
+	background: #186C95;
 }
 
 .content_res .stepsline div.no_ready {
-	border: 1px solid #28657f;
+	border: 1px solid #28657F;
 }
 
 .content_res .stepsline div.ni_ready {
-	background: #186c95;
-	border-top: 1px solid #6ac3e9;
+	background: #186C95;
+	border-top: 1px solid #6AC3E9;
 }
 
 .content_left p.bigprice {
-	color: #186c95;
+	color: #186C95;
 	float: right;
 	font-size: 18px;
 	font-weight: bold;
@@ -137,28 +137,28 @@ a {
 }
 
 .tags span {
-	background: #186c95;
+	background: #186C95;
 }
 
 .tags span:before {
-	border-color: transparent #186c95 transparent transparent;
+	border-color: transparent #186C95 transparent transparent;
 }
 /* sidebar refine search */
 
 #refine_widget ul.refine li input#amount,
 #refine_widget ul.refine li input#distance {
-	color: #186c95;
+	color: #186C95;
 	border: 0;
 	font-weight: bold;
 }
 
 .ui-widget-header {
-	background: #186c95;
+	background: #186C95;
 }
 /* footer */
 
 .footer_menu {
-	background: #186c95;
+	background: #186C95;
 }
 
 .footer_main_res div.column p {
@@ -184,20 +184,20 @@ a {
 /* tooltip */
 
 #easyTooltip {
-	background-color: #186c95;
-	color: #fff;
+	background-color: #186C95;
+	color: #FFF;
 }
 /* payments styles */
 
 .order-gateway h1,
 .order-gateway h2 {
-	color: #186c95;
+	color: #186C95;
 }
 /* progress tracker */
 
 ol.progtrckr li.progtrckr-done,
 ol.progtrckr li.progtrckr-todo {
-	border-bottom-color: #186c95;
+	border-bottom-color: #186C95;
 }
 
 ol.progtrckr li.progtrckr-done:before {
@@ -208,17 +208,17 @@ ol.progtrckr li.progtrckr-done:before {
 .tab-dashboard ul.tabnavig li a.selected {
 	border-bottom: 1px solid #134E6B;
 	background-color: #134E6B;
-	color: #fff;
+	color: #FFF;
 }
 
 .tab-dashboard ul.tabnavig li a {
-	background-color: #186c95;
+	background-color: #186C95;
 	height: 19px;
-	color: #fff;
+	color: #FFF;
 }
 /* reports */
 
-.reports_form input[type="submit"] {
+.reports_form input[type='submit'] {
 	background-color: #134E6B;
 }
 /* responsive styles */

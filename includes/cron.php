@@ -204,7 +204,7 @@ function cp_membership_reminder_cron() {
 	}
 
 	if ( ! empty( $items ) ) {
-		$table = new APP_Email_Table( $items );
+		$table = new CP_Email_Membership_Table( $items );
 
 		$admin_email = get_option('admin_email');
 

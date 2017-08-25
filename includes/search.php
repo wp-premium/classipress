@@ -474,9 +474,10 @@ function cp_pre_get_posts( $query ) {
 			}
 			switch ( $key ) {
 				case 'cp_city_zipcode' :
+					$api_key = $cp_options->api_key;
 					$region = $cp_options->gmaps_region;
 					$value = urlencode( $value );
-					$geocode = json_decode( wp_remote_retrieve_body( wp_remote_get( "http://maps.googleapis.com/maps/api/geocode/json?address=$value&region=$region" ) ) );
+					$geocode = json_decode( wp_remote_retrieve_body( wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=$value&region=$region&key=$api_key" ) ) );
 					if ( 'OK' == $geocode->status ) {
 						$query->set( 'app_geo_query', array(
 							'lat' => $geocode->results[0]->geometry->location->lat,
@@ -778,9 +779,10 @@ function custom_search_refine_where( $where ) {
 			}
 				switch ( $key ) {
 					case 'cp_city_zipcode' :
+						$api_key = $cp_options->api_key;
 						$region = $cp_options->gmaps_region;
 						$value = urlencode( $value );
-						$geocode = json_decode( wp_remote_retrieve_body( wp_remote_get( "http://maps.googleapis.com/maps/api/geocode/json?address=$value&region=$region" ) ) );
+						$geocode = json_decode( wp_remote_retrieve_body( wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=$value&region=$region&key=$api_key" ) ) );
 						if ( 'OK' == $geocode->status ) {
 							$wp_query->set( 'search_geo_query', array(
 								'lat' => $geocode->results[0]->geometry->location->lat,
