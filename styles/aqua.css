@@ -1,29 +1,29 @@
 /* main */
 
 span.colour {
-	color: #3e9286;
+	color: #3E9286;
 }
 
 div.bigright span {
-	color: #3e9286;
+	color: #3E9286;
 	font-weight: bold;
 }
 
 div#mcwrap span {
 	font-size: 16px;
-	color: #3e9286;
+	color: #3E9286;
 	font-weight: bold;
 }
 
 a {
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .btn_orange,
 .pages a,
 .pages span {
 	background-color: #096E5F;
-	color: #fff;
+	color: #FFF;
 }
 /* header */
 
@@ -38,19 +38,19 @@ a {
 }
 
 .header_top_res p a {
-	color: #6dbd9d;
+	color: #6DBD9D;
 }
 
 .header_main_res #logo h1 {
 	font-size: 38px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res #logo h1 a {
 	text-decoration: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res .description {
@@ -60,7 +60,7 @@ a {
 }
 
 .header_menu {
-	background: #3e9286;
+	background: #3E9286;
 }
 /* top search button styles */
 
@@ -69,21 +69,21 @@ a {
 }
 
 .btn-topsearch:before {
-	color: #3e9286;
+	color: #3E9286;
 }
 /* category menu */
 
 .adv_categories ul li.active {
 	margin: 0 -7px 0 -8px;
 	padding: 4px 7px 4px 8px;
-	color: #fff;
-	background: #3e9286;
+	color: #FFF;
+	background: #3E9286;
 }
 
 .adv_categories .catcol ul li.maincat a {
 	margin: 0;
 	padding: 4px 0;
-	color: #3e9286;
+	color: #3E9286;
 	text-decoration: none;
 }
 /* content */
@@ -93,12 +93,12 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 18px/1.2em Arial, Helvetica, sans-serif;
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .content_res .priceblockbig p.location span {
 	font-weight: bold;
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .content_res .priceblocksmall p.price {
@@ -106,24 +106,24 @@ a {
 	padding: 0;
 	float: right;
 	font: bold 13px/1.2em Arial, Helvetica, sans-serif;
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .content_res .stepsline div.l_ready {
-	background: #3e9286;
+	background: #3E9286;
 }
 
 .content_res .stepsline div.no_ready {
-	border: 1px solid #1d675c;
+	border: 1px solid #1D675C;
 }
 
 .content_res .stepsline div.ni_ready {
-	background: #3e9286;
-	border-top: 1px solid #6ac3e9;
+	background: #3E9286;
+	border-top: 1px solid #6AC3E9;
 }
 
 .content_left p.bigprice {
-	color: #3e9286;
+	color: #3E9286;
 	float: right;
 	font-size: 18px;
 	font-weight: bold;
@@ -147,7 +147,7 @@ a {
 
 #refine_widget ul.refine li input#amount,
 #refine_widget ul.refine li input#distance {
-	color: #3e9286;
+	color: #3E9286;
 	border: 0;
 	font-weight: bold;
 }
@@ -158,40 +158,40 @@ a {
 /* footer */
 
 .footer_menu {
-	background: #3e9286;
+	background: #3E9286;
 }
 
 .footer_main_res div.column p {
 	margin: 0;
 	padding: 0;
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .footer_main_res div.column p a {
-	color: #3e9286;
+	color: #3E9286;
 }
 
 .footer_main_res div.column ul li a {
-	color: #3e9286;
+	color: #3E9286;
 	text-decoration: none;
 }
 
 .footer_main_res div.column {
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #3e9286;
+	color: #3E9286;
 }
 /* tooltip */
 
 #easyTooltip {
-	background-color: #3e9286;
-	color: #fff;
+	background-color: #3E9286;
+	color: #FFF;
 }
 /* payments styles */
 
 .order-gateway h1,
 .order-gateway h2 {
-	color: #3e9286;
+	color: #3E9286;
 }
 /* progress tracker */
 
@@ -208,17 +208,17 @@ ol.progtrckr li.progtrckr-done:before {
 .tab-dashboard ul.tabnavig li a.selected {
 	border-bottom: 1px solid #096E5F;
 	background-color: #096E5F;
-	color: #fff;
+	color: #FFF;
 }
 
 .tab-dashboard ul.tabnavig li a {
-	background-color: #3e9286;
+	background-color: #3E9286;
 	height: 19px;
-	color: #fff;
+	color: #FFF;
 }
 /* reports */
 
-.reports_form input[type="submit"] {
+.reports_form input[type='submit'] {
 	background-color: #096E5F;
 }
 /* responsive styles */

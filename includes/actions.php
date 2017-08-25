@@ -24,6 +24,9 @@ add_action( 'appthemes_display_notice', 'cp_output_notices', 10, 2 );
 
 add_action( 'wp_head', 'cp_cufon_styles' );
 add_action( 'wp_head', 'cp_generator' );
+add_action( 'wp_head', 'cp_pingback_header' );
+add_action( 'wp_head', 'cp_alternate_rss' );
+
 add_action( 'wp_footer', 'cp_google_analytics_code' );
 
 add_action( 'appthemes_blog_loop_else', 'cp_blog_loop_else' );
@@ -493,7 +496,7 @@ function cp_password_fields_support( $show_password ) {
  * @return void
  */
 function cp_custom_registration_email() {
-	remove_action( 'appthemes_after_registration', 'wp_new_user_notification', 10 );
+	remove_action( 'appthemes_after_registration', 'appthemes_new_user_notification', 10, 2 );
 	add_action( 'appthemes_after_registration', 'cp_new_user_notification', 10, 2 );
 }
 
@@ -722,6 +725,28 @@ function cp_custom_favicon( $favicon ) {
  */
 function cp_generator() {
 	echo "\n\t" . '<meta name="generator" content="ClassiPress ' . CP_VERSION . '" />' . "\n";
+}
+
+
+/**
+ * Add a pingback url auto-discovery header for singularly identifiable articles.
+ *
+ * @since 3.6.0
+ */
+function cp_pingback_header() {
+	if ( is_singular() && pings_open() ) {
+		printf( '<link rel="pingback" href="%s">' . "\n", get_bloginfo( 'pingback_url' ) );
+	}
+}
+
+
+/**
+ * Add an alternate rss feed url if Feedburner is provided. Otherwise use default.
+ *
+ * @since 3.6.0
+ */
+function cp_alternate_rss() {
+	printf( '<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="%s">' . "\n", appthemes_get_feed_url() );
 }
 
 

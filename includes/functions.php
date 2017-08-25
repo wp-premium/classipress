@@ -840,9 +840,11 @@ function cp_do_update_geocode( $meta_id, $post_id, $meta_key, $meta_value ) {
 		return;
 	}
 
+
+	$api_key = $cp_options->api_key;
 	$region = $cp_options->gmaps_region;
 	$address = urlencode( $address );
-	$geocode_url = add_query_arg( array( 'address' => $address, 'region' => $region ), 'http://maps.googleapis.com/maps/api/geocode/json' );
+	$geocode_url = add_query_arg( array( 'address' => $address, 'region' => $region, 'key' => $api_key ), 'https://maps.googleapis.com/maps/api/geocode/json' );
 	$geocode_response = wp_remote_get( $geocode_url );
 	$geocode_body = wp_remote_retrieve_body( $geocode_response );
 	$geocode = json_decode( $geocode_body );
@@ -1193,6 +1195,8 @@ function cp_display_message( $tag ) {
 			$message = '';
 			break;
 	}
+
+	$message = apply_filters( 'the_content', $message );
 
 	echo apply_filters( 'cp_display_message', $message, $tag );
 }

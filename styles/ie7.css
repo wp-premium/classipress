@@ -1,0 +1,5 @@
+/* IE 7 compatibility styles */
+
+.ie7 .selectBox-options li a {
+	white-space: pre;
+}

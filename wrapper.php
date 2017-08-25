@@ -4,33 +4,19 @@
  *
  * @package ClassiPress\Templates
  * @author  AppThemes
- * @since   ClassiPress 3.2
+ * @since   3.2.0
+ * @since   3.6.0 Updated head section for modern standards.
  */
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html class="ie6" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9" <?php language_attributes(); ?>> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
-
+<html <?php language_attributes(); ?>>
 <head>
-
-	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
-
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title><?php wp_title( '' ); ?></title>
 
-	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo appthemes_get_feed_url(); ?>" />
-	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
-
 	<?php wp_head(); ?>
-
 </head>
 
 <body <?php body_class(); ?>>

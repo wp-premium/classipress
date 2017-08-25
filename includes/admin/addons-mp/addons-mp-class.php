@@ -10,6 +10,9 @@
  */
 class APP_Addons_List_Table extends WP_List_Table {
 
+	const SERVER_URL    = 'https://marketplace.appthemes.com/wp-json';
+	const API_NAMESPACE = 'mktplc/v1';
+
 	/**
 	 * Additional arguments for the list table.
 	 * @var string
@@ -33,6 +36,12 @@ class APP_Addons_List_Table extends WP_List_Table {
 	 * @var string
 	 */
 	protected $tabs;
+
+	/**
+	 * The list of filters retrieved from REST API server.
+	 * @var type
+	 */
+	protected $raw_filters = array();
 
 	/**
 	 * The errors returned during the items request.
@@ -75,10 +84,14 @@ class APP_Addons_List_Table extends WP_List_Table {
 	 */
 	public function prepare_items( $filters_list = '' ) {
 
-		$tabs = array(
-			'new'	  => __( 'New', APP_TD ),
-			'popular' => __( 'Popular', APP_TD ),
-		);
+		$this->raw_filters = $this->fetch_mp_filters();
+
+		$tabs_filter = wp_list_filter( $this->raw_filters, array( 'name' => 'view' ) );
+		$tabs        = $tabs_filter[0]['values'];
+
+		foreach ( $tabs as &$tab ) {
+			$tab = translate( $tab, APP_TD );
+		}
 
 		$tabs = apply_filters( "appthemes_addons_mp_tabs_{$this->screen->id}", $tabs );
 
@@ -89,64 +102,96 @@ class APP_Addons_List_Table extends WP_List_Table {
 
 		$this->tabs = $tabs;
 
-		// Get items from cache (if not expired) or from the RSS feed directly.
-		$this->items = $this->fetch_mp_items();
-
-		// Something went wrong - skip earlier.
-		if ( ! $this->items ) {
-			return;
-		}
-
 		// Set any applicable filters to the items list.
 		$this->set_filters( $filters_list );
 
-		// Apply filters to the list of items.
-		$this->set_items_filtered();
+		// Get items from cache (if not expired) or from the REST API directly.
+		$this->items = $this->fetch_mp_items();
 	}
 
 	/**
-	 * Fetches the add-ons from cache (if not expired) or from the marketplace RSS feed, directly.
+	 * Fetches the add-ons from cache (if not expired) or from the marketplace
+	 * REST API, directly.
 	 *
-	 * @param int $limit The number of add-ons to retrieve from the RSS feed.
-	 * @return array      The list of add-ons from the RSS feed.
+	 * @param int $limit The number of add-ons to retrieve.
+	 * @return array      The list of add-ons.
 	 */
-	private function fetch_mp_items( $limit = 0 ) {
+	private function fetch_mp_items() {
 
-		$addons = array();
+		$filters = $this->get_filter_list();
+		$args  = array_map( 'esc_attr', $_GET ); // Input var okay.
 
-		include_once( ABSPATH . WPINC . '/feed.php' );
+		// Get the first theme from the related parameter.
+		$active_product = _appthemes_get_addons_mp_args( 'product' );
+		$active_product = array_pop( $active_product );
 
-		if ( function_exists( 'fetch_feed' ) ) {
+		if ( ! isset( $args['product'] ) && $active_product ) {
+			$args['product'] = $active_product;
+		}
 
-			if ( ( $addons = get_transient( '_appthemes-addons-mp-' . $this->args['tab'] ) ) === false ) {
-
-				$feed = fetch_feed( 'https://feeds.feedburner.com/AppThemesMarketplace' );
-
-				if ( ! is_wp_error( $feed ) ) {
-					$limit = $feed->get_item_quantity( $limit );
-
-					// Don't cache results since we're using our own transient.
-					$feed->set_cache_duration( 0 );
-
-					// Set the add-ons limit and array for parsing the feed.
-					$items = $feed->get_items( 0, $limit );
-
-					if ( $items ) {
-						$addons = $this->get_addons_from_feed( $items );
-
-						// Cache for one day.
-						set_transient( '_appthemes-addons-mp-popular', $addons['popular'], 60 * 60 * 24 );
-						set_transient( '_appthemes-addons-mp-new', $addons['new'], 60 * 60 * 24 );
-
-						// Retrieve the addons list sorted as requested by the user (popular or new).
-						$addons = $addons[ $this->args['tab'] ];
-					}
-				} else {
-					$this->error = $feed;
-				}
+		foreach ( $args as $key => $arg ) {
+			if ( empty( $arg ) || empty( $filters[ $key ][ $arg ] ) ) {
+				unset( $args[ $key ] );
+				continue;
 			}
 		}
-		return $addons;
+
+		// Look for a keyword search.
+		if ( ! empty( $_GET['s'] ) ) { // Input var okay.
+			$args['search'] = $_GET['s'];
+		}
+
+		$args['per_page'] = $this->args['addons_per_page'];
+		$args['page']     = $this->args['page'];
+		$args['view']     = $this->args['tab'];
+
+		$query_url  = add_query_arg( $args, self::SERVER_URL . '/' . self::API_NAMESPACE . '/items' );
+		$query_hash = substr( md5( $query_url ), 0, 21 );
+
+		if ( ! $response = get_transient( '_appthemes-addons-mp-response-' . $query_hash ) ) {
+			$response = $this->remote_get( 'items', $args );
+			$items    = $response['items'];
+
+			if ( is_object( $items ) && $items->message ) {
+				$this->error = new WP_Error( $items->code, $items->message, $items->data );
+				return array();
+			}
+
+			$response['items'] = $this->get_addons_from_feed( $items );
+			set_transient( '_appthemes-addons-mp-response-' . $query_hash, $response, DAY_IN_SECONDS );
+		}
+
+		$this->set_pagination_args( array(
+			'total_items' => $response['total'],
+			'per_page'    => $this->args['addons_per_page'],
+		) );
+
+		return $response['items'];
+	}
+
+	/**
+	 * Fetches the add-ons filters from cache (if not expired) or from the marketplace REST API, directly.
+	 *
+	 * @return array      The list of add-ons filters.
+	 */
+	private function fetch_mp_filters() {
+		$query_hash = substr( md5( self::SERVER_URL . '/' . self::API_NAMESPACE . '/filters' ), 0, 21 );
+
+		if ( ! $filters = get_transient( "_appthemes-addons-mp-filters-$query_hash" ) ) {
+			$response = $this->remote_get( 'filters' );
+			$filters  = $response['items'];
+
+			if ( is_object( $filters ) && $filters->message ) {
+				$this->error = new WP_Error( $filters->code, $filters->message, $filters->data );
+				return array();
+			}
+
+			// Super elegant recursively cast a PHP object to array.
+			$filters = json_decode( json_encode( $filters ), true );
+			set_transient( "_appthemes-addons-mp-filters-$query_hash", $filters, DAY_IN_SECONDS );
+		}
+
+		return $filters;
 	}
 
 	/**
@@ -159,85 +204,29 @@ class APP_Addons_List_Table extends WP_List_Table {
 		$filters = array();
 
 		// Add-ons Products Filter.
-		if ( ( isset( $filters_list['products'] ) && $filters_list['products'] ) || ! isset( $filters_list['products'] ) ) {
-
-			$products = $this->get_all_products();
-
-			if ( ! empty( $filters_list['products'] ) ) {
-
-				// Merge all products on a single list for easier filter check.
-				$all_products = call_user_func_array( 'array_merge', array_values( $products ) );
-
-				$filters['product'] = array_intersect_key( $all_products, array_flip( (array) $filters_list['products'] ) );
-			} else {
-				$filters['product'] = $products;
+		foreach ( $this->raw_filters as $raw_filter ) {
+			$name = $raw_filter['name'];
+			if ( 'view' === $name || ! isset( $raw_filter['values'] ) ) {
+				continue;
 			}
-			$filters['product'] = array_merge( array( '' => __( 'All Products', APP_TD ) ), $filters['product'] );
 
+			if ( isset( $filters_list[ $name ] ) && ! $filters_list[ $name ] ) {
+				continue;
+			}
+
+			foreach ( $raw_filter['values'] as &$value ) {
+				$value = translate( $value, APP_TD );
+			}
+
+			if ( ! empty( $filters_list[ $name ] ) ) {
+				$all_values = call_user_func_array( 'array_merge', array_values( $raw_filter['values'] ) );
+				$raw_filter['values'] = array_intersect_key( $all_values, array_flip( (array) $filters_list[ $name ] ) );
+			}
+
+			$filters[ $name ] = $raw_filter['values'];
 		}
 
-		// Add-ons Categories Filter.
-		if ( ( isset( $filters_list['categories'] ) && $filters_list['categories'] ) || ! isset( $filters_list['categories'] ) ) {
-
-			$categories = $this->get_all_categories();
-
-			if ( ! empty( $filters_list['categories'] ) ) {
-				$filters['category'] = array_intersect_key( $categories, array_flip( (array) $filters_list['categories'] ) );
-			} else {
-				$filters['category'] = $categories;
-			}
-			$filters['category'] = array_merge( array( '' => __( 'All Categories', APP_TD ) ), $filters['category'] );
-
-		}
-
-		// Add-ons Authors Filter - builds the list based on the existing items.
-		if ( ( isset( $filters_list['authors'] ) && $filters_list['authors'] ) || ! isset( $filters_list['authors'] ) ) {
-
-			// Pluck the authors from the addons list and create an associative array of authors.
-			$authors = array_values( wp_list_pluck( $this->items, 'author' ) );
-			$authors = array_combine( array_values( $authors ), array_values( $authors ) );
-
-			// Sort the authors alphabetically.
-			natcasesort( $authors );
-
-			$filters['author'][''] = __( 'All Authors', APP_TD );
-			$filters['author'] = array_merge( $filters['author'], $authors );
-
-			if ( ! empty( $filters_list['authors'] ) ) {
-				$filters['author'] = array_intersect_key( $filters['author'], array_flip( (array) $filters_list['authors'] ) );
-			} else {
-				$filters['author'] = $filters['author'];
-			}
-		}
 		$this->args['filters'] = $filters;
-	}
-
-	/**
-	 * Applies any user filters and pagination to the list of items (add-ons).
-	 */
-	public function set_items_filtered() {
-
-		$filter_by = $this->get_filter_by();
-		$this->items = appthemes_wp_list_filter( $this->items, $filter_by );
-
-		// Look for a keyword search.
-		if ( ! empty( $_GET['s'] ) ) { // Input var okay.
-
-			$keyword = sanitize_text_field( wp_unslash( $_GET['s'] ) ); // Input var okay.
-
-			$keyword = wp_strip_all_tags( $keyword );
-			$filter_by = array( 'title' => $keyword, 'description' => $keyword );
-
-			$this->items = appthemes_wp_list_filter( $this->items, $filter_by, $operator = 'OR', $match = true );
-		}
-
-		$this->set_pagination_args( array(
-			'total_items' => count( $this->items ),
-			'per_page'    => $this->args['addons_per_page'],
-		) );
-
-		// Limit the add-ons list based on the current page.
-		$this->items = array_slice( $this->items, ( $this->args['page'] - 1 ) * $this->args['addons_per_page'], $this->args['addons_per_page'] );
 	}
 
 	/**
@@ -273,45 +262,18 @@ class APP_Addons_List_Table extends WP_List_Table {
 			return $filters;
 		}
 
-		// Get any user requested filters.
-		$filter_by = $this->get_filter_by();
+		foreach ( $filter_list as $name => $values ) {
+			$default = 'product' === $name ? $active_product : '';
+			$filter = array(
+				'name'    => $name,
+				'title'   => '',
+				'type'    => 'select',
+				'values'  => $values,
+				'default' => $default,
+				'extra'   => array( 'class' => 'app-mp-addons-filter' ),
+			);
 
-		// Iterate through all the filters to build the drop-downs.
-		foreach ( $filter_list as $key => $filter ) {
-
-			$options = '';
-
-			foreach ( $filter as $group => $items ) {
-
-				$group_options = '';
-
-				foreach ( (array) $items as $slug => $title ) {
-
-					$value = ! empty( $filter_by[ $key ] ) ? $filter_by[ $key ]  : '';
-
-					$atts['value'] = $slug ? $slug : $group;
-
-					if ( $atts['value'] === $value ) {
-						$atts['selected'] = 'selected';
-					} else {
-						unset( $atts['selected'] );
-					}
-					$option = html( 'option', $atts, $title );
-
-					if ( $slug ) {
-						$group_options .= $option;
-					} else {
-						$options .= $option;
-					}
-				}
-
-				// Group dropdown items if requested.
-				if ( ! empty( $group_options ) ) {
-					$options .= html( 'optgroup', array( 'label' => $group ), $group_options );
-				}
-			}
-
-			$filters .= html( 'select', array( 'name' => esc_attr( "$key" ), 'class' => 'app-mp-addons-filter' ), $options );
+			$filters .= html( 'li', scbForms::input( $filter, $_GET ) );
 		}
 
 		return $filters;
@@ -436,12 +398,14 @@ class APP_Addons_List_Table extends WP_List_Table {
 		<form id="app-addons-search" class="search-form search-plugins" method="get" action="">
 			<ul class="filter-links addons-filter">
 				<?php echo $this->get_filters(); ?>
+				<li>
+					<div class="app-mp-addons-filter">
+						<span class="screen-reader-text"><?php echo __( 'Search Add-ons', APP_TD ); ?></span>
+						<input type="search" name="s" value="<?php echo esc_attr( $term ) ?>" class="wp-filter-search" placeholder="<?php echo esc_attr__( 'Search Add-ons', APP_TD ); ?>">
+					</div>
+					<input type="submit" name="" id="search-submit" class="button screen-reader-text" value="<?php echo esc_attr__( 'Search Add-ons', APP_TD ); ?>">
+				</li>
 			</ul>
-			<label>
-				<span class="screen-reader-text"><?php echo __( 'Search Add-ons', APP_TD ); ?></span>
-				<input type="search" name="s" value="<?php echo esc_attr( $term ) ?>" class="wp-filter-search" placeholder="<?php echo esc_attr__( 'Search Add-ons', APP_TD ); ?>">
-			</label>
-			<input type="submit" name="" id="search-submit" class="button screen-reader-text" value="<?php echo esc_attr__( 'Search Add-ons', APP_TD ); ?>">
 			<?php appthemes_pass_request_var( 'page' ); ?>
 			<?php appthemes_pass_request_var( 'tab' ); ?>
 			<?php appthemes_pass_request_var( 'post_type' ); ?>
@@ -457,69 +421,38 @@ class APP_Addons_List_Table extends WP_List_Table {
 	 */
 	public function get_addons_from_feed( $items ) {
 
-		$defaults = array(
-			'category' => array(),
-			'product'  => array(),
-		);
-		$filters = wp_parse_args( $this->get_filter_list(), $defaults );
-
-		$addons = '';
+		$addons     = array();
+		$filters    = $this->get_filter_list();
+		$authors    = $filters['author'];
+		$all_cats   = $filters['cat'];
+		$all_prods  = $filters['product'];
 
 		foreach ( $items as $item ) {
 
 			// Get the add-ons meta.
 			$addon = new stdClass();
 
-			$addon->title       = $item->get_title();
-			$addon->description = $item->get_description();
+			$addon->title       = $item->title->rendered;
+			$addon->description = $item->excerpt->rendered;
 
-			$addon->date        = $item->get_date( 'Y-m-d' );
-			$addon->human_date  = human_time_diff( strtotime( $item->get_date() ) );
+			$addon->date        = $item->date;
+			$addon->human_date  = human_time_diff( strtotime( $item->date ) );
 
-			$author             = $item->get_item_tags( 'http://purl.org/dc/elements/1.1/', 'creator' );
-			$addon->author      = $author[0]['data'];
-			$addon->author_link = html( 'a', array( 'href' => esc_url( sprintf( 'https://www.appthemes.com/members/%1$s/seller/', $addon->author ) ), 'target' => 'blank' ), $addon->author );
-
-			// Categorize the add-on.
-			$categories  = $item->get_categories();
-			$categories  = wp_list_pluck( $categories, 'term' );
-			$categories_slugs = array_map( 'sanitize_title', (array) $categories );
-
-			$all_cats = array_keys( $this->get_all_categories() );
-			$all_themes = array_keys( $this->get_all_themes() );
-
-			// Some child themes do not have the 'child-theme' term assigned - try to assign it here by checking if the term matches a theme and it's not already categorized.
-			if ( ! array_intersect( $categories_slugs, $all_cats ) && array_intersect( $categories_slugs, $all_themes ) ) {
-				$categories_slugs[] = 'child-themes';
-				$addon->category_desc = __( 'Child Themes', APP_TD );
+			if ( ! empty( $authors[ $item->author ] ) ) {
+				$addon->author      = $authors[ $item->author ];
+				$addon->author_link = html( 'a', array( 'href' => esc_url( sprintf( 'https://www.appthemes.com/members/%1$s/seller/', $addon->author ) ), 'target' => 'blank' ), $addon->author );
 			} else {
-				$addon->category_desc = $categories[0];
+				$addon->author      = '';
+				$addon->author_link = '';
 			}
 
-			// Add-ons with no theme specified means they are compatible with ALL themes.
-			// That said, enqueue each theme to the add-on 'category' property.
-			if ( ! array_intersect( $categories_slugs, $all_themes ) ) {
-				$categories_slugs = array_merge( $categories_slugs, $all_themes );
-			}
-
-			$addon->category = $categories_slugs;
-			$addon->product  = array_diff( $categories_slugs, array( 'plugins' ) );
+			$addon->category_desc = implode( ', ', $item->_mkt_item_category );
 
 			// Requirements.
-			$requirements        = array_udiff( $categories, $filters['category'], array( 'plugins' ), 'strcasecmp' );
-			$addon->requirements = implode( ', ', $requirements );
+			$addon->compats = implode( ', ', $item->_mkt_item_compats );
 
 			// Strip all HTML tags from the description.
-			$description = wp_strip_all_tags( $addon->description );
-			$addon->description	  = wp_trim_words( $description, 50, '...' );
-
-			// Thumbnail.
-			$addon->image = '';
-
-			if ( ! empty( $item->data['child']['']['thumbnail'][0]['child']['']['img'][0]['attribs'][''] ) ) {
-				$image = $item->data['child']['']['thumbnail'][0]['child']['']['img'][0]['attribs'][''];
-				$addon->image = html( 'img', array( 'src' => $image['src'], 'width' => $image['width'], 'height' => $image['height'], 'alt' => ! empty( $image['alt'] ) ? $image['alt'] : '' ) );
-			}
+			$addon->description = wp_trim_words( wp_strip_all_tags( $addon->description ), 50, '...' );
 
 			// Custom RSS tags.
 			$link_args = array(
@@ -528,35 +461,24 @@ class APP_Addons_List_Table extends WP_List_Table {
 				'utm_campaign' => 'Add-ons%20Module',
 			);
 
-			$addon->link = $item->data['child']['']['permalink'][0]['data'];
+			$addon->link = $item->link;
 			$addon->link = add_query_arg( $link_args, $addon->link );
 
 			// Use the custom permalink tag for the item title link.
 			$addon->title = html( 'a', array( 'href' => esc_url( $addon->link ), 'target' => 'blank' ), $addon->title );
 
-			// Custom RSS feed meta.
-			$addon->author_username = $item->data['child']['']['author_username'][0]['data'];
-			$addon->author_link     = html( 'a', array( 'href' => esc_url( trailingslashit( $item->data['child']['']['author_url'][0]['data'] ) ), 'target' => 'blank' ), $addon->author_username );
-			$addon->last_updated    = date( 'Y-m-d', (int) $item->data['child']['']['last_updated'][0]['data'] );
-			$addon->last_updated_h  = human_time_diff( strtotime( $addon->last_updated ) );
-			$addon->price           = '$'.$item->data['child']['']['price'][0]['data'];
-			$addon->rating          = $item->data['child']['']['rating'][0]['data'];
-			$addon->votes           = $item->data['child']['']['votes'][0]['data'];
-			$addon->rank            = (int) $item->data['child']['']['rank'][0]['data'];
+			// Thumbnail.
+			$addon->image = ! empty( $item->_mkt_thumbnail[0] ) ? html( 'img', array( 'src' => $item->_mkt_thumbnail[0] ) ) : '';
 
-			if ( ! $addon->rank ) {
-				$addon->rank = 9999;
-			}
+			// Custom meta.
+			$addon->last_updated   = $item->modified_gmt;
+			$addon->last_updated_h = human_time_diff( strtotime( $addon->last_updated ) );
+			$addon->price          = '$' . $item->_mkt_item_price;
+			$addon->rating         = $item->_mkt_item_rating;
+			$addon->votes          = $item->_mkt_item_votes;
 
-			$addons['popular'][ $addon->rank ][] = $addon;
-			$addons['new'][ strtotime( $addon->date ) ][] = $addon;
+			$addons[] = $addon;
 		}
-
-		ksort( $addons['popular'], SORT_NUMERIC );
-		krsort( $addons['new'], SORT_NUMERIC );
-
-		$addons['popular'] = call_user_func_array( 'array_merge', $addons['popular'] );
-		$addons['new'] = call_user_func_array( 'array_merge', $addons['new'] );
 
 		return $addons;
 	}
@@ -606,7 +528,7 @@ class APP_Addons_List_Table extends WP_List_Table {
 					<strong><?php echo __( 'Category:', APP_TD ); ?></strong> <span title="<?php echo esc_attr( $addon->category_desc ); ?>"><?php echo $addon->category_desc; ?></span>
 				</div>
 				<div class="column-requirements">
-					<strong><?php echo __( 'Requirements:', APP_TD ); ?></strong> <span title="<?php echo esc_attr( $addon->requirements ); ?>"><?php echo $addon->requirements; ?></span>
+					<strong><?php echo __( 'Compatibilities:', APP_TD ); ?></strong> <span title="<?php echo esc_attr( $addon->compats ); ?>"><?php echo $addon->compats; ?></span>
 				</div>
 			</div>
 			<?php
@@ -646,141 +568,34 @@ class APP_Addons_List_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Retrieves the requested user selected filters values, if any.
-	 * Otherwise, assigns default selected filter values for each filter that contains only a single value.
+	 * Do a request to REST API server.
 	 *
-	 * E.g:
-	 *	 - categories => array( 'plugins' ); // in this case, since the categories filter.
-	 *										    only has one possible value, select it by default.
+	 * @param string $type The request route.
+	 * @param array  $args The request arguments.
 	 *
-	 * @return array An associative array of selected filter/values.
+	 * @return array An associative array with a list of retrieved items and their total.
 	 */
-	public function get_filter_by() {
+	protected function remote_get( $type, $args = array() ) {
 
-		$active_product = _appthemes_get_addons_mp_args( 'product' );
-		$active_product = array_pop( $active_product );
+		$server_url = self::SERVER_URL;
+		$namespace  = self::API_NAMESPACE;
 
-		$filters = $this->get_filter_list();
+		$args    = array_merge( array( 'per_page' => 100 ), $args );
+		$api_url = add_query_arg( $args, "{$server_url}/{$namespace}/{$type}" );
+		$api_url = esc_url_raw( $api_url );
 
-		$params = array_map( 'esc_attr', $_GET ); // Input var okay.
-		$filter_by = wp_parse_args( $params, $filters );
+		$raw_response = wp_remote_get( $api_url );
 
-		// Make sure the 'filter_by' only contains valid filter keys.
-		$filter_by = array_intersect_key( $filter_by, $filters );
-
-		// Iterate through the valid filters and try assign a default value if none selected.
-		foreach ( $filter_by as $filter => $items ) {
-
-			$values[ $filter ] = array();
-
-			// Flatten any grouped items in the current filter.
-			foreach ( (array) $items as $item ) {
-
-				if ( is_array( $item ) ) {
-					$values[ $filter ] = array_merge( $values[ $filter ], $item );
-				} else {
-					$values[ $filter ][] = $item;
-				}
-
-			}
-
-			if ( empty( $values[ $filter ] ) ) {
-				$values[ $filter ] = $items;
-			}
-
-			// Get rid of the empty arrays to have a real count of this filter items.
-			$values[ $filter ] = array_filter( $values[ $filter ], 'strlen' );
-
-			if ( ! $values[ $filter ] ) {
-				// User selected 'All' - show all results for this filter.
-				unset( $filter_by[ $filter ] );
-			} elseif ( ! is_array( $values[ $filter ] ) ) {
-				// User selected a value for this filter.
-				continue;
-			} else {
-
-				if ( count( $values[ $filter ] ) > 1 ) {
-
-					// Default to the active product if available on the list of items.
-					if ( 'product' === $filter && $active_product && isset( $values[ $filter ][ $active_product ] ) ) {
-						$filter_by[ $filter ] = $active_product;
-					} else {
-						// Default to 'All' - show all results for this filter.
-						unset( $filter_by[ $filter ] );
-					}
-
-				} else {
-					// One value only filter (use it as the default value if none other requested in '$_GET').
-					$filter_by[ $filter ] = reset( $values[ $filter ] );
-				}
-
-			}
-
+		if ( is_wp_error( $raw_response ) ) {
+			return array(
+				'items' => $raw_response,
+				'total' => 0,
+			);
 		}
-		return $filter_by;
+
+		$response['items'] = json_decode( wp_remote_retrieve_body( $raw_response ) );
+		$response['total'] = wp_remote_retrieve_header( $raw_response, 'x-wp-total' );
+
+		return $response;
 	}
-
-	/**
-	 * Retrieves all AppThemes products.
-	 *
-	 * @return array An associative array of slug/products.
-	 */
-	public function get_all_products() {
-
-		return array(
-			__( 'Themes', APP_TD )  => $this->get_all_themes(),
-			__( 'Plugins', APP_TD ) => $this->get_all_plugins(),
-		);
-
-	}
-
-	/**
-	 * Retrieves a complete list of the AppThemes themes.
-	 *
-	 * @return array An associative array of slug/theme name.
-	 */
-	public function get_all_themes() {
-
-		return array(
-			'classipress'    => 'ClassiPress',
-			'clipper'        => 'Clipper',
-			'hirebee'        => 'HireBee',
-			'ideas'          => 'Ideas',
-			'jobroller'      => 'JobRoller',
-			'qualitycontrol' => 'Quality Control',
-			'taskerr'        => 'Taskerr',
-			'vantage'        => 'Vantage',
-		);
-
-	}
-
-	/**
-	 * Retrieves a complete list of the AppThemes plugins.
-	 *
-	 * @return array An associative array of slug/plugin name.
-	 */
-	public function get_all_plugins() {
-
-		$plugins = array(
-			'pay2post' => 'Pay2Post',
-		);
-
-		return $plugins;
-	}
-
-	/**
-	 * Retrieves a complete list of the AppThemes themes.
-	 *
-	 * @return array An associative array of slug/theme name
-	 */
-	public function get_all_categories() {
-
-		return array(
-			'plugins'          => __( 'Plugins', APP_TD ),
-			'payment-gateways' => __( 'Payment Gateways', APP_TD ),
-			'child-themes'     => __( 'Child Themes', APP_TD ),
-			'general-themes'   => __( 'General Themes', APP_TD ),
-		);
-	}
-
 }

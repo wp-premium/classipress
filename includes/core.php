@@ -16,28 +16,30 @@ add_action( 'after_setup_theme', 'cp_register_sidebars' );
 
 
 /**
- * Register custom post type for ads
+ * Register custom post type for ads.
  *
  * @return void
  */
 function cp_register_post_types() {
 	global $cp_options;
 
-	// register post type for ads
 	$labels = array(
-		'name'                  => __( 'Ads', APP_TD ),
-		'singular_name'         => __( 'Ad', APP_TD ),
+		'name'                  => _x( 'Ads', 'post type general name', APP_TD ),
+		'singular_name'         => _x( 'Ad', 'post type singular name', APP_TD ),
 		'add_new'               => __( 'Add New', APP_TD ),
 		'add_new_item'          => __( 'Create New Ad', APP_TD ),
 		'edit_item'             => __( 'Edit Ad', APP_TD ),
 		'new_item'              => __( 'New Ad', APP_TD ),
 		'view_item'             => __( 'View Ad', APP_TD ),
+		'view_items'            => __( 'View Ads', APP_TD ),
 		'search_items'          => __( 'Search Ads', APP_TD ),
-		'not_found'             => __( 'No ads found', APP_TD ),
-		'not_found_in_trash'    => __( 'No ads found in trash', APP_TD ),
+		'not_found'             => __( 'No ads found.', APP_TD ),
+		'not_found_in_trash'    => __( 'No ads found in trash.', APP_TD ),
 		'parent_item_colon'     => __( 'Parent Ad:', APP_TD ),
+		'menu_name'             => _x( 'Ads', 'post type menu name', APP_TD ),
 		'all_items'             => __( 'All Ads', APP_TD ),
 		'archives'              => __( 'Ad Archives', APP_TD ),
+		'attributes'            => __( 'Ad Attributes', APP_TD ),
 		'insert_into_item'      => __( 'Insert into ad', APP_TD ),
 		'uploaded_to_this_item' => __( 'Uploaded to this ad', APP_TD ),
 		'featured_image'        => __( 'Featured Image', APP_TD ),
@@ -47,7 +49,6 @@ function cp_register_post_types() {
 		'filter_items_list'     => __( 'Filter ads list', APP_TD ),
 		'items_list_navigation' => __( 'Ads list navigation', APP_TD ),
 		'items_list'            => __( 'Ads list', APP_TD ),
-		'menu_name'             => __( 'Ads', APP_TD ),
 	);
 
 	$args = array(
@@ -79,10 +80,9 @@ function cp_register_post_types() {
 function cp_register_taxonomies() {
 	global $cp_options;
 
-	// register the category taxonomy for ads
 	$labels = array(
-		'name'                       => __( 'Ad Categories', APP_TD ),
-		'singular_name'              => __( 'Category', APP_TD ),
+		'name'                       => _x( 'Ad Categories', 'taxonomy general name', APP_TD ),
+		'singular_name'              => _x( 'Category', 'taxonomy singular name', APP_TD ),
 		'search_items'               => __( 'Search Categories', APP_TD ),
 		'popular_items'              => __( 'Popular Categories', APP_TD ),
 		'all_items'                  => __( 'All Categories', APP_TD ),
@@ -100,7 +100,7 @@ function cp_register_taxonomies() {
 		'no_terms'                   => __( 'No ad categories', APP_TD ),
 		'items_list_navigation'      => __( 'Ad categories list navigation', APP_TD ),
 		'items_list'                 => __( 'Ad categories list', APP_TD ),
-		'menu_name'                  => __( 'Categories', APP_TD ),
+		'menu_name'                  => _x( 'Categories', 'taxonomy menu name', APP_TD ),
 	);
 
 	$args = array(
@@ -114,10 +114,10 @@ function cp_register_taxonomies() {
 
 	register_taxonomy( APP_TAX_CAT, APP_POST_TYPE, $args );
 
-	// register the tag taxonomy for ads
+
 	$labels = array(
-		'name'                       => __( 'Ad Tags', APP_TD ),
-		'singular_name'              => __( 'Tag', APP_TD ),
+		'name'                       => _x( 'Ad Tags', 'taxonomy general name', APP_TD ),
+		'singular_name'              => _x( 'Tag', 'taxonomy singular name', APP_TD ),
 		'search_items'               => __( 'Search Tags', APP_TD ),
 		'popular_items'              => __( 'Popular Tags', APP_TD ),
 		'all_items'                  => __( 'All Tags', APP_TD ),
@@ -135,7 +135,7 @@ function cp_register_taxonomies() {
 		'no_terms'                   => __( 'No ad tags', APP_TD ),
 		'items_list_navigation'      => __( 'Ad tags list navigation', APP_TD ),
 		'items_list'                 => __( 'Ad tags list', APP_TD ),
-		'menu_name'                  => __( 'Tags', APP_TD ),
+		'menu_name'                  => _x( 'Tags', 'taxonomy menu name', APP_TD ),
 	);
 
 	$args = array(

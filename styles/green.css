@@ -23,7 +23,7 @@ a {
 .pages a,
 .pages span {
 	background-color: #536C2E;
-	color: #fff;
+	color: #FFF;
 }
 /* header */
 
@@ -39,19 +39,19 @@ a {
 }
 
 .header_top_res p a {
-	color: #9dbd6d;
+	color: #9DBD6D;
 }
 
 .header_main_res #logo h1 {
 	font-size: 38px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res #logo h1 a {
 	text-decoration: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .header_main_res .description {
@@ -66,7 +66,7 @@ a {
 /* top search button styles */
 
 .btn-topsearch {
-	background-color: #536C2E
+	background-color: #536C2E;
 }
 
 .btn-topsearch:before {
@@ -77,7 +77,7 @@ a {
 .adv_categories ul li.active {
 	margin: 0 -7px 0 -8px;
 	padding: 4px 7px 4px 8px;
-	color: #fff;
+	color: #FFF;
 	background: #679325;
 }
 
@@ -120,7 +120,7 @@ a {
 
 .content_res .stepsline div.ni_ready {
 	background: #679325;
-	border-top: 1px solid #9dbd6d;
+	border-top: 1px solid #9DBD6D;
 }
 
 .content_left p.bigprice {
@@ -134,7 +134,7 @@ a {
 }
 
 .content_res .can_chg_bg:hover {
-	background-color: #e3f1df;
+	background-color: #E3F1DF;
 }
 
 .tags span {
@@ -166,27 +166,27 @@ a {
 	margin: 0;
 	padding: 0;
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #9dbd6d;
+	color: #9DBD6D;
 }
 
 .footer_main_res div.column p a {
-	color: #9dbd6d;
+	color: #9DBD6D;
 }
 
 .footer_main_res div.column ul li a {
-	color: #9dbd6d;
+	color: #9DBD6D;
 	text-decoration: none;
 }
 
 .footer_main_res div.column {
 	font: normal 14px/1.8em Arial, Helvetica, sans-serif;
-	color: #9dbd6d;
+	color: #9DBD6D;
 }
 /* tooltip */
 
 #easyTooltip {
 	background-color: #679325;
-	color: #fff;
+	color: #FFF;
 }
 /* payments styles */
 
@@ -209,17 +209,17 @@ ol.progtrckr li.progtrckr-done:before {
 .tab-dashboard ul.tabnavig li a.selected {
 	border-bottom: 1px solid #536C2E;
 	background-color: #536C2E;
-	color: #fff;
+	color: #FFF;
 }
 
 .tab-dashboard ul.tabnavig li a {
 	background-color: #679325;
 	height: 19px;
-	color: #fff;
+	color: #FFF;
 }
 /* reports */
 
-.reports_form input[type="submit"] {
+.reports_form input[type='submit'] {
 	background-color: #536C2E;
 }
 /* responsive styles */

@@ -6,8 +6,6 @@
 
 global $cp_options;
 
-add_action( 'appthemes_init', 'cp_recaptcha_support' );
-
 // Theme supports
 add_theme_support( 'app-versions', array(
 	'update_page'     => 'admin.php?page=app-settings&firstrun=1',
@@ -130,8 +128,58 @@ add_theme_support( 'app-media-manager' );
  * @since 3.5
  */
 add_theme_support( 'app-addons-mp', array(
-	'product' => 'classipress',
+	'product' => array( 472 ),
 ) );
+
+/**
+ * Add support for the language files and set location.
+ *
+ * @since 3.6.0
+ */
+function cp_setup_language_support() {
+	/**
+	 * We want more control over the language file location.
+	 *
+	 * @todo Remove this once the function has been deprecated from theme-framework.
+	 *
+	 * @since 3.6.0
+	 */
+	remove_action( 'appthemes_theme_framework_loaded', 'appthemes_load_textdomain' );
+
+	/**
+	 * Add support for language files.
+	 *
+	 * Looks in WP_LANG_DIR . '/themes/' first otherwise
+	 * For example: wp-content/languages/themes/vantage-de_DE.mo
+	 *
+	 * Otherwise defaults to: "wp-content/themes/vantage/languages/$domain . '-' . $locale.mo"
+	 *
+	 * @since 3.6.0
+	 */
+	load_theme_textdomain( APP_TD, get_template_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'cp_setup_language_support' );
+
+/**
+ * Sets the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ *
+ * @since 3.6.0
+ */
+function cp_content_width() {
+	/**
+	 * Filter the content width in pixels.
+	 *
+	 * @since 3.6.0
+	 *
+	 * @param int $width The content width in pixels.
+	 */
+	$GLOBALS['content_width'] = apply_filters( 'cp_content_width', 560 );
+}
+add_action( 'after_setup_theme', 'cp_content_width', 0 );
 
 /**
  * Adds reCaptcha support
@@ -155,8 +203,8 @@ function cp_recaptcha_support() {
 	// Integrate recaptcha on the User Registration form.
 	add_action( 'appthemes_before_login_template', 'cp_before_login_template' );
 	add_filter( 'registration_errors', 'cp_recaptcha_verify' );
-
 }
+add_action( 'appthemes_init', 'cp_recaptcha_support' );
 
 function cp_recaptcha_verify( $errors ) {
 

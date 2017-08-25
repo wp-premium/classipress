@@ -23,15 +23,7 @@ function cp_todays_overall_count_widget( $post_type, $limit ) {
 		'posts_per_page' => $limit,
 		'paged'          => 1,
 		'no_found_rows'  => true,
-		// ignore expired ads
-		'meta_query'     => array(
-			array(
-				'key'      => 'cp_sys_expire_date',
-				'value'    => current_time('mysql'),
-				'compare'  => '>=',
-				'type'     => 'datetime'
-			),
-		),
+		'post_status'    => 'publish',
 	);
 
 	$popular = new CP_Popular_Posts_Query( $args );
@@ -73,15 +65,7 @@ function cp_todays_count_widget( $post_type, $limit ) {
 		'posts_per_page' => $limit,
 		'paged'          => 1,
 		'no_found_rows'  => true,
-		// ignore expired ads
-		'meta_query'     => array(
-			array(
-				'key'      => 'cp_sys_expire_date',
-				'value'    => current_time('mysql'),
-				'compare'  => '>=',
-				'type'     => 'datetime'
-			),
-		),
+		'post_status'    => 'publish',
 	);
 
 	$popular = new CP_Popular_Posts_Query( $args, 'today' );

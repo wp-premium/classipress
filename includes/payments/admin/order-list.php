@@ -58,7 +58,14 @@ function appthemes_order_manage_sortable_columns( $columns ) {
  */
 function appthemes_order_add_column_data( $column_index, $post_id ) {
 
-	$order = appthemes_get_order( $post_id );
+	static $order_hash = array();
+
+	if ( isset( $order_hash[ $post_id ] ) ) {
+		$order = $order_hash[ $post_id ];
+	} else {
+		$order = appthemes_get_order( $post_id );
+		$order_hash[ $post_id ] = $order;
+	}
 
 	switch( $column_index ){
 

@@ -57,7 +57,6 @@ class APP_Addons extends scbAdminPage {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 21 );
 		add_action( 'admin_init', array( $this, 'maybe_add_pagination' ) );
 
-		add_action( 'appthemes_first_run', array( $this, 'clear_cache' ) );
 		add_action( 'appthemes_addons_mp_popular', array( $this, 'display_addons_mp_table' ), 10, 2 );
 		add_action( 'appthemes_addons_mp_new', array( $this, 'display_addons_mp_table' ), 10, 2 );
 	}
@@ -170,14 +169,6 @@ class APP_Addons extends scbAdminPage {
 			exit;
 		}
 
-	}
-
-	/**
-	 * Clears any previously cached content to refresh current data.
-	 */
-	public function clear_cache() {
-		delete_transient( '_appthemes-addons-mp-popular' );
-		delete_transient( '_appthemes-addons-mp-new' );
 	}
 
 }

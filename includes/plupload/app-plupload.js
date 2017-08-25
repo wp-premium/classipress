@@ -115,6 +115,8 @@ jQuery(document).ready(function() {
 					APP_Attachment.showUploadBtn();
 				}
 				jQuery('#' + file.id).remove();
+				
+				up.refresh();
 			});
 			attachUploader.bind('StateChanged', function() {
 				if ( attachUploader.files.length === ( attachUploader.total.uploaded + attachUploader.total.failed ) ) {
@@ -140,6 +142,7 @@ jQuery(document).ready(function() {
 
 					window.appFileCount -= 1;
 					APP_Attachment.showUploadBtn();
+					APP_Attachment.attachUploader();
 				});
 			}
 		},

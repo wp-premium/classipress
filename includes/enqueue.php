@@ -21,81 +21,86 @@ if ( ! function_exists( 'cp_load_scripts' ) ) :
 function cp_load_scripts() {
 	global $cp_options;
 
-	$suffix_js = cp_get_enqueue_suffix();
+	// Minimize prod or show expanded in dev.
+	$min = cp_get_enqueue_suffix();
 
-	// load google cdn hosted scripts if enabled
+	// Load google cdn hosted scripts if enabled.
 	if ( $cp_options->google_jquery ) {
 		wp_deregister_script( 'jquery' );
-		$protocol = is_ssl() ? 'https' : 'http';
-		wp_register_script( 'jquery', $protocol . '://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js', false, '1.12.3' );
+		wp_register_script( 'jquery', "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery{$min}.js", false, '1.12.4' );
 	}
 
-	// needed for single ad sidebar email & comments on pages, edit ad & profile pages, ads, blog posts
+	// Needed for single ad sidebar email & comments on pages, edit ad & profile pages, ads, blog posts.
 	if ( is_singular() ) {
 		wp_enqueue_script( 'validate' );
 		wp_enqueue_script( 'validate-lang' );
 	}
 
-	// search autocomplete and slider on certain pages
+	// Search autocomplete and slider on certain pages.
 	wp_enqueue_script( 'jquery-ui-autocomplete' );
 
-	// advanced search sidebar and home page carousel
+	// Advanced search sidebar and home page carousel.
 	wp_enqueue_script( 'jquery-ui-slider' );
 
-	// used to convert header menu into select list on mobile devices
-	wp_enqueue_script( 'tinynav', get_template_directory_uri() . '/includes/js/jquery.tinynav.js', array( 'jquery' ), '1.1' );
-	// used to transform tables on mobile devices
+	// Convert header menu into select list on mobile devices.
+	wp_enqueue_script( 'tinynav', get_template_directory_uri() . "/includes/js/tinynav{$min}.js", array( 'jquery' ), '1.1' );
+
+	// Transform tables on mobile devices
 	wp_enqueue_script( 'footable' );
 
-	// adds touch events to jQuery UI on mobile devices
+	// Adds touch events to jQuery UI on mobile devices.
 	if ( wp_is_mobile() ) {
 		wp_enqueue_script( 'jquery-touch-punch' );
 	}
 
+	// Styles select elements.
 	if ( ! wp_is_mobile() && $cp_options->selectbox ) {
-		// styles select elements
-		wp_enqueue_script( 'selectbox', get_template_directory_uri() . '/includes/js/jquery.selectBox.min.js', array( 'jquery' ), '1.2.0' );
+		wp_enqueue_script( 'selectbox', get_template_directory_uri() . "/includes/js/jquery.selectBox{$min}.js", array( 'jquery' ), '1.2.0' );
 	}
 
 	if ( $cp_options->enable_featured && is_page_template( 'tpl-ads-home.php' ) ) {
-		wp_enqueue_script( 'jqueryeasing', get_template_directory_uri() . '/includes/js/easing.min.js', array( 'jquery' ), '1.3' );
-		wp_enqueue_script( 'jcarousellite', get_template_directory_uri() . '/includes/js/jcarousellite.min.js', array( 'jquery', 'jquery-ui-slider' ), '1.9.2' );
+		wp_enqueue_script( 'jqueryeasing', get_template_directory_uri() . "/includes/js/easing{$min}.js", array( 'jquery' ), '1.3' );
+		wp_enqueue_script( 'jcarousellite', get_template_directory_uri() . "/includes/js/jcarousellite{$min}.js", array( 'jquery', 'jquery-ui-slider' ), '1.9.2' );
 	}
 
-	wp_enqueue_script( 'theme-scripts', get_template_directory_uri() . "/includes/js/theme-scripts{$suffix_js}.js", array( 'jquery' ), '3.3.3' );
+	// Load the theme script.
+	wp_enqueue_script( 'theme-scripts', get_template_directory_uri() . "/includes/js/theme-scripts{$min}.js", array( 'jquery' ), CP_VERSION );
 
-	// only load the general.js if available in child theme
+	// Comment reply script for threaded comments.
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+	// Only load the general.js if available in child theme.
 	if ( file_exists( get_stylesheet_directory() . '/general.js' ) ) {
 		wp_enqueue_script( 'general', get_stylesheet_directory_uri() . '/general.js', array( 'jquery' ), '1.0' );
 	}
 
-	// only load cufon if it's been enabled
+	// Only load cufon if it's been enabled.
 	if ( $cp_options->cufon_enable ) {
 		wp_enqueue_script( 'cufon-yui', get_template_directory_uri() . '/includes/js/cufon-yui.js', array( 'jquery' ), '1.0.9i' );
 		wp_enqueue_script( 'cufon-font-vegur', get_template_directory_uri() . '/includes/fonts/Vegur_400-Vegur_700.font.js', array( 'cufon-yui' ) );
 		wp_enqueue_script( 'cufon-font-liberation', get_template_directory_uri() . '/includes/fonts/Liberation_Serif_400.font.js', array( 'cufon-yui' ) );
 	}
 
-	// load the gravatar hovercards
+	// Load the gravatar hovercards.
 	if ( $cp_options->use_hovercards ) {
 		wp_enqueue_script( 'gprofiles', 'https://s.gravatar.com/js/gprofiles.js', array( 'jquery' ), '1.0', true );
 	}
 
-	// only load gmaps when we need it
+	// Only load gmaps when we need it.
 	if ( is_singular( APP_POST_TYPE ) ) {
 
 		$gmap_params = array(
 			'language' => $cp_options->gmaps_lang,
-			'region'   => $cp_options->gmaps_region
+			'region'   => $cp_options->gmaps_region,
 		);
 
 		if ( $cp_options->api_key ) {
 			$gmap_params['key'] = $cp_options->api_key;
 		}
 
-		$google_maps_url = ( is_ssl() ? 'https' : 'http' ) . '://maps.googleapis.com/maps/api/js';
-		$google_maps_url = add_query_arg( $gmap_params, $google_maps_url );
-
+		$google_maps_url = add_query_arg( $gmap_params, 'https://maps.googleapis.com/maps/api/js' );
 		wp_enqueue_script( 'google-maps', $google_maps_url, array( 'jquery' ), '3.0' );
 	}
 
@@ -123,7 +128,7 @@ function cp_load_scripts() {
 		'ajax_url'               => admin_url( 'admin-ajax.php', 'relative' ),
 		'nonce'                  => wp_create_nonce('cp-nonce'),
 		'text_processing'        => __( 'Processing...', APP_TD ),
-		'text_require_images'    => __( 'Please upload at least 1 image.', APP_TD ),
+		'text_require_images'    => __( 'Please upload at least one image.', APP_TD ),
 		'text_before_delete_ad'  => __( 'Are you sure you want to delete this ad?', APP_TD ),
 		'text_mobile_navigation' => __( 'Navigation', APP_TD ),
 		'loader'                 => get_template_directory_uri() . '/images/loader.gif',
@@ -140,7 +145,6 @@ function cp_load_scripts() {
 		'mismatch' => __( 'Mismatch', APP_TD ),
 	);
 	wp_localize_script( 'password-strength-meter', 'pwsL10n', $params );
-
 }
 endif;
 
@@ -153,14 +157,15 @@ endif;
 if ( ! function_exists( 'cp_load_form_scripts' ) ) :
 function cp_load_form_scripts() {
 
+	// Minimize prod or show expanded in dev.
+	$min = cp_get_enqueue_suffix();
+
 	wp_enqueue_script( 'validate' );
 	wp_enqueue_script( 'validate-lang' );
 
-	wp_enqueue_script( 'easytooltip', get_template_directory_uri() . '/includes/js/easyTooltip.js', array( 'jquery' ), '1.0' );
-
+	wp_enqueue_script( 'easytooltip', get_template_directory_uri() . "/includes/js/easyTooltip{$min}.js", array( 'jquery' ), '1.0' );
 }
 endif;
-
 
 
 /**
@@ -177,16 +182,28 @@ function cp_style_changer() {
 		_appthemes_enqueue_form_progress_styles();
 	}
 
-	wp_enqueue_style( 'at-main', get_stylesheet_uri(), false );
+	// Load the theme stylesheet.
+	wp_enqueue_style( 'at-main', get_stylesheet_uri(), array(), CP_VERSION );
+
+	// Load the rtl theme stylesheet.
+	wp_style_add_data( 'at-main', 'rtl', 'replace' );
 
 	// turn off stylesheets if customers want to use child themes
 	if ( ! $cp_options->disable_stylesheet ) {
 		$child_theme = $cp_options->stylesheet ? $cp_options->stylesheet : 'aqua.css';
-		$stylesheet = '/styles/'.$child_theme;
+		$stylesheet = '/styles/' . $child_theme;
 		$from_child_theme = is_child_theme() && file_exists( get_stylesheet_directory() . $stylesheet );
 		$stylesheet_url = ( $from_child_theme ? get_stylesheet_directory_uri() : get_template_directory_uri() ) . $stylesheet;
-		wp_enqueue_style( 'at-color', $stylesheet_url, array( 'at-main' ) );
+		wp_enqueue_style( 'at-color', $stylesheet_url, array( 'at-main' ), CP_VERSION );
 	}
+
+	// Load our IE 7 version-specific stylesheet.
+	wp_enqueue_style( 'at-ie7', get_stylesheet_directory_uri() . '/styles/ie7.css', array( 'at-main' ), CP_VERSION );
+	wp_style_add_data( 'at-ie7', 'conditional', 'IE 7' );
+
+	// Load our IE 8 version-specific stylesheet.
+	wp_enqueue_style( 'at-ie8', get_stylesheet_directory_uri() . '/styles/ie8.css', array( 'at-main' ), CP_VERSION );
+	wp_style_add_data( 'at-ie8', 'conditional', 'IE 8' );
 
 	if ( file_exists( get_template_directory() . '/styles/custom.css' ) ) {
 		wp_enqueue_style( 'at-custom', get_template_directory_uri() . '/styles/custom.css', false );
