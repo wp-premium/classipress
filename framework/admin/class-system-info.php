@@ -104,7 +104,6 @@ class APP_System_Info extends APP_Tabs_Page {
 		$this->tabs->add( 'info', __( 'System Info', APP_TD ) );
 		$this->tabs->add( 'cron', __( 'Cron Jobs', APP_TD ) );
 
-
 		$current_theme = wp_get_theme();
 
 		// Get the parent theme info if child theme is active.
@@ -112,339 +111,393 @@ class APP_System_Info extends APP_Tabs_Page {
 			$parent_theme = wp_get_theme( $current_theme->Template );
 		}
 
+		$theme_info_fields = array(
+			array(
+				'title' => __( 'Name', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'theme_name' ),
+				'tip'   => __( 'The name of the current active theme.', APP_TD ),
+				'desc'  => $current_theme->Name,
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Version', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'theme_version' ),
+				'tip'   => __( 'The version of the current active theme.', APP_TD ),
+				'desc'  => $current_theme->Version,
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Author URL', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'author_url' ),
+				'tip'   => __( 'The theme developers url.', APP_TD ),
+				'desc'  => $current_theme->{'Author URI'},
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Theme Path', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'theme_path' ),
+				'tip'   => __( 'The path of the current active theme.', APP_TD ),
+				'desc'  => get_stylesheet_directory_uri(),
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Child Theme', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'child_theme' ),
+				'tip'   => __( 'Check if a child theme is active.', APP_TD ),
+				'desc'  => ( is_child_theme() ) ? '&#10004; ' . sprintf( __( 'Using parent theme %s v%s', APP_TD ), $parent_theme->Name, $parent_theme->Version ) : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+		);
+
+		/**
+		 * Filters the default theme info fields.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param array $theme_info_fields The default theme info fields.
+		 */
+		$theme_info_fields = apply_filters( 'appthemes_theme_info_default_fields', $theme_info_fields );
 
 		$this->tab_sections['info']['theme'] = array(
 			'title'  => __( 'Theme Info', APP_TD ),
-			'fields' => array(
-				array(
-					'title' => __( 'Name', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'theme_name' ),
-					'tip'   => __( 'The name of the current active theme.', APP_TD ),
-					'desc'  => $current_theme->Name,
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			'fields' => $theme_info_fields,
+		);
+
+
+		$wordpress_info_fields = array(
+			array(
+				'title' => __( 'Home URL', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'home_url' ),
+				'tip'   => __( "The url of your website's homepage.", APP_TD ),
+				'desc'  => home_url(),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Version', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'theme_version' ),
-					'tip'   => __( 'The version of the current active theme.', APP_TD ),
-					'desc'  => $current_theme->Version,
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'Site URL', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'site_url' ),
+				'tip'   => __( 'The url of your WordPress install.', APP_TD ),
+				'desc'  => site_url(),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Author URL', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'author_url' ),
-					'tip'   => __( 'The theme developers url.', APP_TD ),
-					'desc'  => $current_theme->{'Author URI'},
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'WP Version', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_version' ),
+				'tip'   => __( 'The version of WordPress installed.', APP_TD ),
+				'desc'  => get_bloginfo( 'version' ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Theme Path', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'theme_path' ),
-					'tip'   => __( 'The path of the current active theme.', APP_TD ),
-					'desc'  => get_stylesheet_directory_uri(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'WP Multisite', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_multisite' ),
+				'tip'   => __( 'Check to see if WordPress Multisite is enabled.', APP_TD ),
+				'desc'  => ( is_multisite() ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Child Theme', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'child_theme' ),
-					'tip'   => __( 'Check if a child theme is active.', APP_TD ),
-					'desc'  => ( is_child_theme() ) ? '&#10004; ' . sprintf( __( 'Using parent theme %s v%s', APP_TD ), $parent_theme->Name, $parent_theme->Version ) : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'WP Memory Limit', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_memory_limit' ),
+				'tip'   => __( 'The maximum amount of memory (RAM) that your site can use.', APP_TD ),
+				'desc'  => size_format( wp_convert_hr_to_bytes( WP_MEMORY_LIMIT ) ),
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'WP Remote Post', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_remote_post' ),
+				'tip'   => __( 'Checks to see if your hosting server is able to post information to another server. PayPal IPN uses this method of communication when sending back transaction information.', APP_TD ),
+				'desc'  => $this->test_wp_remote_post(),
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'WP Debug Mode', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_debug_mode' ),
+				'tip'   => __( 'Check to see if WordPress debug mode is enabled.', APP_TD ),
+				'desc'  => ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Force SSL Admin', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'force_ssl_admin' ),
+				'tip'   => __( 'Check to see if your site forces SSL (Secure Sockets Layer) also known as TLS (Transport Layer Security).', APP_TD ),
+				'desc'  => ( defined( 'FORCE_SSL_ADMIN' ) && FORCE_SSL_ADMIN ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Language', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_locale' ),
+				'tip'   => __( 'The current language used by WordPress. The default value is en_US (English).', APP_TD ),
+				'desc'  => get_locale(),
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'Language File Path', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'language_file_path' ),
+				'tip'   => sprintf( __( 'Where to put your .mo language file for this theme (e.g. %1$s-%2$s.mo). The wp-admin "Site Language" drop-down must also be set to your locale.', APP_TD ), APP_TD, get_locale() ),
+				'desc'  => WP_LANG_DIR . '/themes/',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
 			),
 		);
 
+		/**
+		 * Filters the default wordpress info fields.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param array $wordpress_info_fields The default wordpress info fields.
+		 */
+		$wordpress_info_fields = apply_filters( 'appthemes_wordpress_info_default_fields', $wordpress_info_fields );
 
 		$this->tab_sections['info']['wp'] = array(
 			'title'  => __( 'WordPress Info', APP_TD ),
-			'fields' => array(
-				array(
-					'title' => __( 'Home URL', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'home_url' ),
-					'tip'   => __( "The url of your website's homepage.", APP_TD ),
-					'desc'  => home_url(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			'fields' => $wordpress_info_fields,
+		);
+
+
+		$server_info_fields = array(
+			array(
+				'title' => __( 'Server Software', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'server_software' ),
+				'tip'   => __( 'The web server your hosting server is running.', APP_TD ),
+				'desc'  => $_SERVER['SERVER_SOFTWARE'],
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Site URL', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'site_url' ),
-					'tip'   => __( 'The url of your WordPress install.', APP_TD ),
-					'desc'  => site_url(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'PHP Version', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'php_version' ),
+				'tip'   => __( 'The version of PHP installed on your hosting server. We recommend a minimum PHP version of 5.4.', APP_TD ),
+				'desc'  => ( function_exists( 'phpversion' ) ) ? phpversion() : __( 'Function phpversion() is not available.', APP_TD ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'WP Version', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_version' ),
-					'tip'   => __( 'The version of WordPress installed.', APP_TD ),
-					'desc'  => get_bloginfo( 'version' ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'PHP Post Max Size', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'post_max_size' ),
+				'tip'   => __( 'The largest file size that can be contained in one $_POST.', APP_TD ),
+				'desc'  => ( function_exists( 'ini_get' ) ) ? size_format( wp_convert_hr_to_bytes( ini_get( 'post_max_size' ) ) ) : __( 'Function ini_get() is not available.', APP_TD ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'WP Multisite', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_multisite' ),
-					'tip'   => __( 'Check to see if WordPress Multisite is enabled.', APP_TD ),
-					'desc'  => ( is_multisite() ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'PHP Time Limit', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'max_execution_time' ),
+				'tip'   => __( 'The amount of time (in seconds) your server will spend on a task before timing out. Set this higher to avoid timeout issues.', APP_TD ),
+				'desc'  => ( function_exists( 'ini_get' ) ) ? ini_get( 'max_execution_time' ) : __( 'Function ini_get() is not available.', APP_TD ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'WP Memory Limit', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_memory_limit' ),
-					'tip'   => __( 'The maximum amount of memory (RAM) that your site can use.', APP_TD ),
-					'desc'  => size_format( wp_convert_hr_to_bytes( WP_MEMORY_LIMIT ) ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'PHP Max Input Vars', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'max_input_vars' ),
+				'tip'   => __( 'The maximum number of variables your server can use for a single function to avoid overloads.', APP_TD ),
+				'desc'  => ( function_exists( 'ini_get' ) ) ? number_format_i18n( ini_get( 'max_input_vars' ) ) : __( 'Function ini_get() is not available.', APP_TD ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'WP Remote Post', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_remote_post' ),
-					'tip'   => __( 'Checks to see if your hosting server is able to post information to another server. PayPal IPN uses this method of communication when sending back transaction information.', APP_TD ),
-					'desc'  => $this->test_wp_remote_post(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'SUHOSIN Installed', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'suhosin' ),
+				'tip'   => __( 'Suhosin is an advanced protection system for PHP installations. Your host provider typically configures this.', APP_TD ),
+				'desc'  => ( extension_loaded( 'suhosin' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'WP Debug Mode', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_debug_mode' ),
-					'tip'   => __( 'Check to see if WordPress debug mode is enabled.', APP_TD ),
-					'desc'  => ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'MySQL Version', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'mysql_version' ),
+				'tip'   => __( 'The version of MySQL installed on your hosting server. We recommend a minimum mySQL version of 5.5.', APP_TD ),
+				'desc'  => $wpdb->db_version(),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Force SSL Admin', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'force_ssl_admin' ),
-					'tip'   => __( 'Check to see if your site forces SSL (Secure Sockets Layer) also known as TLS (Transport Layer Security).', APP_TD ),
-					'desc'  => ( defined( 'FORCE_SSL_ADMIN' ) && FORCE_SSL_ADMIN ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'Max Upload Size', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'max_upload_size' ),
+				'tip'   => __( 'The largest file size that can be uploaded to your WordPress installation. If you get timeout errors when uploading a large file, this should be increased.', APP_TD ),
+				'desc'  => size_format( wp_max_upload_size() ),
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Language', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_locale' ),
-					'tip'   => __( 'The current language used by WordPress. The default value is en_US (English).', APP_TD ),
-					'desc'  => get_locale(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'Language File Path', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'language_file_path' ),
-					'tip'   => sprintf( __( 'Where to put your .mo language file for this theme (e.g. %1$s-%2$s.mo). The wp-admin "Site Language" drop-down must also be set to your locale.', APP_TD ), APP_TD, get_locale() ),
-					'desc'  => WP_LANG_DIR . '/themes/',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'Display Errors', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'display_errors' ),
+				'tip'   => __( 'Checks if your hosting server has PHP errors turned on. If so, they will display on the screen. This should be turned off in a production environment.', APP_TD ),
+				'desc'  => ( function_exists( 'ini_get' ) ) ? ( ini_get( 'display_errors' ) ? '&#10004;' : '&ndash;' ) : '<span class="notice-error">' . __( 'Function ini_get() is not available.', APP_TD ) . '</span>',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
 			),
 		);
 
+		/**
+		 * Filters the default server info fields.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param array $server_info_fields The default server info fields.
+		 */
+		$server_info_fields = apply_filters( 'appthemes_server_info_default_fields', $server_info_fields );
 
 		$this->tab_sections['info']['server'] = array(
 			'title'  => __( 'Server Info', APP_TD ),
-			'fields' => array(
-				array(
-					'title' => __( 'Server Software', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'server_software' ),
-					'tip'   => __( 'The web server your hosting server is running.', APP_TD ),
-					'desc'  => $_SERVER['SERVER_SOFTWARE'],
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			'fields' => $server_info_fields,
+		);
+
+
+		$image_info_fields = array(
+			array(
+				'title' => __( 'GD Library', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'gd_library' ),
+				'tip'   => __( 'Checks to see if your hosting server has the GD Library installed which allows WordPress to dynamically manipulate images.', APP_TD ),
+				'desc'  => ( extension_loaded( 'gd' ) && function_exists( 'gd_info' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'PHP Version', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'php_version' ),
-					'tip'   => __( 'The version of PHP installed on your hosting server. We recommend a minimum PHP version of 5.4.', APP_TD ),
-					'desc'  => ( function_exists( 'phpversion' ) ) ? phpversion() : __( 'Function phpversion() is not available.', APP_TD ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'PHP Post Max Size', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'post_max_size' ),
-					'tip'   => __( 'The largest file size that can be contained in one $_POST.', APP_TD ),
-					'desc'  => ( function_exists( 'ini_get' ) ) ? size_format( wp_convert_hr_to_bytes( ini_get( 'post_max_size' ) ) ) : __( 'Function ini_get() is not available.', APP_TD ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'PHP Time Limit', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'max_execution_time' ),
-					'tip'   => __( 'The amount of time (in seconds) your server will spend on a task before timing out. Set this higher to avoid timeout issues.', APP_TD ),
-					'desc'  => ( function_exists( 'ini_get' ) ) ? ini_get( 'max_execution_time' ) : __( 'Function ini_get() is not available.', APP_TD ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'PHP Max Input Vars', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'max_input_vars' ),
-					'tip'   => __( 'The maximum number of variables your server can use for a single function to avoid overloads.', APP_TD ),
-					'desc'  => ( function_exists( 'ini_get' ) ) ? number_format_i18n( ini_get( 'max_input_vars' ) ) : __( 'Function ini_get() is not available.', APP_TD ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'SUHOSIN Installed', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'suhosin' ),
-					'tip'   => __( 'Suhosin is an advanced protection system for PHP installations. Your host provider typically configures this.', APP_TD ),
-					'desc'  => ( extension_loaded( 'suhosin' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'MySQL Version', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'mysql_version' ),
-					'tip'   => __( 'The version of MySQL installed on your hosting server. We recommend a minimum mySQL version of 5.5.', APP_TD ),
-					'desc'  => $wpdb->db_version(),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'Max Upload Size', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'max_upload_size' ),
-					'tip'   => __( 'The largest file size that can be uploaded to your WordPress installation. If you get timeout errors when uploading a large file, this should be increased.', APP_TD ),
-					'desc'  => size_format( wp_max_upload_size() ),
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'Display Errors', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'display_errors' ),
-					'tip'   => __( 'Checks if your hosting server has PHP errors turned on. If so, they will display on the screen. This should be turned off in a production environment.', APP_TD ),
-					'desc'  => ( function_exists( 'ini_get' ) ) ? ( ini_get( 'display_errors' ) ? '&#10004;' : '&ndash;' ) : '<span class="notice-error">' . __( 'Function ini_get() is not available.', APP_TD ) . '</span>',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'Image Upload Path', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'wp_upload_path' ),
+				'tip'   => __( 'The WordPress image upload path on your hosting server.', APP_TD ),
+				'desc'  => ( $uploads = wp_upload_dir() ) ? $uploads['url'] : '',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
 			),
 		);
 
+		/**
+		 * Filters the default image info fields.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param array $image_info_fields The default image info fields.
+		 */
+		$image_info_fields = apply_filters( 'appthemes_image_info_default_fields', $image_info_fields );
 
 		$this->tab_sections['info']['image'] = array(
 			'title'  => __( 'Image Support', APP_TD ),
-			'fields' => array(
-				array(
-					'title' => __( 'GD Library', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'gd_library' ),
-					'tip'   => __( 'Checks to see if your hosting server has the GD Library installed which allows WordPress to dynamically manipulate images.', APP_TD ),
-					'desc'  => ( extension_loaded( 'gd' ) && function_exists( 'gd_info' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			'fields' => $image_info_fields,
+		);
+
+
+		$other_info_fields = array(
+			array(
+				'title' => __( 'JSON Decode', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'json_decode' ),
+				'tip'   => __( 'Checks to see if the JSON Decode function is enabled on your hosting server.', APP_TD ),
+				'desc'  => ( function_exists( 'json_decode' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
-				array(
-					'title' => __( 'Image Upload Path', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'wp_upload_path' ),
-					'tip'   => __( 'The WordPress image upload path on your hosting server.', APP_TD ),
-					'desc'  => ( $uploads = wp_upload_dir() ) ? $uploads['url'] : '',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
+			),
+			array(
+				'title' => __( 'cURL', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'curl' ),
+				'tip'   => __( 'Checks to see if the CURL function is enabled on your hosting server. Payment gateways and sometimes other plugins usually required this in order to work properly.', APP_TD ),
+				'desc'  => ( function_exists( 'curl_init' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'fsockopen', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'fsockopen' ),
+				'tip'   => __( 'Checks to see if the fsockopen function is enabled on your hosting server. Payment gateways and sometimes other plugins usually required this in order to work properly.', APP_TD ),
+				'desc'  => ( function_exists( 'fsockopen' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
+				),
+			),
+			array(
+				'title' => __( 'OpenSSL', APP_TD ),
+				'type'  => 'text',
+				'name'  => array( 'system_info', 'openssl_open' ),
+				'tip'   => __( 'Checks to see if the OpenSSL function is enabled on your hosting server. This is sometimes required by plugins but typically not for payment gateways.', APP_TD ),
+				'desc'  => ( function_exists( 'openssl_open' ) ) ? '&#10004;' : '&ndash;',
+				'extra' => array(
+					'style' => 'display: none;',
 				),
 			),
 		);
 
+		/**
+		 * Filters the default other info fields.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param array $other_info_fields The default other info fields.
+		 */
+		$other_info_fields = apply_filters( 'appthemes_other_info_default_fields', $other_info_fields );
 
 		$this->tab_sections['info']['other'] = array(
 			'title'  => __( 'Other Checks', APP_TD ),
-			'fields' => array(
-				array(
-					'title' => __( 'JSON Decode', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'json_decode' ),
-					'tip'   => __( 'Checks to see if the JSON Decode function is enabled on your hosting server.', APP_TD ),
-					'desc'  => ( function_exists( 'json_decode' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'cURL', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'curl' ),
-					'tip'   => __( 'Checks to see if the CURL function is enabled on your hosting server. Payment gateways and sometimes other plugins usually required this in order to work properly.', APP_TD ),
-					'desc'  => ( function_exists( 'curl_init' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'fsockopen', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'fsockopen' ),
-					'tip'   => __( 'Checks to see if the fsockopen function is enabled on your hosting server. Payment gateways and sometimes other plugins usually required this in order to work properly.', APP_TD ),
-					'desc'  => ( function_exists( 'fsockopen' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-				array(
-					'title' => __( 'OpenSSL', APP_TD ),
-					'type'  => 'text',
-					'name'  => array( 'system_info', 'openssl_open' ),
-					'tip'   => __( 'Checks to see if the OpenSSL function is enabled on your hosting server. This is sometimes required by plugins but typically not for payment gateways.', APP_TD ),
-					'desc'  => ( function_exists( 'openssl_open' ) ) ? '&#10004;' : '&ndash;',
-					'extra' => array(
-						'style' => 'display: none;',
-					),
-				),
-			),
+			'fields' => $other_info_fields,
 		);
 
 
@@ -468,7 +521,7 @@ class APP_System_Info extends APP_Tabs_Page {
 	function page_footer() {
 		parent::page_footer();
 ?>
-<script type="text/javascript">
+<script>
 jQuery(document).ready(function($) {
 	if ( $("form input[name^='system_info']").length ) {
 		$('form input[type=submit]').val('<?php esc_attr_e( 'Download Report', APP_TD ); ?>');
@@ -558,11 +611,9 @@ jQuery(document).ready(function($) {
 			);
 
 			array_push( $installed_plugins, $output );
-
 		}
 
 		return $installed_plugins;
-
 	}
 
 	/**
@@ -634,6 +685,4 @@ jQuery(document).ready(function($) {
 
 		echo $this->table_wrap( $output );
 	}
-
-
 }

@@ -133,7 +133,7 @@ class APP_Recaptcha {
 
 		self::include_dependencies();
 
-		$recaptcha = new gReCaptcha( self::$private_key, new gReCaptcha_CurlPost() );
+		$recaptcha = new gReCaptcha( self::$private_key, new APP_Recaptcha_Request() );
 
 		$resp = $recaptcha->verify( $response, $remote_ip );
 
@@ -195,11 +195,8 @@ class APP_Recaptcha {
 		require_once( dirname( __FILE__ ) . '/lib/RequestParameters.php' );
 		require_once( dirname( __FILE__ ) . '/lib/Response.php' );
 		require_once( dirname( __FILE__ ) . '/lib/ReCaptcha.php' );
-		require_once( dirname( __FILE__ ) . '/lib/RequestMethod/Curl.php' );
-		require_once( dirname( __FILE__ ) . '/lib/RequestMethod/CurlPost.php' );
-		require_once( dirname( __FILE__ ) . '/lib/RequestMethod/RequestPost.php' );
-		require_once( dirname( __FILE__ ) . '/lib/RequestMethod/Socket.php' );
-		require_once( dirname( __FILE__ ) . '/lib/RequestMethod/SocketPost.php' );
+
+		require_once( dirname( __FILE__ ) . '/class-recaptcha-request.php' );
 	}
 
 }

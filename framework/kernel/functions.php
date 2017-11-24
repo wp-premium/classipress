@@ -569,7 +569,7 @@ function appthemes_categories_list( $args, $terms_args = array() ) {
 	$options = wp_parse_args( (array) $args, $defaults );
 
 	$terms_defaults = array(
-		'hide_empty' => false,
+		'hide_empty' => $options['cat_hide_empty'],
 		'hierarchical' => true,
 		'pad_counts' => true,
 		'show_count' => true,

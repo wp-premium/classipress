@@ -163,7 +163,17 @@ class APP_View_Page extends APP_View {
 	 */
 	private static $registry = array();
 
-	public function __construct( $template, $default_title ) {
+	/**
+	 * The type of viewing item.
+	 *
+	 * Default: "page";
+	 *
+	 * @var string
+	 */
+	private $ptype;
+
+	public function __construct( $template, $default_title, $ptype = 'page' ) {
+		$this->ptype = $ptype;
 		$this->template = (array) $template;
 		$this->default_title = $default_title;
 
@@ -172,14 +182,11 @@ class APP_View_Page extends APP_View {
 		// DEPRECATED
 		self::$instances[ get_class( $this ) ] = $this;
 
+		add_filter( "theme_{$ptype}_templates", array( $this, '_register_new_template' ) );
 		if ( is_admin() ) {
-			// add new (undefined) templates to the list of available
-			add_filter( 'quick_edit_dropdown_pages_args', array( __CLASS__, '_register_new_templates' ) );
-			add_filter( 'page_attributes_dropdown_pages_args', array( __CLASS__, '_register_new_templates' ) );
-
 			// prevent to set preserved template if it's already in use
-			add_filter( 'wp_insert_post_data', array( __CLASS__, '_preserve_template' ), 10, 2 );
-			add_action( 'save_post_page', array( __CLASS__, '_restore_preserved_template' ) );
+			add_filter( 'wp_insert_post_data', array( $this, '_preserve_template' ), 10, 2 );
+			add_action( "save_post_{$ptype}", array( __CLASS__, '_restore_preserved_template' ) );
 		}
 
 		add_filter( 'template_include', array( $this, 'pre_template_include' ), 9 );
@@ -188,7 +195,7 @@ class APP_View_Page extends APP_View {
 	}
 
 	public function condition() {
-		if ( is_singular( 'page' ) && is_page_template( $this->get_template() ) ) {
+		if ( is_singular( $this->get_post_type() ) && is_page_template( $this->get_template() ) ) {
 			return true;
 		}
 
@@ -295,7 +302,7 @@ class APP_View_Page extends APP_View {
 
 		// don't use 'fields' => 'ids' because it skips caching
 		$page_q = new WP_Query( array(
-			'post_type' => 'page',
+			'post_type' => self::$registry[ $template ]->get_post_type(),
 			'meta_key' => '_wp_page_template',
 			'meta_value' => $template,
 			'posts_per_page' => 1,
@@ -327,7 +334,7 @@ class APP_View_Page extends APP_View {
 			}
 
 			$page_id = wp_insert_post( array(
-				'post_type' => 'page',
+				'post_type' => $instance->get_post_type(),
 				'post_status' => 'publish',
 				'post_title' => $instance->default_title
 			) );
@@ -357,37 +364,19 @@ class APP_View_Page extends APP_View {
 	}
 
 	/**
-	  * Adds new templates to the pages cache in order to trick WordPress
-	  * into thinking the template file exists where it doesn't really exist.
-	  */
-	public static function _register_new_templates ( $atts = array() ) {
-		// Create the key used for the themes cache
-		$cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
+	 * Callback method for "theme_{$post_type}_templates" filter to add extra
+	 * templates in WordPress template lists.
+	 *
+	 * @param array $templates
+	 * @return array
+	 */
+	public final function _register_new_template( $templates ) {
 
-		// Retrieve the cache list.
-		// If it doesn't exist, or it's empty prepare an array
-		$templates = wp_get_theme()->get_page_templates();
-		if ( empty( $templates ) ) {
-			$templates = array();
+		if ( ! isset( $templates[ $this->get_template() ] ) ) {
+			$templates[ $this->get_template() ] = $this->default_title;
 		}
 
-		// New cache, therefore remove the old one
-		wp_cache_delete( $cache_key , 'themes');
-
-		$protected_templates = self::_get_templates();
-
-		// Now add protected templates to the list of cached.
-		foreach ( $protected_templates as $protected_template => $default_title ) {
-			if ( ! isset( $templates[ $protected_template ] ) ) {
-				$templates[ $protected_template ] = $default_title;
-			}
-		}
-
-		// Add the modified cache to allow WordPress to pick it up for listing
-		// available templates
-		wp_cache_add( $cache_key, $templates, 'themes', 1800 );
-
-		return $atts;
+		return $templates;
 	}
 
 	/**
@@ -416,11 +405,11 @@ class APP_View_Page extends APP_View {
 	 *
 	 * @return array An array of post data
 	 */
-	public static function _preserve_template( $data, $postarr ) {
+	public final function _preserve_template( $data, $postarr ) {
 
 		$page = get_post( $postarr['ID'] );
 
-		if ( ! $page || 'page' !== $page->post_type ) {
+		if ( ! $page || $this->get_post_type() !== $page->post_type ) {
 			return $data;
 		}
 
@@ -428,18 +417,14 @@ class APP_View_Page extends APP_View {
 			return $data;
 		}
 
-		self::_register_new_templates();
-
 		$new_template = $postarr['page_template'];
 
-		$protected_templates = array_keys( self::_get_templates() );
-
-		if ( ! in_array( $new_template, $protected_templates ) ) {
+		if ( $new_template !== $this->get_template() ) {
 			return $data;
 		}
 
 		$page_q = new WP_Query( array(
-			'post_type' => 'page',
+			'post_type' => $this->get_post_type(),
 			'meta_key' => '_wp_page_template',
 			'meta_value' => $new_template,
 			'no_found_rows' => true,
@@ -499,6 +484,15 @@ class APP_View_Page extends APP_View {
 		}
 
 		return $tags;
+	}
+
+	/**
+	 * Retrieves the type of viewing item.
+	 *
+	 * @return string
+	 */
+	public final function get_post_type() {
+		return $this->ptype;
 	}
 
 }
