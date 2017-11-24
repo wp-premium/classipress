@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ClassiPress 3.6.0\n"
+"Project-Id-Version: ClassiPress 3.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 06:33:20+00:00\n"
+"POT-Creation-Date: 2017-11-21 08:59:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -412,7 +412,7 @@ msgstr ""
 msgid "Purchase a Membership Pack"
 msgstr ""
 
-#: form-membership-packages.php:41 framework/admin/class-system-info.php:120
+#: form-membership-packages.php:41 framework/admin/class-system-info.php:116
 #: includes/admin/options.php:1020 includes/admin/options.php:1276
 #: includes/admin/package-list.php:31 includes/admin/package-list.php:118
 #: includes/admin/package-single.php:27 includes/admin/package-single.php:129
@@ -559,8 +559,11 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
-#: framework/admin/class-meta-box.php:80
-#: framework/admin/class-tabs-page.php:156 includes/admin/options.php:483
+#: framework/admin/class-meta-box.php:81
+#: framework/admin/class-tabs-page.php:156
+#: framework/admin/class-taxonomy-meta-box.php:501
+#: framework/admin/class-taxonomy-meta-box.php:559
+#: includes/admin/options.php:483
 msgid "Click for more info"
 msgstr ""
 
@@ -592,365 +595,365 @@ msgid "Yes"
 msgstr ""
 
 #: framework/admin/class-system-info.php:105
-#: framework/admin/class-system-info.php:458
+#: framework/admin/class-system-info.php:511
 msgid "Cron Jobs"
 msgstr ""
 
-#: framework/admin/class-system-info.php:117
-msgid "Theme Info"
-msgstr ""
-
-#: framework/admin/class-system-info.php:123
+#: framework/admin/class-system-info.php:119
 msgid "The name of the current active theme."
 msgstr ""
 
-#: framework/admin/class-system-info.php:130
-#: framework/admin/class-system-info.php:545 includes/admin/dashboard.php:85
+#: framework/admin/class-system-info.php:126
+#: framework/admin/class-system-info.php:598 includes/admin/dashboard.php:85
 msgid "Version"
 msgstr ""
 
-#: framework/admin/class-system-info.php:133
+#: framework/admin/class-system-info.php:129
 msgid "The version of the current active theme."
 msgstr ""
 
-#: framework/admin/class-system-info.php:140
+#: framework/admin/class-system-info.php:136
 msgid "Author URL"
 msgstr ""
 
-#: framework/admin/class-system-info.php:143
+#: framework/admin/class-system-info.php:139
 msgid "The theme developers url."
 msgstr ""
 
-#: framework/admin/class-system-info.php:150
+#: framework/admin/class-system-info.php:146
 msgid "Theme Path"
 msgstr ""
 
-#: framework/admin/class-system-info.php:153
+#: framework/admin/class-system-info.php:149
 msgid "The path of the current active theme."
 msgstr ""
 
-#: framework/admin/class-system-info.php:160
+#: framework/admin/class-system-info.php:156
 msgid "Child Theme"
 msgstr ""
 
-#: framework/admin/class-system-info.php:163
+#: framework/admin/class-system-info.php:159
 msgid "Check if a child theme is active."
 msgstr ""
 
-#: framework/admin/class-system-info.php:164
+#: framework/admin/class-system-info.php:160
 msgid "Using parent theme %s v%s"
 msgstr ""
 
-#: framework/admin/class-system-info.php:174
-msgid "WordPress Info"
+#: framework/admin/class-system-info.php:177
+msgid "Theme Info"
 msgstr ""
 
-#: framework/admin/class-system-info.php:177
+#: framework/admin/class-system-info.php:184
 msgid "Home URL"
 msgstr ""
 
-#: framework/admin/class-system-info.php:180
+#: framework/admin/class-system-info.php:187
 msgid "The url of your website's homepage."
 msgstr ""
 
-#: framework/admin/class-system-info.php:187
+#: framework/admin/class-system-info.php:194
 msgid "Site URL"
 msgstr ""
 
-#: framework/admin/class-system-info.php:190
+#: framework/admin/class-system-info.php:197
 msgid "The url of your WordPress install."
 msgstr ""
 
-#: framework/admin/class-system-info.php:197
+#: framework/admin/class-system-info.php:204
 msgid "WP Version"
 msgstr ""
 
-#: framework/admin/class-system-info.php:200
+#: framework/admin/class-system-info.php:207
 msgid "The version of WordPress installed."
 msgstr ""
 
-#: framework/admin/class-system-info.php:207
+#: framework/admin/class-system-info.php:214
 msgid "WP Multisite"
 msgstr ""
 
-#: framework/admin/class-system-info.php:210
+#: framework/admin/class-system-info.php:217
 msgid "Check to see if WordPress Multisite is enabled."
 msgstr ""
 
-#: framework/admin/class-system-info.php:217
+#: framework/admin/class-system-info.php:224
 msgid "WP Memory Limit"
 msgstr ""
 
-#: framework/admin/class-system-info.php:220
+#: framework/admin/class-system-info.php:227
 msgid "The maximum amount of memory (RAM) that your site can use."
 msgstr ""
 
-#: framework/admin/class-system-info.php:227
+#: framework/admin/class-system-info.php:234
 msgid "WP Remote Post"
 msgstr ""
 
-#: framework/admin/class-system-info.php:230
+#: framework/admin/class-system-info.php:237
 msgid ""
 "Checks to see if your hosting server is able to post information to another "
 "server. PayPal IPN uses this method of communication when sending back "
 "transaction information."
 msgstr ""
 
-#: framework/admin/class-system-info.php:237
+#: framework/admin/class-system-info.php:244
 msgid "WP Debug Mode"
 msgstr ""
 
-#: framework/admin/class-system-info.php:240
+#: framework/admin/class-system-info.php:247
 msgid "Check to see if WordPress debug mode is enabled."
 msgstr ""
 
-#: framework/admin/class-system-info.php:247
+#: framework/admin/class-system-info.php:254
 msgid "Force SSL Admin"
 msgstr ""
 
-#: framework/admin/class-system-info.php:250
+#: framework/admin/class-system-info.php:257
 msgid ""
 "Check to see if your site forces SSL (Secure Sockets Layer) also known as "
 "TLS (Transport Layer Security)."
 msgstr ""
 
-#: framework/admin/class-system-info.php:257 includes/admin/settings.php:134
+#: framework/admin/class-system-info.php:264 includes/admin/settings.php:134
 msgid "Language"
 msgstr ""
 
-#: framework/admin/class-system-info.php:260
+#: framework/admin/class-system-info.php:267
 msgid ""
 "The current language used by WordPress. The default value is en_US "
 "(English)."
 msgstr ""
 
-#: framework/admin/class-system-info.php:267
+#: framework/admin/class-system-info.php:274
 msgid "Language File Path"
 msgstr ""
 
-#: framework/admin/class-system-info.php:270
+#: framework/admin/class-system-info.php:277
 msgid ""
 "Where to put your .mo language file for this theme (e.g. %1$s-%2$s.mo). The "
 "wp-admin \"Site Language\" drop-down must also be set to your locale."
 msgstr ""
 
-#: framework/admin/class-system-info.php:281
-msgid "Server Info"
+#: framework/admin/class-system-info.php:295
+msgid "WordPress Info"
 msgstr ""
 
-#: framework/admin/class-system-info.php:284
+#: framework/admin/class-system-info.php:302
 msgid "Server Software"
 msgstr ""
 
-#: framework/admin/class-system-info.php:287
+#: framework/admin/class-system-info.php:305
 msgid "The web server your hosting server is running."
 msgstr ""
 
-#: framework/admin/class-system-info.php:294
+#: framework/admin/class-system-info.php:312
 msgid "PHP Version"
 msgstr ""
 
-#: framework/admin/class-system-info.php:297
+#: framework/admin/class-system-info.php:315
 msgid ""
 "The version of PHP installed on your hosting server. We recommend a minimum "
 "PHP version of 5.4."
 msgstr ""
 
-#: framework/admin/class-system-info.php:298
+#: framework/admin/class-system-info.php:316
 msgid "Function phpversion() is not available."
 msgstr ""
 
-#: framework/admin/class-system-info.php:304
+#: framework/admin/class-system-info.php:322
 msgid "PHP Post Max Size"
 msgstr ""
 
-#: framework/admin/class-system-info.php:307
+#: framework/admin/class-system-info.php:325
 msgid "The largest file size that can be contained in one $_POST."
 msgstr ""
 
-#: framework/admin/class-system-info.php:308
-#: framework/admin/class-system-info.php:318
-#: framework/admin/class-system-info.php:328
-#: framework/admin/class-system-info.php:368
+#: framework/admin/class-system-info.php:326
+#: framework/admin/class-system-info.php:336
+#: framework/admin/class-system-info.php:346
+#: framework/admin/class-system-info.php:386
 msgid "Function ini_get() is not available."
 msgstr ""
 
-#: framework/admin/class-system-info.php:314
+#: framework/admin/class-system-info.php:332
 msgid "PHP Time Limit"
 msgstr ""
 
-#: framework/admin/class-system-info.php:317
+#: framework/admin/class-system-info.php:335
 msgid ""
 "The amount of time (in seconds) your server will spend on a task before "
 "timing out. Set this higher to avoid timeout issues."
 msgstr ""
 
-#: framework/admin/class-system-info.php:324
+#: framework/admin/class-system-info.php:342
 msgid "PHP Max Input Vars"
 msgstr ""
 
-#: framework/admin/class-system-info.php:327
+#: framework/admin/class-system-info.php:345
 msgid ""
 "The maximum number of variables your server can use for a single function "
 "to avoid overloads."
 msgstr ""
 
-#: framework/admin/class-system-info.php:334
+#: framework/admin/class-system-info.php:352
 msgid "SUHOSIN Installed"
 msgstr ""
 
-#: framework/admin/class-system-info.php:337
+#: framework/admin/class-system-info.php:355
 msgid ""
 "Suhosin is an advanced protection system for PHP installations. Your host "
 "provider typically configures this."
 msgstr ""
 
-#: framework/admin/class-system-info.php:344
+#: framework/admin/class-system-info.php:362
 msgid "MySQL Version"
 msgstr ""
 
-#: framework/admin/class-system-info.php:347
+#: framework/admin/class-system-info.php:365
 msgid ""
 "The version of MySQL installed on your hosting server. We recommend a "
 "minimum mySQL version of 5.5."
 msgstr ""
 
-#: framework/admin/class-system-info.php:354
+#: framework/admin/class-system-info.php:372
 msgid "Max Upload Size"
 msgstr ""
 
-#: framework/admin/class-system-info.php:357
+#: framework/admin/class-system-info.php:375
 msgid ""
 "The largest file size that can be uploaded to your WordPress installation. "
 "If you get timeout errors when uploading a large file, this should be "
 "increased."
 msgstr ""
 
-#: framework/admin/class-system-info.php:364
+#: framework/admin/class-system-info.php:382
 msgid "Display Errors"
 msgstr ""
 
-#: framework/admin/class-system-info.php:367
+#: framework/admin/class-system-info.php:385
 msgid ""
 "Checks if your hosting server has PHP errors turned on. If so, they will "
 "display on the screen. This should be turned off in a production "
 "environment."
 msgstr ""
 
-#: framework/admin/class-system-info.php:378
-msgid "Image Support"
+#: framework/admin/class-system-info.php:403
+msgid "Server Info"
 msgstr ""
 
-#: framework/admin/class-system-info.php:381
+#: framework/admin/class-system-info.php:410
 msgid "GD Library"
 msgstr ""
 
-#: framework/admin/class-system-info.php:384
+#: framework/admin/class-system-info.php:413
 msgid ""
 "Checks to see if your hosting server has the GD Library installed which "
 "allows WordPress to dynamically manipulate images."
 msgstr ""
 
-#: framework/admin/class-system-info.php:391
+#: framework/admin/class-system-info.php:420
 msgid "Image Upload Path"
 msgstr ""
 
-#: framework/admin/class-system-info.php:394
+#: framework/admin/class-system-info.php:423
 msgid "The WordPress image upload path on your hosting server."
 msgstr ""
 
-#: framework/admin/class-system-info.php:405
-msgid "Other Checks"
+#: framework/admin/class-system-info.php:441
+msgid "Image Support"
 msgstr ""
 
-#: framework/admin/class-system-info.php:408
+#: framework/admin/class-system-info.php:448
 msgid "JSON Decode"
 msgstr ""
 
-#: framework/admin/class-system-info.php:411
+#: framework/admin/class-system-info.php:451
 msgid "Checks to see if the JSON Decode function is enabled on your hosting server."
 msgstr ""
 
-#: framework/admin/class-system-info.php:418
+#: framework/admin/class-system-info.php:458
 msgid "cURL"
 msgstr ""
 
-#: framework/admin/class-system-info.php:421
+#: framework/admin/class-system-info.php:461
 msgid ""
 "Checks to see if the CURL function is enabled on your hosting server. "
 "Payment gateways and sometimes other plugins usually required this in order "
 "to work properly."
 msgstr ""
 
-#: framework/admin/class-system-info.php:428
+#: framework/admin/class-system-info.php:468
 msgid "fsockopen"
 msgstr ""
 
-#: framework/admin/class-system-info.php:431
+#: framework/admin/class-system-info.php:471
 msgid ""
 "Checks to see if the fsockopen function is enabled on your hosting server. "
 "Payment gateways and sometimes other plugins usually required this in order "
 "to work properly."
 msgstr ""
 
-#: framework/admin/class-system-info.php:438
+#: framework/admin/class-system-info.php:478
 msgid "OpenSSL"
 msgstr ""
 
-#: framework/admin/class-system-info.php:441
+#: framework/admin/class-system-info.php:481
 msgid ""
 "Checks to see if the OpenSSL function is enabled on your hosting server. "
 "This is sometimes required by plugins but typically not for payment "
 "gateways."
 msgstr ""
 
-#: framework/admin/class-system-info.php:452
+#: framework/admin/class-system-info.php:499
+msgid "Other Checks"
+msgstr ""
+
+#: framework/admin/class-system-info.php:505
 msgid "Active Plugins"
 msgstr ""
 
-#: framework/admin/class-system-info.php:474
+#: framework/admin/class-system-info.php:527
 msgid "Download Report"
 msgstr ""
 
-#: framework/admin/class-system-info.php:507
+#: framework/admin/class-system-info.php:560
 msgid ""
 "wp_remote_post() failed. PayPal IPN won't work with your server at this "
 "time. Contact your host provider."
 msgstr ""
 
-#: framework/admin/class-system-info.php:511
+#: framework/admin/class-system-info.php:564
 msgid "Error: %s"
 msgstr ""
 
-#: framework/admin/class-system-info.php:513
+#: framework/admin/class-system-info.php:566
 msgid "Status code: %s"
 msgstr ""
 
-#: framework/admin/class-system-info.php:546
+#: framework/admin/class-system-info.php:599
 msgid "By"
 msgstr ""
 
-#: framework/admin/class-system-info.php:547
+#: framework/admin/class-system-info.php:600
 msgid "Plugin site"
 msgstr ""
 
-#: framework/admin/class-system-info.php:582
+#: framework/admin/class-system-info.php:633
 msgid "One-off event"
 msgstr ""
 
-#: framework/admin/class-system-info.php:609
+#: framework/admin/class-system-info.php:660
 msgid "You haven&#39;t created any cron job tasks yet."
 msgstr ""
 
-#: framework/admin/class-system-info.php:615
+#: framework/admin/class-system-info.php:666
 msgid "Hook Name"
 msgstr ""
 
-#: framework/admin/class-system-info.php:616
+#: framework/admin/class-system-info.php:667
 msgid "Frequency"
 msgstr ""
 
-#: framework/admin/class-system-info.php:617
+#: framework/admin/class-system-info.php:668
 msgid "Next Run Date"
 msgstr ""
 
@@ -959,7 +962,7 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: framework/admin/class-user-meta-box.php:296
+#: framework/admin/class-user-meta-box.php:305
 msgid "ERROR"
 msgstr ""
 
@@ -1192,89 +1195,89 @@ msgstr ""
 msgid "%s ago"
 msgstr ""
 
-#: framework/kernel/view-types.php:259
+#: framework/kernel/view-types.php:266
 msgid ""
 "Retrieving page id by APP_View_Page subclass name is deprecated, use "
 "APP_View_Page::_get_page_id( $template ) instead!"
 msgstr ""
 
-#: framework/load.php:172
+#: framework/load.php:184
 msgid ""
-"The %s plugin is not detected. We strongly recommend you download and "
-"activate it so you can receive the latest updates when available. It also "
-"protects your theme from being overwritten by a similarly named theme."
+"The AppThemes Updater plugin is not installed. It is required in order to "
+"receive new version notifications and perform updates from within "
+"WordPress. <a href=\"%s\" target=\"_blank\">Download it &rarr;</a>"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:135
+#: framework/media-manager/media-manager.php:79
 msgid "Allowed files"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:136
+#: framework/media-manager/media-manager.php:80
 msgid "Allowed file types"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:137
+#: framework/media-manager/media-manager.php:81
 msgid "Insert Media"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:138
+#: framework/media-manager/media-manager.php:82
 msgid "Insert from URL"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:139
+#: framework/media-manager/media-manager.php:83
 msgid "Maximum upload file size"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:140
+#: framework/media-manager/media-manager.php:84
 msgid "Allowed embeds"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:141
+#: framework/media-manager/media-manager.php:85
 msgid "Clear Embeds (clears any previously added embeds)"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:142
+#: framework/media-manager/media-manager.php:86
 msgid "No more embeds allowed"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:182
+#: framework/media-manager/media-manager.php:126
 msgid "Add Media"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:183
+#: framework/media-manager/media-manager.php:127
 msgid "Manage Media"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:184
+#: framework/media-manager/media-manager.php:128
 msgid "No media added yet"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:369
+#: framework/media-manager/media-manager.php:317
 #: includes/payments/admin/order-list.php:113
 #: includes/payments/admin/order-single.php:159 includes/payments.php:708
 #: includes/payments.php:764 includes/views-checkout.php:570
 msgid "Unknown"
 msgstr ""
 
-#: framework/media-manager/media-manager.php:622
+#: framework/media-manager/media-manager.php:569
 msgid "Sorry, allowed mime types do not seem to be valid."
 msgstr ""
 
-#: framework/media-manager/media-manager.php:658
+#: framework/media-manager/media-manager.php:605
 msgid "Sorry, you cannot upload this file type for this field."
 msgstr ""
 
-#: framework/media-manager/media-manager.php:671
+#: framework/media-manager/media-manager.php:618
 msgid "Sorry, the allowed file size does not seem to be valid."
 msgstr ""
 
-#: framework/media-manager/media-manager.php:678
+#: framework/media-manager/media-manager.php:625
 msgid ""
 "Sorry, you cannot upload this file as it exceeds the size limitations for "
 "this field."
 msgstr ""
 
-#: framework/media-manager/media-manager.php:701
+#: framework/media-manager/media-manager.php:648
 msgid "Sorry, you've reached the file upload limit for this field."
 msgstr ""
 
@@ -1331,8 +1334,15 @@ msgstr ""
 msgid "Settings <strong>saved</strong>."
 msgstr ""
 
-#: functions.php:182
+#: functions.php:189
 msgid "Attachments"
+msgstr ""
+
+#: functions.php:228
+msgid ""
+"ClassiPress version %1$s is not compatible with WordPress version %2$s. "
+"Correct work is not guaranteed. Please upgrade the WordPress at least to "
+"version %3$s or downgrade the ClassiPress theme."
 msgstr ""
 
 #: header.php:22
@@ -1348,7 +1358,7 @@ msgid "Listing ID:"
 msgstr ""
 
 #: includes/actions.php:206
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:431
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:437
 msgid "N/A"
 msgstr ""
 
@@ -1578,8 +1588,8 @@ msgstr ""
 msgid "Meta"
 msgstr ""
 
-#: includes/admin/listing-list.php:39 includes/admin/listing-single.php:496
-#: includes/admin/listing-single.php:509
+#: includes/admin/listing-list.php:39 includes/admin/listing-single.php:501
+#: includes/admin/listing-single.php:514
 #: includes/payments/admin/order-list.php:27
 #: includes/reports/admin/metabox.php:149
 msgid "Author"
@@ -5308,128 +5318,136 @@ msgid "The following error ocurred while trying to make the pay request: \"%s\""
 msgstr ""
 
 #: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:83
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:127
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:133
 msgid "No response code from PayPal while trying to execute the payment."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:100
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:91
+msgid "The pay key has been received and saved in order #%s meta"
+msgstr ""
+
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:93
+msgid "No pay key received from the escrow payment request"
+msgstr ""
+
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:106
 #: includes/payments/gateways/paypal/paypal.php:106
 msgid "You are now being redirected to PayPal."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:123
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:129
 msgid "PayPal was not able to execute the payment. Please contact site owner."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:125
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:131
 msgid "The following error ocurred while trying to execute the payment: \"%s\""
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:132
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:138
 msgid "Funds transferred to receivers"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:155
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:161
 msgid "PayPal was not able to execute the refund. Please contact site owner."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:157
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:163
 msgid "The following error ocurred while trying to execute the refund: \"%s\""
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:159
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:165
 msgid "No response code from PayPal while trying to execute the refund."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:189
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:195
 msgid "PayPal Escrow Information"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:192
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:198
 #: includes/payments/gateways/paypal/paypal.php:135
 msgid "PayPal Email"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:198
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:204
 msgid "Money transfers will be made to this PayPal email address."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:222
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:228
 msgid "Adaptive Payments SANDBOX API Credentials (Escrow)"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:225
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:255
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:231
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:261
 #: theme-framework/templates/foundation/form-login.php:18
 #: theme-framework/templates/foundation/form-registration.php:18
 #: tpl-profile.php:43
 msgid "Username"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:226
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:232
 msgid ""
 "Your sandbox account API credentials username. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:231
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:261
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:237
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:267
 #: theme-framework/templates/foundation/form-login.php:23
 #: theme-framework/templates/foundation/form-registration.php:37
 msgid "Password"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:232
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:238
 msgid ""
 "Your sandbox account API credentials password. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:237
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:267
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:243
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:273
 msgid "Signature"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:238
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:244
 msgid ""
 "Your sandbox account API credentials signature. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:252
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:258
 msgid "Adaptive Payments LIVE API Credentials (Escrow)"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:256
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:262
 msgid ""
 "Your LIVE API credentials username. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:262
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:268
 msgid ""
 "Your LIVE API credentials password. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:268
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:274
 msgid ""
 "Your LIVE API credentials signature. You can find more info on "
 "creating/managing API credentials <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:273
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:279
 msgid "AppID"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:274
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:280
 msgid ""
 "Your Application ID. This should be your LIVE AppID <u>NOT</u> the generic "
 "AppID <code>APP-80W284485P519543</code> used for testing. You can find more "
 "info on creating/managing PayPal applications <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:275
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:281
 msgid ""
 "<strong>Important:</strong> You can only start accepting 'escrow' "
 "transactions after your AppID is fully approved by PayPal. Applications "
@@ -5437,31 +5455,31 @@ msgid ""
 "'escrow' transactions. "
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:289
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:295
 msgid "Adaptive Payments Fees"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:292
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:298
 msgid "Payer"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:293
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:299
 msgid "Who should pay any applicable fees?"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:297
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:303
 msgid "Primary Receiver (You)"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:298
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:304
 msgid "Secondary Receiver"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:324
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:330
 msgid "<a href=\"%s\">Obtain Sandbox API Credentials</a>"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:329
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:335
 msgid ""
 "<strong>Important:</strong> To obtain live PayPal credentials, you must "
 "have a verified Premier or verified Business PayPal account. Also, make "
@@ -5470,32 +5488,32 @@ msgid ""
 "to you."
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:330
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:336
 msgid "<a href=\"%s\">Obtain Live API Credentials</a>"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:378
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:384
 #: includes/theme-support.php:90
 msgid "Details"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:406
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:412
 msgid "Funds"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:413
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:419
 msgid "Receiver"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:417
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:423
 msgid "Amount"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:422
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:428
 msgid "Retained"
 msgstr ""
 
-#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:423
+#: includes/payments/escrow/gateways/paypal-adaptive/paypal-adaptive.php:429
 msgid "(when completed)"
 msgstr ""
 
@@ -5600,15 +5618,15 @@ msgstr ""
 msgid "No payment gateways are available. Please contact your site administrator"
 msgstr ""
 
-#: includes/payments/gateways/paypal/paypal-form.php:64
+#: includes/payments/gateways/paypal/paypal-form.php:65
 msgid "Continue to %s"
 msgstr ""
 
-#: includes/payments/gateways/paypal/paypal-form.php:134
+#: includes/payments/gateways/paypal/paypal-form.php:136
 msgid "Your Order is still being processed. Please wait a few seconds..."
 msgstr ""
 
-#: includes/payments/gateways/paypal/paypal-form.php:135
+#: includes/payments/gateways/paypal/paypal-form.php:137
 msgid ""
 "If your Order does not complete soon, please contact us and refer to your "
 "Order ID - #%d."
@@ -6107,6 +6125,14 @@ msgstr ""
 
 #: includes/profile.php:82
 msgid "Extended Profile"
+msgstr ""
+
+#: includes/recaptcha/class-recaptcha-request.php:54
+msgid "Invalid response code."
+msgstr ""
+
+#: includes/recaptcha/class-recaptcha-request.php:59
+msgid "Invalid response message."
 msgstr ""
 
 #: includes/recaptcha/class-recaptcha.php:177
@@ -7508,7 +7534,7 @@ msgstr ""
 msgid "Merge"
 msgstr ""
 
-#: theme-framework/kernel/functions.php:73
+#: theme-framework/kernel/functions.php:79
 msgid "Page %s"
 msgstr ""
 

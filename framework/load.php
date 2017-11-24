@@ -166,10 +166,62 @@ function _appthemes_admin_enqueue_scripts() {
 
 /**
  * Display AppThemes updater missing notice warning.
+ *
+ * @since 1.0.0
+ * @since 1.1.0 Added permanent dismiss option.
+ *
+ * @return string The updater message notice.
  */
 function _appthemes_no_updater_plugin_warning() {
-	$link = html_link( 'https://www.appthemes.com/blog/new-plugin-to-keep-your-themes-healthy/', 'AppThemes Updater' );
-	$msg = sprintf( __( 'The %s plugin is not detected. We strongly recommend you download and activate it so you can receive the latest updates when available. It also protects your theme from being overwritten by a similarly named theme.', APP_TD ), $link );
 
-	echo wp_kses_post( scb_admin_notice( $msg, 'notice notice-warning' ) );
+	if ( get_option( 'appthemes_updater_plugin_notice_dismissed', false ) ) {
+		return;
+	}
+
+	// Required for ajax to work.
+	wp_enqueue_script( 'wp-util' );
+
+	$msg = sprintf( __( 'The AppThemes Updater plugin is not installed. It is required in order to receive new version notifications and perform updates from within WordPress. <a href="%s" target="_blank">Download it &rarr;</a>', APP_TD ), esc_url( 'https://my.appthemes.com/purchases/' ) );
+
+	echo scb_admin_notice( $msg, 'appthemes-updater-plugin-notice notice notice-warning is-dismissible' );
+	?>
+
+	<script>
+	jQuery( function( $ ) {
+		$( '.appthemes-updater-plugin-notice' ).on( 'click', '.notice-dismiss', function( e ) {
+			e.preventDefault();
+			wp.ajax.send( '_appthemes_no_updater_plugin_warning_dismiss', {
+				data: { _wpnonce: '<?php echo esc_js( wp_create_nonce( 'appthemes_updater_plugin_notice_nonce' ) ); ?>' }
+			} );
+		} );
+	} );
+	</script>
+
+	<?php
 }
+
+/**
+ * Ajax handler to dismiss the 'updater plugin not detected' notice till next theme update.
+ *
+ * @since 1.1.0
+ *
+ * @return void
+ */
+function _appthemes_no_updater_plugin_warning_dismiss() {
+	check_ajax_referer( 'appthemes_updater_plugin_notice_nonce', '_wpnonce' );
+	add_option( 'appthemes_updater_plugin_notice_dismissed', true );
+	wp_send_json_success();
+}
+add_action( 'wp_ajax__appthemes_no_updater_plugin_warning_dismiss', '_appthemes_no_updater_plugin_warning_dismiss' );
+
+/**
+ * Restore the 'updater plugin not detected' notice.
+ *
+ * @since 1.1.0
+ *
+ * @return void
+ */
+function _appthemes_no_updater_plugin_warning_restore() {
+	delete_option( 'appthemes_updater_plugin_notice_dismissed' );
+}
+add_action( 'appthemes_first_run', '_appthemes_no_updater_plugin_warning_restore' );

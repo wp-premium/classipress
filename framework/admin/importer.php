@@ -356,14 +356,18 @@ class APP_Importer extends scbAdminPage {
 			$post['tax_input'][ $tax ] = $_terms;
 		}
 
-		if ( ! empty( $post['post_author'] ) ) {
+		if ( empty( $post['post_author'] ) ) {
+			unset( $post['post_author'] );
+		} else {
 			$user = get_user_by( 'login', $post['post_author'] );
 			if ( $user ) {
 				$post['post_author'] = $user->ID;
 			}
 		}
 
-		if ( ! empty( $post['post_date'] ) ) {
+		if ( empty( $post['post_date'] ) ) {
+			unset( $post['post_date'] );
+		} else {
 			$post['post_date'] = date( 'Y-m-d H:i:s', strtotime( $post['post_date'] ) );
 		}
 
@@ -413,7 +417,18 @@ class APP_Importer extends scbAdminPage {
 
 		do_action( 'appthemes_importer_import_row_after', $post_id, $row );
 
-		return true;
+		return $post_id;
+	}
+
+	/**
+	 * The public version of import_row() method.
+	 *
+	 * @param array $row The listing data to build listing with.
+	 *
+	 * @return int|bool The new listing ID or false on failure.
+	 */
+	public function import_listing( $row ) {
+		return $this->import_row( $row );
 	}
 
 	function process_attachment( $url, $parent_post_id ) {

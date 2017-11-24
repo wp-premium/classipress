@@ -87,6 +87,12 @@ class APP_PayPal_Adaptive extends APP_PayPal implements APP_Escrow_Payment_Proce
 
 		$order->add_data( 'pay_key', $pay_response['payKey'] );
 
+		if ( $pay_response['payKey'] ) {
+			$order->log( sprintf( __( 'The pay key has been received and saved in order #%s meta', APP_TD ), $order->get_id() ) );
+		} else {
+			$order->log( sprintf( __( 'No pay key received from the escrow payment request', APP_TD ), $order->get_id() ) );
+		}
+
 		$form_atts = array(
 			'name' => 'paypal_payform',
 			'action' => APP_PayPal::get_request_url(),

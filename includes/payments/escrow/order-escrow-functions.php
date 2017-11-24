@@ -7,9 +7,6 @@
 
 add_action( 'init', '_appthemes_handle_escrow_settings_form', 20 );
 
-add_action( 'appthemes_transaction_completed', 'appthemes_escrow_complete' );
-add_action( 'tr_paid_to_tr_refunded', 'appthemes_escrow_refund' );
-
 /**
  * Creates a blank escrow order object.
  *
@@ -65,7 +62,10 @@ function appthemes_escrow_process( $gateway_id, APP_Escrow_Order $order ) {
 }
 
 /**
- * Completes the escrow order by moving the funds held in escrow to the secondary receiver(s).
+ * Completes the escrow order by moving the funds held in escrow to the
+ * secondary receiver(s).
+ *
+ * Used by APP_Escrow_Order::complete()
  *
  * @uses do_action() Calls 'appthemes_escrow_completed'
  * @uses do_action() Calls 'appthemes_escrow_complete_failed'
@@ -108,7 +108,8 @@ function appthemes_escrow_complete( $order ) {
 
 /**
  * Returns funds held in escrow to the original sender.
- * Triggered only when changing an Order from 'Paid' to 'Failed'.
+ * Triggered only when changing an Order from 'Paid' to 'Refunded'
+ * by APP_Escrow_Order::refunded().
  *
  * @uses do_action() Calls 'appthemes_escrow_refunded'
  * @uses do_action() Calls 'appthemes_escrow_refund_failed'

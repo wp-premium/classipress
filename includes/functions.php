@@ -1104,7 +1104,7 @@ function cp_dashboard_listing_actions( $listing_id = 0 ) {
 
 	foreach ( $actions as $action => $attr ) {
 
-		$description = $attr['title'];
+		$description = isset( $attr['description'] ) ? $attr['description'] : $attr['title'];
 
 		if ( in_array( $action, $iconized ) ) {
 			$attr['class'] = $action . ' dashicons-before' ;

@@ -3,6 +3,7 @@
  * AppThemes Theme Framework load
  *
  * @package ThemeFramework
+ * @since 1.0.0
  */
 
 define( 'APP_THEME_FRAMEWORK_VER', '1.0' );
@@ -98,11 +99,20 @@ function _appthemes_load_theme_features() {
 		}
 	}
 
+	/**
+	 * Fires after the AppThemes framework is loaded.
+	 *
+	 * @since 1.0.0
+	 */
 	do_action( 'appthemes_theme_framework_loaded' );
 }
 
 /**
  * Register frontend/backend scripts and styles for later enqueue.
+ *
+ * @since 1.0.0
+ *
+ * return void
  */
 function _appthemes_register_theme_scripts() {
 

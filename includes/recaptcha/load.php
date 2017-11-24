@@ -10,6 +10,8 @@ add_action( 'after_setup_theme', '_appthemes_load_recaptcha', 999 );
 
 /**
  * Adds support for Google reCaptcha.
+ *
+ * @return void
  */
  function _appthemes_load_recaptcha() {
 
@@ -17,12 +19,11 @@ add_action( 'after_setup_theme', '_appthemes_load_recaptcha', 999 );
 		return;
 	}
 
-    // Skip if theme still uses old reCaptcha library.
-
+	// Skip if theme still uses old reCaptcha library.
 	// @TODO: remove after themes migrate to ReCaptcha 2.0.
-	if ( ! empty( $options['file'] ) && file_exists( $options['file']  ) ) {
-        return;
-    }
+	if ( ! empty( $options['file'] ) && file_exists( $options['file'] ) ) {
+		return;
+	}
 
 	list( $args ) = get_theme_support( 'app-recaptcha' );
 
@@ -32,10 +33,9 @@ add_action( 'after_setup_theme', '_appthemes_load_recaptcha', 999 );
 	unset( $args['private_key'] );
 	unset( $args['public_key'] );
 
-	require dirname( __FILE__ ) . '/class-recaptcha.php';
-	require dirname( __FILE__ ) . '/functions.php';
+	require_once( dirname( __FILE__ ) . '/class-recaptcha.php' );
+	require_once( dirname( __FILE__ ) . '/functions.php' );
 
 	// Init new ReCaptcha.
 	APP_Recaptcha::init( $site_key, $private_key, $args );
-
 }

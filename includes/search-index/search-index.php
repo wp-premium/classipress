@@ -200,7 +200,7 @@ class APP_Search_Index {
 
 				if ( ! empty( $meta_values ) ) {
 					foreach ( $meta_values as $meta_value ) {
-						$index_array[] = $meta_value;
+						$index_array[] = implode( ', ', (array) $meta_value );
 					}
 				}
 			}
