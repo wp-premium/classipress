@@ -1,3 +1,20 @@
+3.6.1 - 2017-11-21
+fixes:
+	- Fixed max image size in back-end media uploader.
+	- Fixed Search Index of array meta values.
+	- Fixed reCaptcha issues with 'raw curl' (eg. like on localhost)
+	- Fixed reCaptcha issues with proxy - raw recaptcha lib wasn't using the wp proxy config
+	- Fixed the metabox help icon position
+	- Fixed WordPress compatibility issue in APP_View_Page::_register_new_templates()
+	- Fixed category walker warning
+	- Hide empty categories doesn't work for Parents, only for children
+
+changes:
+	- Raised minimal supported WordPress version to 4.7.4, added version warning message.
+	- Added dismissible option for updater plugin nag.
+	- Allow to use empty post_author and post_date in importer rows so it will use actual (current) values instead of empty ones.
+
+
 3.6.0 - 2017-07-28
 fixes:
 	- Added the missing global content_width value with cp_content_width filter to override

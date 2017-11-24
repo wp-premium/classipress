@@ -128,8 +128,18 @@ class APP_Escrow_Order extends APP_Order {
 	 * Sets the order as refunded. Causes action 'appthemes_transaction_refunded'.
 	 */
 	public function refunded(){
-		$this->set_status( APPTHEMES_ORDER_REFUNDED );
-		$this->log( 'Marked as Refunded', 'major' );
+		$response = true;
+
+		if ( APPTHEMES_ORDER_PAID === $this->get_status() ) {
+			$response = appthemes_escrow_refund( get_post( $this->get_id() ) );
+		}
+
+		if ( $response ) {
+			$this->set_status( APPTHEMES_ORDER_REFUNDED );
+			$this->log( 'Marked as Refunded', 'major' );
+		} else {
+			$this->log( 'Failed to Refund', 'major' );
+		}
 	}
 
 	/**
@@ -144,8 +154,14 @@ class APP_Escrow_Order extends APP_Order {
 	 * Sets the order as completed. Causes action 'appthemes_transaction_completed'.
 	 */
 	public function complete() {
-		$this->set_status( APPTHEMES_ORDER_COMPLETED );
-		$this->log( 'Marked as Completed', 'major' );
+		$response = appthemes_escrow_complete( $this );
+
+		if ( $response ) {
+			$this->set_status( APPTHEMES_ORDER_COMPLETED );
+			$this->log( 'Marked as Completed', 'major' );
+		} else {
+			$this->log( 'Failed to Complete', 'major' );
+		}
 	}
 
 	/**

@@ -41,6 +41,7 @@ class APP_PayPal_Form{
 	const NO_NOTE = 'no_note';
 	const CHARSET = 'charset';
 	const INVOICE = 'invoice';
+	const BN_CODE = 'bn';
 
 	/**
 	 * Displays the form for user redirection
@@ -69,6 +70,7 @@ class APP_PayPal_Form{
 
 			self::RETURN_METHOD => self::RETURN_BY_GET,
 			self::CHARSET => 'utf-8',
+			self::BN_CODE => 'TipsandTricks_SP',
 		);
 
 		if( $order->is_recurring() ){
@@ -99,7 +101,7 @@ class APP_PayPal_Form{
 		if ( !empty( $options['ipn_enabled'] ) ) {
 			$fields[ self::NOTIFY_URL ] = APP_PayPal_IPN_Listener::get_listener_url();
 		}
-		
+
 		$form = array(
 			'action' => APP_PayPal::get_request_url(),
 			'name' => 'paypal_payform',

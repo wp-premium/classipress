@@ -10,8 +10,11 @@
  */
 
 // Constants
-define( 'CP_VERSION', '3.6.0' );
+define( 'CP_VERSION', '3.6.1' );
 define( 'CP_DB_VERSION', '2794' );
+
+// Should reflect the WordPress version in the .testenv file.
+define( 'CP_WP_COMPATIBLE_VERSION', '4.7.4' );
 
 define( 'APP_POST_TYPE', 'ad_listing' );
 define( 'APP_TAX_CAT', 'ad_cat' );
@@ -24,6 +27,10 @@ define( 'CP_PACKAGE_LISTING_PTYPE', 'package-listing' );
 define( 'CP_PACKAGE_MEMBERSHIP_PTYPE', 'package-membership' );
 
 define( 'APP_TD', 'classipress' );
+
+if ( version_compare( $wp_version, CP_WP_COMPATIBLE_VERSION, '<' ) ) {
+	add_action( 'admin_notices', 'cp_display_version_warning' );
+}
 
 global $cp_options;
 
@@ -215,5 +222,11 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 500;
 }
 
+function cp_display_version_warning(){
+	global $wp_version;
+
+	$message = sprintf( __( 'ClassiPress version %1$s is not compatible with WordPress version %2$s. Correct work is not guaranteed. Please upgrade the WordPress at least to version %3$s or downgrade the ClassiPress theme.', APP_TD ), CP_VERSION, $wp_version, CP_WP_COMPATIBLE_VERSION );
+	echo '<div class="error fade"><p>' . $message .'</p></div>';
+}
 
 appthemes_init();

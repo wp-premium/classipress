@@ -91,6 +91,15 @@ class APP_User_Meta_Box {
 	}
 
 	/**
+	 * Retrieves the metabox id.
+	 *
+	 * @return string
+	 */
+	final public function get_id() {
+		return $this->id;
+	}
+
+	/**
 	 * Registers the metabox on the frontend.
 	 * Checks current page template name whether to show current field section.
 	 *
@@ -162,7 +171,7 @@ class APP_User_Meta_Box {
 	 * @return void
 	 */
 	public function nonce( $user ) {
-		wp_nonce_field( 'user_section_update', 'user_section_' . $this->id );
+		wp_nonce_field( 'user_section_update', 'user_section_' . $this->get_id() );
 	}
 
 	/**
@@ -404,6 +413,27 @@ class APP_User_Meta_Box {
 	 */
 	protected function single( $val ) {
 		return maybe_unserialize( $val[0] );
+	}
+
+
+	/**
+	 * Returns current term ID.
+	 *
+	 * @return int
+	 */
+	public function get_user_id() {
+
+		if ( ! empty( $this->user_id ) ) {
+			$id = $this->user_id;
+		} elseif ( ! empty( $_REQUEST['user_id'] ) ) {
+			$id = absint( $_REQUEST['user_id'] );
+		} elseif ( defined( 'IS_PROFILE_PAGE' ) && IS_PROFILE_PAGE ) {
+			$id = get_current_user_id();
+		} else {
+			$id = 0;
+		}
+
+		return $id;
 	}
 
 }

@@ -234,7 +234,7 @@ class APP_PayPal_Adaptive_Request {
 
 			$receiver_list[ $key ] = array(
 				'email' => $paypal_email,
-				'amount' => (float) $amount,
+				'amount' => number_format( (float) $amount, 2, '.', '' ),
 				'primary' => ( $key == 0 ),
 			);
 			$key++;

@@ -36,7 +36,18 @@ class APP_Tax_Exclusive {
  */
 class APP_Category_Walker extends Walker_Category_Checklist {
 
-	function start_el( &$output, $category, $depth, $args, $id = 0 ) {
+	/**
+	 * Start the element output.
+	 *
+	 * @see Walker::start_el()
+	 *
+	 * @param string $output   Passed by reference. Used to append additional content.
+	 * @param object $category The current term object.
+	 * @param int    $depth    Depth of the term in reference to parents. Default 0.
+	 * @param array  $args     An array of arguments. @see wp_terms_checklist()
+	 * @param int    $id       ID of the current term.
+	 */
+	function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
 		extract( $args );
 		if ( empty( $taxonomy ) ) {
 			$taxonomy = 'category';
@@ -58,4 +69,3 @@ class APP_Category_Walker extends Walker_Category_Checklist {
 		$output .= '</label>';
 	}
 }
-
